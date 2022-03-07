@@ -10,6 +10,7 @@ const Home: NextPage = () => {
         <meta name="description" content="like trello but prettier" />
         <link rel="icon" href="/favicon.png" />
       </Head>
+      <p>hola</p>
     </div>
   );
 };
