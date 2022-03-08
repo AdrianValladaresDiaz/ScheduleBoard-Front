@@ -15,7 +15,7 @@ export default function Document() {
           crossOrigin="true"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oleo+Script&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Oleo+Script&family=Salsa&display=swap"
           rel="stylesheet"
         />
       </Head>
