@@ -1,17 +1,12 @@
 import type { NextPage } from "next";
-import Head from "next/head";
+import styled from "styled-components";
+
+const StyledP = styled.article`
+  font-family: ${(props) => props.theme.logoFont};
+`;
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      <Head>
-        <title>Schedule Board</title>
-        <meta name="description" content="like trello but prettier" />
-        <link rel="icon" href="/favicon.png" />
-      </Head>
-      <p>hola</p>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Home;
