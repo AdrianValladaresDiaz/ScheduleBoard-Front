@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { FunctionComponent } from "react";
 import styled from "styled-components";
+import NavigationBar from "../NavigationBar/NavigationBar";
 
 const Background = styled.div`
   position: fixed;
@@ -21,6 +22,7 @@ const Layout: FunctionComponent = ({ children }: any) => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Background />
+      <NavigationBar />
       {children}
     </>
   );
