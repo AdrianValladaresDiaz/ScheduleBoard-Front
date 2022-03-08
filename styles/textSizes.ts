@@ -1,1 +1,1 @@
-export const medium = "18px";
+export const medium = "20px";

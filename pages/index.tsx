@@ -6,11 +6,7 @@ const StyledP = styled.article`
 `;
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      <StyledP>hola</StyledP>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Home;
