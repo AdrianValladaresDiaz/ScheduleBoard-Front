@@ -13,7 +13,7 @@ const Background = styled.div`
   min-width: 100%;
 `;
 
-const styledMain = styled.main`
+const StyledMain = styled.main`
   box-sizing: border-box;
   padding-top: ${(props) => props.theme.headerHeight};
   padding-left: ${(props) => props.theme.lateralPadding};
@@ -29,7 +29,7 @@ const Layout: FunctionComponent = ({ children }: any) => {
       </Head>
       <Background />
       <NavigationBar />
-      <main className="main-container">{children}</main>
+      <StyledMain className="main-container">{children}</StyledMain>
     </>
   );
 };
