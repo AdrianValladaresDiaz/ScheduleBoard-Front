@@ -20,15 +20,18 @@ const StyledNav = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 7px ${paddingSizes.mobileSidesPadding};
+  height: ${(props) => props.theme.headerHeight};
+  padding: ${(props) => props.theme.lateralPadding};
 `;
 
 const LinkList = styled.ul`
   display: flex;
+  align-items: center;
   &* {
     margin-left: ${paddingSizes.mobileSidesPadding};
   }
   & a {
+    padding-top: 6px;
     margin-right: ${paddingSizes.mobileSidesPadding};
 
     width: 35px;
