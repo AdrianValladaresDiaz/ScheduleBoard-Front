@@ -10,12 +10,15 @@ interface HomeProps {
   data: any;
 }
 
-const Home = ({ data }: HomeProps): JSX.Element => {
-  const f = data;
-  console.log(f);
+const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
   return (
     <>
-      <article>{data.toString()}</article>
+      {projects.map((project: any) => (
+        <>
+          <p key={project.title}>{project.title}</p>
+          <p key={project.dueDate}>{project.dueDate}</p>
+        </>
+      ))}
     </>
   );
 };
