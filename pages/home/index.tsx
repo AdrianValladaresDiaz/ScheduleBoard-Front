@@ -13,10 +13,8 @@ const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
     <ul>
       {projects.map((project: any) => (
         <li key={project.title}>
-          <div>
-            <p>{project.title}</p>
-            <p>{project.dueDate}</p>
-          </div>
+          <p>{project.title}</p>
+          <p>{project.dueDate}</p>
         </li>
       ))}
     </ul>

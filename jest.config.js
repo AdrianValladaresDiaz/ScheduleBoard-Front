@@ -18,6 +18,7 @@ const customJestConfig = {
     "!utils/*.test.ts",
     "!**/*.test.tsx",
     "!pages/_document.tsx",
+    "!pages/_app.tsx",
   ],
 };
 
