@@ -1,7 +1,5 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
-import { NextRouter, Router } from "next/router";
-import { Cookies } from "react-cookie";
 import { AxiosUserProjectsGetResponseInterface } from "../../interfaces/backendResponseInterfaces";
 import checkToken from "../../utils/checkToken";
 import getToken from "../../utils/getToken";
@@ -12,14 +10,16 @@ interface HomeProps {
 
 const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
   return (
-    <>
+    <ul>
       {projects.map((project: any) => (
-        <>
-          <p key={project.title}>{project.title}</p>
-          <p key={project.dueDate}>{project.dueDate}</p>
-        </>
+        <li key={project.title}>
+          <div>
+            <p>{project.title}</p>
+            <p>{project.dueDate}</p>
+          </div>
+        </li>
       ))}
-    </>
+    </ul>
   );
 };
 

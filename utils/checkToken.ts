@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Cookies } from "react-cookie";
 import { AxiosPingResponseInterface } from "../interfaces/backendResponseInterfaces";
 import getToken from "./getToken";
 
