@@ -1,6 +1,5 @@
 import { getServerSideProps } from "../../pages/home";
 import "whatwg-fetch";
-import axios from "axios";
 
 describe("Given getServerSideProps from Home", () => {
   describe("When called with a valid token", () => {
