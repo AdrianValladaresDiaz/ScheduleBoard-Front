@@ -22,8 +22,6 @@ export interface AxiosUserProjectsGetResponseInterface {
 }
 
 export interface AxiosPingResponseInterface {
-  data: {
-    error: boolean;
-    message: string;
-  };
+  error: boolean;
+  message: string;
 }

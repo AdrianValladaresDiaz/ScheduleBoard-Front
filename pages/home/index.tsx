@@ -3,53 +3,43 @@ import { GetServerSideProps } from "next";
 import { NextRouter, Router } from "next/router";
 import { Cookies } from "react-cookie";
 import { AxiosUserProjectsGetResponseInterface } from "../../interfaces/backendResponseInterfaces";
+import checkToken from "../../utils/checkToken";
+import getToken from "../../utils/getToken";
 
 interface HomeProps {
-  projects: any;
+  data: any;
 }
 
-const Home = ({ projects }: HomeProps): JSX.Element => {
-  const f = projects;
+const Home = ({ data }: HomeProps): JSX.Element => {
+  const f = data;
   console.log(f);
   return (
     <>
-      <article>{projects.toString()}</article>
+      <article>{data.toString()}</article>
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const cookies: Cookies = new Cookies();
+  const token = getToken();
+  let data: any = null;
 
-  let token: string | undefined = cookies.get("SCHEDULE_BOARD_TOKEN");
-  if (!token) {
-    token = process.env.DEV_JWT_TOKEN;
-  }
-
-  let projects;
-
-  try {
+  const authenticated: boolean = await checkToken();
+  if (!authenticated) {
+    context.res.writeHead(302, { Location: "/login" });
+    context.res.end();
+  } else {
     const backendResponse =
       await axios.get<AxiosUserProjectsGetResponseInterface>(
         `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
-    if (backendResponse.data.error) {
-      context.res.writeHead(302, { Location: "/login" });
-      context.res.end();
-      projects = null;
-    }
-    projects = backendResponse.data;
-  } catch {
-    context.res.writeHead(302, { Location: "/login" });
-    context.res.end();
-    projects = null;
+    data = backendResponse.data.message;
   }
 
   return {
     props: {
-      projects,
+      data,
     },
   };
 };
