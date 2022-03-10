@@ -17,6 +17,7 @@ const StyledMain = styled.main`
   box-sizing: border-box;
   padding-top: ${(props) => props.theme.headerHeight};
   padding-left: ${(props) => props.theme.lateralPadding};
+  padding-right: ${(props) => props.theme.lateralPadding};
 `;
 
 const Layout: FunctionComponent = ({ children }: any) => {
