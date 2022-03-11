@@ -6,7 +6,7 @@ interface ProjectPageProps {
   };
 }
 
-const ProjectPage: JSX.Element = ({ data }: ProjectPageProps) => {
+const ProjectPage = ({ data }: ProjectPageProps): JSX.Element => {
   return <div></div>;
 };
 
