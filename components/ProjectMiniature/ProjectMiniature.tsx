@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Avatar from "../Avatar/Avatar";
 
 const StyledProjectMiniature = styled.article`
+  position: relative;
   margin-top: ${(props) => props.theme.lateralPadding};
   background-color: ${(props) => props.theme.backgroundItem};
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
@@ -33,6 +34,32 @@ const StyledProjectMiniature = styled.article`
       & > * {
         margin-left: 6px;
       }
+    }
+  }
+
+  &:active {
+    transition: all 150ms ease-in;
+    box-shadow: 2px 3px 4px #ec00005e, -2px -3px 2px #ec00005e,
+      -2px 3px 2px #ec00005e, 2px -3px 2px #ec00005e;
+  }
+
+  @media (min-width: 715px) {
+    &::after {
+      content: "";
+      z-index: -1;
+      height: 35%;
+      width: 100%;
+      position: absolute;
+      background-color: #ec0000;
+    }
+
+    &:hover::after {
+      transition: all 200ms ease-in;
+      transform: translate(10px);
+    }
+    &:active::after {
+      transition: all 200ms ease-in;
+      transform: translate(20px);
     }
   }
 `;
