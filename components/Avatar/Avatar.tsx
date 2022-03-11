@@ -6,7 +6,7 @@ const StyledAvatar = styled.div`
   display: flex;
   height: ${dimensions.avatarSize};
   width: ${dimensions.avatarSize};
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.color ?? props.theme.background};
   border-radius: 5px;
   align-content: center;
   justify-content: center;
@@ -20,11 +20,12 @@ const StyledAvatar = styled.div`
 
 interface AvatarProps {
   letters: string;
+  color?: string;
 }
 
-const Avatar = ({ letters }: AvatarProps): JSX.Element => {
+const Avatar = ({ letters, color = undefined }: AvatarProps): JSX.Element => {
   return (
-    <StyledAvatar>
+    <StyledAvatar color={color}>
       <p>{letters}</p>
     </StyledAvatar>
   );

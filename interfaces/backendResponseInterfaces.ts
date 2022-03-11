@@ -18,7 +18,7 @@ export interface AxiosUserProjectsGetResponseInterface {
     dueDate: Date;
     users: string;
     taskLists: TaskListInterface[];
-  };
+  }[];
 }
 
 export interface AxiosPingResponseInterface {

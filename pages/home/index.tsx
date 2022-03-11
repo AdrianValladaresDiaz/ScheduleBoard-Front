@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
+import ProjectMiniature from "../../components/ProjectMiniature/ProjectMiniature";
 import { AxiosUserProjectsGetResponseInterface } from "../../interfaces/backendResponseInterfaces";
 import checkToken from "../../utils/checkToken";
 import getToken from "../../utils/getToken";
@@ -13,8 +14,7 @@ const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
     <ul>
       {projects.map((project: any) => (
         <li key={project.title}>
-          <p>{project.title}</p>
-          <p>{project.dueDate}</p>
+          <ProjectMiniature project={project} />
         </li>
       ))}
     </ul>
@@ -35,6 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+
     data = backendResponse.data.message;
   }
 
