@@ -1,9 +1,22 @@
 import { getServerSideProps } from "../../pages/home";
 import "whatwg-fetch";
 
+const OLD_ENV = process.env;
+
+beforeEach(() => {
+  jest.resetModules();
+  process.env = { ...OLD_ENV };
+});
+
+afterAll(() => {
+  process.env = OLD_ENV;
+});
+
 describe("Given getServerSideProps from Home", () => {
   describe("When called with a valid token", () => {
     test("it should return that token's user project list", async () => {
+      process.env.DEV_JWT_TOKEN = "totallyValidToken";
+
       const expectedReturn = {
         props: {
           data: {
@@ -71,7 +84,6 @@ describe("Given getServerSideProps from Home", () => {
           },
         },
       };
-
       const context = {
         res: {
           writeHead: jest.fn(),
@@ -82,6 +94,23 @@ describe("Given getServerSideProps from Home", () => {
       const result = await getServerSideProps(context);
 
       expect(result).toEqual(expectedReturn);
+    });
+  });
+
+  describe("When called with no token", () => {
+    test("it should redirect to the login screen", async () => {
+      process.env.DEV_JWT_TOKEN = "invalidToken";
+      const endResponse = jest.fn();
+      const context = {
+        res: {
+          writeHead: jest.fn(),
+          end: endResponse,
+        },
+      };
+
+      await getServerSideProps(context);
+
+      expect(endResponse).toHaveBeenCalled();
     });
   });
 });

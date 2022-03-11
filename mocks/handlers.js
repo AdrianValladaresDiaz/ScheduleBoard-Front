@@ -4,6 +4,15 @@ export const handlers = [
   rest.get(
     "https://schedule-board.onrender.com/userProjects",
     (req, res, ctx) => {
+      if (req.headers._headers.authorization === "Bearer invalidToken") {
+        return res(
+          ctx.status(401),
+          ctx.json({
+            error: true,
+            message: "disallowed by backend",
+          })
+        );
+      }
       return res(
         ctx.status(200),
         ctx.json({
@@ -77,12 +86,22 @@ export const handlers = [
   ),
 
   rest.get("https://schedule-board.onrender.com/ping", (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        error: false,
-        message: "pong",
-      })
-    );
+    if (req.headers._headers.authorization === "Bearer invalidToken") {
+      return res(
+        ctx.status(401),
+        ctx.json({
+          error: true,
+          message: "disallowed by backend",
+        })
+      );
+    } else {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          error: false,
+          message: "pong",
+        })
+      );
+    }
   }),
 ];
