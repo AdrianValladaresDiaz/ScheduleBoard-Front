@@ -18,6 +18,11 @@ const StyledMain = styled.main`
   padding-top: ${(props) => props.theme.headerHeight};
   padding-left: ${(props) => props.theme.lateralPadding};
   padding-right: ${(props) => props.theme.lateralPadding};
+
+  @media (min-width: 715px) {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
 `;
 
 const Layout: FunctionComponent = ({ children }: any) => {
