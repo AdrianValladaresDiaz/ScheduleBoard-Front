@@ -36,11 +36,11 @@ const StyledProjectMiniature = styled.article`
       }
     }
   }
-
-  &:active {
-    transition: all 150ms ease-in;
-    box-shadow: 2px 3px 4px #ec00005e, -2px -3px 2px #ec00005e,
-      -2px 3px 2px #ec00005e, 2px -3px 2px #ec00005e;
+  @media (max-width: 715px) {
+    &:active {
+      box-shadow: 2px 3px 4px #ec00005e, -2px -3px 2px #ec00005e,
+        -2px 3px 2px #ec00005e, 2px -3px 2px #ec00005e;
+    }
   }
 
   @media (min-width: 715px) {
