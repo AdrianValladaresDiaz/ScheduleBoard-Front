@@ -25,3 +25,5 @@ export const getStaticProps: GetStaticProps = async (
     props: { data: { title: "my title" } },
   };
 };
+
+export default ProjectPage;
