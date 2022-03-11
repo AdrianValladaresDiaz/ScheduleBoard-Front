@@ -8,7 +8,7 @@ describe("Given the home page", () => {
         {
           title: "Placeholder project 1",
           dueDate: "2009-02-15T00:00:00Z",
-          users: ["6228c95243471fa6be08c26b"],
+          users: [{ name: "user", surname: "surname", id: "one id" }],
           taskLists: [
             {
               title: "valid title",
@@ -72,7 +72,7 @@ describe("Given the home page", () => {
 
       const listOfLists = await screen.getAllByRole("list");
 
-      expect(listOfLists).toHaveLength(1);
+      expect(listOfLists).not.toBeNull();
     });
   });
 });
