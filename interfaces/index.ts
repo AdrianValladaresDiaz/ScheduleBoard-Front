@@ -16,7 +16,7 @@ export interface TaskList {
 export interface Project {
   title: string;
   dueDate: Date;
-  users: string;
+  users: any[];
   taskLists: TaskList[];
   _id: string;
 }
