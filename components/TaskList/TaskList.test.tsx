@@ -1,9 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import exp from "constants";
-import {
-  Task,
-  TaskList as TaskListInterface,
-} from "../../interfaces/backendResponseInterfaces";
+import { Task, TaskList as TaskListInterface } from "../../interfaces";
 import TaskList from "./TaskList";
 
 describe("Given the TaskList component", () => {
@@ -11,8 +8,9 @@ describe("Given the TaskList component", () => {
     test("It should render a heading and a list", () => {
       const title = "title";
       const tasks: any[] = [];
+      const _id = "id";
 
-      render(<TaskList taskList={{ title, tasks }} />);
+      render(<TaskList taskList={{ title, tasks, _id }} />);
 
       const heading = screen.getByText(/title/i);
       const list = screen.getByRole("list");
@@ -53,6 +51,7 @@ describe("Given the TaskList component", () => {
       const taskList: TaskListInterface = {
         title: "taskList",
         tasks: [task1, task2, task3],
+        _id: "6425",
       };
 
       render(<TaskList taskList={taskList} />);

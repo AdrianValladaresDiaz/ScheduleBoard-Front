@@ -1,6 +1,7 @@
 import { title } from "process";
 import styled from "styled-components";
-import { TaskList } from "../../interfaces/backendResponseInterfaces";
+import { TaskList } from "../../interfaces";
+import Task from "../Task/Task";
 
 interface TaskListProps {
   taskList: TaskList;
@@ -15,7 +16,7 @@ const StyledTaskList = styled.article`
 
   & header {
     overflow: hidden;
-    height: 90px;
+    height: 75px;
     border-bottom: 3px solid black;
     display: flex;
     flex-direction: column;
@@ -31,9 +32,8 @@ const StyledTaskList = styled.article`
 const StyledOrderedList = styled.ol`
   list-style: none;
   display: flex;
-  & > li {
-    width: 300px;
-  }
+  flex-direction: column;
+  padding: 10px;
 `;
 
 const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
@@ -43,12 +43,11 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
       <header>
         <h3>{title}</h3>
       </header>
-      <ol>
+      <StyledOrderedList>
         {tasks.map((task) => (
-          <li key={task._id}>{task.title}</li>
+          <Task key={task._id} taskInfo={task} />
         ))}
-      </ol>
-      ;
+      </StyledOrderedList>
     </StyledTaskList>
   );
 };

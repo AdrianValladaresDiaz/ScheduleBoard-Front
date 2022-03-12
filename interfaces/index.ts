@@ -8,6 +8,7 @@ export interface Task {
 }
 
 export interface TaskList {
+  _id: string;
   title: string;
   tasks: Task[];
 }
@@ -15,8 +16,9 @@ export interface TaskList {
 export interface Project {
   title: string;
   dueDate: Date;
-  users: string;
+  users: any[];
   taskLists: TaskList[];
+  _id: string;
 }
 
 export interface AxiosUserProjectsGetResponse {

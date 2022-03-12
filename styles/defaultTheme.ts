@@ -6,6 +6,9 @@ const defaultTheme = {
   avatarFont: "Salsa",
   headerHeight: "55px",
   lateralPadding: "7px",
+  textSizeMedium: "20px",
+  textSizeSmallTitle: "18px",
+  textSizeSmallText: "16px",
 };
 
 export default defaultTheme;

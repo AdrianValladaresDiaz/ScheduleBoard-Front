@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AxiosPingResponse } from "../interfaces/backendResponseInterfaces";
+import { AxiosPingResponse } from "../interfaces";
 import getToken from "./getToken";
 
 const checkToken = async () => {

@@ -2,11 +2,18 @@ import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import styled from "styled-components";
 import TaskList from "../../components/TaskList/TaskList";
-import {
-  Project,
-  ScheduleBoardResponse,
-} from "../../interfaces/backendResponseInterfaces";
+import { Project, ScheduleBoardResponse } from "../../interfaces";
+
+const StyledProject = styled.div`
+  display: flex;
+  position: relative;
+`;
+
+const LeftBorder = styled.div`
+  border-left: 4px solid black;
+`;
 
 interface ProjectPageProps {
   error: boolean;
@@ -15,6 +22,7 @@ interface ProjectPageProps {
 
 const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
   const router = useRouter();
+  const taskLists = message?.taskLists;
 
   useEffect(() => {
     if (error) {
@@ -23,9 +31,13 @@ const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
   });
 
   return (
-    <div>
-      {message?.taskLists && <TaskList taskList={message.taskLists[0]} />}
-    </div>
+    <StyledProject>
+      {taskLists && <LeftBorder className="left-border" />}
+      {taskLists &&
+        taskLists.map((taskList) => (
+          <TaskList key={taskList._id} taskList={taskList} />
+        ))}
+    </StyledProject>
   );
 };
 
