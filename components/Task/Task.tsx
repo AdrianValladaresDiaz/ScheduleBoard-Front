@@ -20,7 +20,7 @@ const TaskCard = styled.li`
 `;
 
 const Task = ({ taskInfo }: TaskProps): JSX.Element => {
-  const { title, description, assignedTo, _id } = taskInfo;
+  const { title, description } = taskInfo;
   return (
     <TaskCard className="task">
       <h3>{title}</h3>
