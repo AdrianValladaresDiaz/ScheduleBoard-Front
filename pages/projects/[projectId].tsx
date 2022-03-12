@@ -8,6 +8,11 @@ import { Project, ScheduleBoardResponse } from "../../interfaces";
 
 const StyledProject = styled.div`
   display: flex;
+  position: relative;
+`;
+
+const LeftBorder = styled.div`
+  border-left: 4px solid black;
 `;
 
 interface ProjectPageProps {
@@ -27,6 +32,7 @@ const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
 
   return (
     <StyledProject>
+      {taskLists && <LeftBorder className="left-border" />}
       {taskLists &&
         taskLists.map((taskList) => (
           <TaskList key={taskList._id} taskList={taskList} />

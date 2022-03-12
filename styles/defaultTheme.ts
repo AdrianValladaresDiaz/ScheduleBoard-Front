@@ -7,7 +7,8 @@ const defaultTheme = {
   headerHeight: "55px",
   lateralPadding: "7px",
   textSizeMedium: "20px",
-  textSizeSmall: "13",
+  textSizeSmallTitle: "18px",
+  textSizeSmallText: "16px",
 };
 
 export default defaultTheme;

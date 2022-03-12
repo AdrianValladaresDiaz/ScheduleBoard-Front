@@ -16,7 +16,7 @@ const StyledTaskList = styled.article`
 
   & header {
     overflow: hidden;
-    height: 90px;
+    height: 75px;
     border-bottom: 3px solid black;
     display: flex;
     flex-direction: column;
