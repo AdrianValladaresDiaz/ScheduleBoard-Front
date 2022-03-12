@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import styled from "styled-components";
 import ProjectMiniature from "../../components/ProjectMiniature/ProjectMiniature";
-import { AxiosUserProjectsGetResponse } from "../../interfaces/backendResponseInterfaces";
+import { AxiosUserProjectsGetResponse } from "../../interfaces";
 import checkToken from "../../utils/checkToken";
 import getToken from "../../utils/getToken";
 

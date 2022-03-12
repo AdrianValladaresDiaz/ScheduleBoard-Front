@@ -1,9 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import exp from "constants";
-import {
-  Task,
-  TaskList as TaskListInterface,
-} from "../../interfaces/backendResponseInterfaces";
+import { Task, TaskList as TaskListInterface } from "../../interfaces";
 import TaskList from "./TaskList";
 
 describe("Given the TaskList component", () => {
