@@ -1,12 +1,26 @@
+import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import {
+  ProjectInterface,
+  ScheduleBoardResponse,
+} from "../../interfaces/backendResponseInterfaces";
 
 interface ProjectPageProps {
-  data: {
-    title: string;
-  };
+  error: boolean;
+  message: ProjectInterface;
 }
 
-const ProjectPage = ({ data }: ProjectPageProps): JSX.Element => {
+const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (error) {
+      router.push("/home");
+    }
+  });
+
   return <div></div>;
 };
 
@@ -20,9 +34,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const projectId = context.params?.projectId;
+  const projectId = context.params?.projectId as string;
+  let response: ScheduleBoardResponse;
+
+  try {
+    const axiosResponse = await axios.get<ScheduleBoardResponse>(
+      `${process.env.NEXT_PUBLIC_BACKEND}project`,
+      { params: { projectId } }
+    );
+    console.log(axiosResponse.data);
+    response = axiosResponse.data;
+  } catch {
+    response = {
+      error: true,
+      message: "something went wrong",
+    };
+  }
+
   return {
-    props: { data: { title: "my title" } },
+    props: response,
   };
 };
 
