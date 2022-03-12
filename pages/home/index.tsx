@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
+import styled from "styled-components";
 import ProjectMiniature from "../../components/ProjectMiniature/ProjectMiniature";
 import { AxiosUserProjectsGetResponseInterface } from "../../interfaces/backendResponseInterfaces";
 import checkToken from "../../utils/checkToken";
@@ -9,15 +10,28 @@ interface HomeProps {
   data: any;
 }
 
+const StyledUl = styled.ul`
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: realative;
+  & > li {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+`;
+
 const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
   return (
-    <ul>
+    <StyledUl>
       {projects.map((project: any) => (
         <li key={project.title}>
           <ProjectMiniature project={project} />
         </li>
       ))}
-    </ul>
+    </StyledUl>
   );
 };
 
