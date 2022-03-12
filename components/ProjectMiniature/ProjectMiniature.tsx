@@ -63,7 +63,6 @@ const StyledProjectMiniature = styled.article`
     }
   }
 `;
-
 interface ProjectMiniatureProps {
   project: {
     title: string;

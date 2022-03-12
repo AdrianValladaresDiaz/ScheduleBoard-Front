@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import styled from "styled-components";
 import ProjectMiniature from "../../components/ProjectMiniature/ProjectMiniature";
-import { AxiosUserProjectsGetResponseInterface } from "../../interfaces/backendResponseInterfaces";
+import { AxiosUserProjectsGetResponse } from "../../interfaces/backendResponseInterfaces";
 import checkToken from "../../utils/checkToken";
 import getToken from "../../utils/getToken";
 
@@ -44,11 +44,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     context.res.writeHead(302, { Location: "/login" });
     context.res.end();
   } else {
-    const backendResponse =
-      await axios.get<AxiosUserProjectsGetResponseInterface>(
-        `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+    const backendResponse = await axios.get<AxiosUserProjectsGetResponse>(
+      `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
 
     data = backendResponse.data.message;
   }

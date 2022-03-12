@@ -2,14 +2,15 @@ import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import TaskList from "../../components/TaskList/TaskList";
 import {
-  ProjectInterface,
+  Project,
   ScheduleBoardResponse,
 } from "../../interfaces/backendResponseInterfaces";
 
 interface ProjectPageProps {
   error: boolean;
-  message: ProjectInterface;
+  message: Project;
 }
 
 const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
@@ -21,12 +22,16 @@ const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
     }
   });
 
-  return <div></div>;
+  return (
+    <div>
+      {message?.taskLists && <TaskList taskList={message.taskLists[0]} />}
+    </div>
+  );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [],
+    paths: [{ params: { projectId: "000000000000000000000000" } }],
     fallback: true,
   };
 };

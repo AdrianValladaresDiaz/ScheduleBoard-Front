@@ -1,11 +1,11 @@
 import axios from "axios";
-import { AxiosPingResponseInterface } from "../interfaces/backendResponseInterfaces";
+import { AxiosPingResponse } from "../interfaces/backendResponseInterfaces";
 import getToken from "./getToken";
 
 const checkToken = async () => {
   try {
     const token: string | undefined = getToken();
-    const response = await axios.get<AxiosPingResponseInterface>(
+    const response = await axios.get<AxiosPingResponse>(
       `${process.env.NEXT_PUBLIC_BACKEND}ping`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
