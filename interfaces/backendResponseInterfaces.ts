@@ -1,34 +1,35 @@
-export interface TaskInterface {
+export interface Task {
   title: string;
   description: string;
   workHours: number;
   dueDate: Date;
   assignedTo: string[];
+  _id: string;
 }
 
-export interface TaskListInterface {
+export interface TaskList {
   title: string;
-  tasks: TaskInterface[];
+  tasks: Task[];
 }
 
-export interface ProjectInterface {
+export interface Project {
   title: string;
   dueDate: Date;
   users: string;
-  taskLists: TaskListInterface[];
+  taskLists: TaskList[];
 }
 
-export interface AxiosUserProjectsGetResponseInterface {
+export interface AxiosUserProjectsGetResponse {
   error: boolean;
-  message: ProjectInterface[];
+  message: Project[];
 }
 
-export interface AxiosProjectGetResponseInterface {
+export interface AxiosProjectGetResponse {
   error: boolean;
-  message: ProjectInterface;
+  message: Project;
 }
 
-export interface AxiosPingResponseInterface {
+export interface AxiosPingResponse {
   error: boolean;
   message: string;
 }
