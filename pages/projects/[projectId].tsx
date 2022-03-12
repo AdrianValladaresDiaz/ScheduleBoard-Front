@@ -3,7 +3,6 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import {
-  AxiosProjectGetResponseInterface,
   ProjectInterface,
   ScheduleBoardResponse,
 } from "../../interfaces/backendResponseInterfaces";
@@ -14,7 +13,6 @@ interface ProjectPageProps {
 }
 
 const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
-  console.log(message);
   const router = useRouter();
 
   useEffect(() => {
