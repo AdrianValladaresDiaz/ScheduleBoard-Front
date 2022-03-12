@@ -11,17 +11,29 @@ export interface TaskListInterface {
   tasks: TaskInterface[];
 }
 
+export interface ProjectInterface {
+  title: string;
+  dueDate: Date;
+  users: string;
+  taskLists: TaskListInterface[];
+}
+
 export interface AxiosUserProjectsGetResponseInterface {
   error: boolean;
-  message: {
-    title: string;
-    dueDate: Date;
-    users: string;
-    taskLists: TaskListInterface[];
-  }[];
+  message: ProjectInterface[];
+}
+
+export interface AxiosProjectGetResponseInterface {
+  error: boolean;
+  message: ProjectInterface;
 }
 
 export interface AxiosPingResponseInterface {
   error: boolean;
   message: string;
+}
+
+export interface ScheduleBoardResponse {
+  error: boolean;
+  message: any;
 }
