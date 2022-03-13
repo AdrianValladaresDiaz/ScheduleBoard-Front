@@ -1,5 +1,12 @@
 import { loadProjectAction } from "../actions/actionCreators";
 import projectReducer from "./projectReducer";
+import sampleProjectList from "../../testingUtils/sampleProjectList";
+
+const projects = [...sampleProjectList];
+let sampleProject = { ...projects[0] };
+beforeEach(() => {
+  sampleProject = projects[0];
+});
 
 describe("Given projectReducer", () => {
   describe("When called with an unmatched action type", () => {
@@ -35,6 +42,18 @@ describe("Given projectReducer", () => {
         title: "Different project",
         users: [],
       };
+      const action = loadProjectAction(project);
+
+      const returnedProject = projectReducer(project, action);
+
+      expect(returnedProject).toEqual(project);
+    });
+  });
+
+  describe("When called with an action 'deleteTask' that has a taskId in it ", () => {
+    test("Then it should return a project without that action in it", () => {
+      const currentState = sampleProject;
+
       const action = loadProjectAction(project);
 
       const returnedProject = projectReducer(project, action);

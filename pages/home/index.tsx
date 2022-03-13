@@ -36,7 +36,8 @@ const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const token = getToken();
+  const token = getToken(context.req.headers.cookie as string);
+
   let data: any = null;
 
   const authenticated: boolean = await checkToken();
