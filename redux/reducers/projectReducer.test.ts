@@ -1,6 +1,6 @@
 import { deleteTaskAction, loadProjectAction } from "../actions/actionCreators";
 import projectReducer from "./projectReducer";
-import sampleProjectList from "../../testingUtils/sampleProjectList";
+import sampleProjectList from "../../testingutils/sampleProjectList";
 
 const projects = [...sampleProjectList];
 let sampleProject = { ...projects[0] };

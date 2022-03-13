@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { ITask } from "../../interfaces";
+import { Task } from "../../interfaces";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
 import { useDispatch } from "react-redux";
 import { deleteTaskThunk } from "../../redux/thunks/projectThunks";
 
 interface TaskProps {
-  taskInfo: ITask;
+  taskInfo: Task;
 }
 
-const TaskCard = styled.li`
+const StyledCard = styled.li`
   background-color: #b2d4fb;
   margin: 5px;
   padding: 5px;
@@ -22,7 +22,7 @@ const TaskCard = styled.li`
   }
 `;
 
-const Task = ({ taskInfo }: TaskProps): JSX.Element => {
+const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
   const { title, description, _id } = taskInfo;
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ const Task = ({ taskInfo }: TaskProps): JSX.Element => {
   };
 
   return (
-    <TaskCard className="task">
+    <StyledCard className="task">
       <h3>{title}</h3>
       <p>
         {description.length > 35
@@ -39,8 +39,8 @@ const Task = ({ taskInfo }: TaskProps): JSX.Element => {
           : description}
       </p>
       <ScheduleButton content="X" onClickAction={deleteTask} />
-    </TaskCard>
+    </StyledCard>
   );
 };
 
-export default Task;
+export default TaskCard;

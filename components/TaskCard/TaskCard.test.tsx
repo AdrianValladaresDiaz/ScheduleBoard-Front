@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import Task from "./Task";
+import TaskCard from "./TaskCard";
 import { Task as TaskInterface } from "../../interfaces";
+import { Provider } from "react-redux";
+import store from "../../redux/store";
 
 describe("Given a Task component", () => {
   describe("When it is rendered with task information", () => {
@@ -14,7 +16,11 @@ describe("Given a Task component", () => {
         _id: "task id",
       };
 
-      render(<Task taskInfo={taskInfo} />);
+      render(
+        <Provider store={store}>
+          <TaskCard taskInfo={taskInfo} />
+        </Provider>
+      );
 
       const title = screen.getByRole("heading", { name: /task title/i });
       const description = screen.getByText(/short description/i);
