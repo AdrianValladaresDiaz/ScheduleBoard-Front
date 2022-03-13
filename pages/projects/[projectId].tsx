@@ -1,10 +1,10 @@
+import type { Project, ScheduleBoardResponse } from "../../interfaces";
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import type { Project, ScheduleBoardResponse } from "../../interfaces";
 import TaskList from "../../components/TaskList/TaskList";
 import { RootState } from "../../redux/store";
 import { loadProjectAction } from "../../redux/actions/actionCreators";

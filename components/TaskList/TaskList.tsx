@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { TaskList } from "../../interfaces";
 import Task from "../Task/Task";
+import { TaskList } from "../../interfaces";
 
 interface TaskListProps {
   taskList: TaskList;
