@@ -16,6 +16,8 @@ const customJestConfig = {
     "**/*.tsx",
     "utils/*.ts",
     "!utils/*.test.ts",
+    "redux/**/*.ts",
+    "!redux/**/*.test.ts",
     "!**/*.test.tsx",
     "!pages/_document.tsx",
     "!pages/_app.tsx",

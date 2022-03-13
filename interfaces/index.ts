@@ -1,42 +1,15 @@
-export interface Task {
-  title: string;
-  description: string;
-  workHours: number;
-  dueDate: Date;
-  assignedTo: string[];
-  _id: string;
-}
+export type {
+  ITask,
+  ITaskList,
+  ProjectInfo,
+  Project,
+} from "./objectInterfaces";
 
-export interface TaskList {
-  _id: string;
-  title: string;
-  tasks: Task[];
-}
+export type {
+  AxiosUserProjectsGetResponse,
+  AxiosProjectGetResponse,
+  AxiosPingResponse,
+  ScheduleBoardResponse,
+} from "./axiosResponseInterfaces";
 
-export interface Project {
-  title: string;
-  dueDate: Date;
-  users: any[];
-  taskLists: TaskList[];
-  _id: string;
-}
-
-export interface AxiosUserProjectsGetResponse {
-  error: boolean;
-  message: Project[];
-}
-
-export interface AxiosProjectGetResponse {
-  error: boolean;
-  message: Project;
-}
-
-export interface AxiosPingResponse {
-  error: boolean;
-  message: string;
-}
-
-export interface ScheduleBoardResponse {
-  error: boolean;
-  message: any;
-}
+export type { defaultAction, loadProjectAction } from "./actionInterfaces";
