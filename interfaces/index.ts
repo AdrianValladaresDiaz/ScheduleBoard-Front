@@ -1,4 +1,9 @@
-export type { Task, TaskList, ProjectInfo, Project } from "./objectInterfaces";
+export type {
+  ITask,
+  ITaskList,
+  ProjectInfo,
+  Project,
+} from "./objectInterfaces";
 
 export type {
   AxiosUserProjectsGetResponse,

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { Task } from "../../interfaces";
+import { ITask } from "../../interfaces";
 
 interface TaskProps {
-  taskInfo: Task;
+  taskInfo: ITask;
 }
 
 const TaskCard = styled.li`
