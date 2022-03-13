@@ -2,9 +2,12 @@ import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import type { Project, ScheduleBoardResponse } from "../../interfaces";
 import TaskList from "../../components/TaskList/TaskList";
+import { RootState } from "../../redux/store";
+import { loadProjectAction } from "../../redux/actions/actionCreators";
 
 const StyledProject = styled.div`
   display: flex;
@@ -22,19 +25,26 @@ interface ProjectPageProps {
 
 const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
   const router = useRouter();
-  const taskLists = message?.taskLists;
+  const dispatch = useDispatch();
+  const project: Project = useSelector<RootState>(
+    (state) => state.project
+  ) as Project;
 
   useEffect(() => {
     if (error) {
       router.push("/home");
     }
-  });
+  }, [error, router]);
+
+  useEffect(() => {
+    dispatch(loadProjectAction(message));
+  }, [dispatch, message]);
 
   return (
     <StyledProject>
-      {taskLists && <LeftBorder className="left-border" />}
-      {taskLists &&
-        taskLists.map((taskList) => (
+      {project && <LeftBorder className="left-border" />}
+      {project &&
+        project.taskLists?.map((taskList) => (
           <TaskList key={taskList._id} taskList={taskList} />
         ))}
     </StyledProject>
@@ -59,7 +69,6 @@ export const getStaticProps: GetStaticProps = async (
       `${process.env.NEXT_PUBLIC_BACKEND}project`,
       { params: { projectId } }
     );
-    console.log(axiosResponse.data);
     response = axiosResponse.data;
   } catch {
     response = {

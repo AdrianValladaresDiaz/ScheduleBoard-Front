@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { ProjectInfo } from "../../interfaces";
+import { Provider } from "react-redux";
+import type { ProjectInfo } from "../../interfaces";
 import ProjectPage from "../../pages/projects/[projectId]";
+import store from "../../redux/store";
 
 describe("Given a project page", () => {
   describe("When received by the client", () => {
@@ -67,7 +69,11 @@ describe("Given a project page", () => {
         ],
       };
 
-      render(<ProjectPage error={error} message={project} />);
+      render(
+        <Provider store={store}>
+          <ProjectPage error={error} message={project} />
+        </Provider>
+      );
 
       const listTitle = screen.getByText(/task list 1/i);
       const taskTitle = screen.getAllByText(/task title/i);
