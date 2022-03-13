@@ -3,8 +3,8 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import styled from "styled-components";
+import type { Project, ScheduleBoardResponse } from "../../interfaces";
 import TaskList from "../../components/TaskList/TaskList";
-import { Project, ScheduleBoardResponse } from "../../interfaces";
 
 const StyledProject = styled.div`
   display: flex;
