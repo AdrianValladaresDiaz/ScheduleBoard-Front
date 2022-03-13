@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ITaskList } from "../../interfaces";
-import Task from "../Task/Task";
+import TaskCard from "../TaskCard/TaskCard";
 
 interface TaskListProps {
   taskList: ITaskList;
@@ -44,7 +44,7 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
       </header>
       <StyledOrderedList>
         {tasks.map((task) => (
-          <Task key={task._id} taskInfo={task} />
+          <TaskCard key={task._id} taskInfo={task} />
         ))}
       </StyledOrderedList>
     </StyledTaskList>

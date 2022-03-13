@@ -1,9 +1,4 @@
-export type {
-  ITask,
-  ITaskList,
-  ProjectInfo,
-  Project,
-} from "./objectInterfaces";
+export type { Task, ITaskList, ProjectInfo, Project } from "./objectInterfaces";
 
 export type {
   AxiosUserProjectsGetResponse,
@@ -12,4 +7,4 @@ export type {
   ScheduleBoardResponse,
 } from "./axiosResponseInterfaces";
 
-export type { defaultAction, loadProjectAction } from "./actionInterfaces";
+export type { loadProjectAction } from "./actionInterfaces";

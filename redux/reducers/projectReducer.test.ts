@@ -1,5 +1,12 @@
-import { loadProjectAction } from "../actions/actionCreators";
+import { deleteTaskAction, loadProjectAction } from "../actions/actionCreators";
 import projectReducer from "./projectReducer";
+import sampleProjectList from "../../testingutils/sampleProjectList";
+
+const projects = [...sampleProjectList];
+let sampleProject = { ...projects[0] };
+beforeEach(() => {
+  sampleProject = projects[0];
+});
 
 describe("Given projectReducer", () => {
   describe("When called with an unmatched action type", () => {
@@ -40,6 +47,22 @@ describe("Given projectReducer", () => {
       const returnedProject = projectReducer(project, action);
 
       expect(returnedProject).toEqual(project);
+    });
+  });
+
+  describe("When called with an action 'deleteTask' that has a taskId in it ", () => {
+    test("Then it should return a project without that action in it", () => {
+      const currentState = sampleProject;
+      const idToDelete = "622cdb2eaa2f5a4e7dd16917";
+      const action = deleteTaskAction(idToDelete);
+
+      const existingTask = currentState.taskLists[0].tasks[0];
+
+      expect(currentState.taskLists[0].tasks[0]).toMatchObject(existingTask);
+
+      const newState = projectReducer(currentState, action);
+
+      expect(newState.taskLists[0].tasks[0]).not.toMatchObject(existingTask);
     });
   });
 });

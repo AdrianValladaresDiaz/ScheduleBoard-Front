@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import exp from "constants";
-import { Task, TaskList as TaskListInterface } from "../../interfaces";
+import { Task, ITaskList as TaskListInterface } from "../../interfaces";
 import TaskList from "./TaskList";
+import { Provider } from "react-redux";
+import store from "../../redux/store";
 
 describe("Given the TaskList component", () => {
   describe("When it is rendered", () => {
@@ -54,7 +55,11 @@ describe("Given the TaskList component", () => {
         _id: "6425",
       };
 
-      render(<TaskList taskList={taskList} />);
+      render(
+        <Provider store={store}>
+          <TaskList taskList={taskList} />
+        </Provider>
+      );
 
       const title = screen.getByText(/taskList/i);
       const screenTask1 = screen.getByText(/task 1/i);
