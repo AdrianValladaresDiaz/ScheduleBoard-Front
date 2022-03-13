@@ -1,4 +1,4 @@
-import { loadProjectAction } from "./actionCreators";
+import { deleteTaskAction, loadProjectAction } from "./actionCreators";
 
 describe("Given action creator 'loadProjectAction'", () => {
   describe("When called with project info", () => {
@@ -137,6 +137,29 @@ describe("Given action creator 'loadProjectAction'", () => {
       const action = loadProjectAction(project);
 
       expect(action.project).toEqual(project);
+    });
+  });
+});
+
+describe("Given action creator 'deleteTask'", () => {
+  describe("When called with a task id", () => {
+    test("Then it should return an actionType with type 'DELETE_TASK'", () => {
+      const expectedActionType = "DELETE_TASK";
+      const taskId = "68452130";
+
+      const action = deleteTaskAction(taskId);
+
+      expect(action.type).toBe(expectedActionType);
+    });
+  });
+
+  describe("When called with a task id", () => {
+    test("Then it should return an action with that taask id in it", () => {
+      const taskId = "135420";
+
+      const action = deleteTaskAction(taskId);
+
+      expect(action.taskId).toEqual(taskId);
     });
   });
 });

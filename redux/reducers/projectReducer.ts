@@ -1,8 +1,6 @@
-import type {
-  defaultAction,
-  loadProjectAction,
-  Project,
-} from "../../interfaces";
+import { AnyAction } from "redux";
+import type { loadProjectAction, Project } from "../../interfaces";
+import { deleteTaskAction } from "../../interfaces/actionInterfaces";
 import actionTypes from "../actions/actionTypes";
 
 const emptyProject: Project = {
@@ -15,7 +13,7 @@ const emptyProject: Project = {
 
 const projectReducer = (
   currentProject: Project = emptyProject,
-  action: defaultAction | loadProjectAction = { type: "" }
+  action: AnyAction | loadProjectAction | deleteTaskAction = { type: "" }
 ): Project => {
   let projectState: Project;
 
@@ -23,6 +21,16 @@ const projectReducer = (
     case actionTypes.loadProject:
       projectState = { ...(action as loadProjectAction).project };
       break;
+
+    case actionTypes.deleteTask:
+      const id = (action as deleteTaskAction).taskId;
+      const newState = { ...currentProject };
+      newState.taskLists.forEach((taskList) => {
+        taskList.tasks.filter((task) => task._id !== id);
+      });
+      projectState = { ...newState };
+      break;
+
     default:
       projectState = emptyProject;
   }
