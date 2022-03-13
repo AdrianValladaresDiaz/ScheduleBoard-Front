@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { Project } from "../../interfaces";
+import { ProjectInfo } from "../../interfaces";
 import ProjectPage from "../../pages/projects/[projectId]";
 
 describe("Given a project page", () => {
   describe("When received by the client", () => {
     test("Then it should show the entire project", () => {
       const error = false;
-      const project: Project = {
+      const project: ProjectInfo = {
         _id: "project id",
         title: "Placeholder project 1",
         dueDate: new Date(2009, 2),

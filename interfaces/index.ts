@@ -13,7 +13,7 @@ export interface TaskList {
   tasks: Task[];
 }
 
-export interface Project {
+export interface ProjectInfo {
   title: string;
   dueDate: Date;
   users: any[];
@@ -21,14 +21,22 @@ export interface Project {
   _id: string;
 }
 
+export interface Project {
+  title: string;
+  dueDate: Date;
+  users: string[];
+  taskLists: TaskList[];
+  _id: string;
+}
+
 export interface AxiosUserProjectsGetResponse {
   error: boolean;
-  message: Project[];
+  message: ProjectInfo[];
 }
 
 export interface AxiosProjectGetResponse {
   error: boolean;
-  message: Project;
+  message: ProjectInfo;
 }
 
 export interface AxiosPingResponse {
