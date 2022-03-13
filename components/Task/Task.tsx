@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { ITask } from "../../interfaces";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
+import { useDispatch } from "react-redux";
+import { deleteTaskThunk } from "../../redux/thunks/projectThunks";
 
 interface TaskProps {
   taskInfo: ITask;
@@ -22,9 +24,10 @@ const TaskCard = styled.li`
 
 const Task = ({ taskInfo }: TaskProps): JSX.Element => {
   const { title, description, _id } = taskInfo;
+  const dispatch = useDispatch();
 
   const deleteTask = async () => {
-    console.log(`about to launch thunk for ${_id}`);
+    dispatch(deleteTaskThunk(_id));
   };
 
   return (

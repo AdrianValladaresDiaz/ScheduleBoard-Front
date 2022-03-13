@@ -25,8 +25,12 @@ const projectReducer = (
     case actionTypes.deleteTask:
       const id = (action as deleteTaskAction).taskId;
       const newState = { ...currentProject };
-      newState.taskLists.forEach((taskList) => {
-        taskList.tasks.filter((task) => task._id !== id);
+
+      newState.taskLists.forEach((taskList, index, taskLists) => {
+        const newTaskList = { ...taskList };
+        const newTasks = newTaskList.tasks.filter((task) => task._id !== id);
+        newTaskList.tasks = newTasks;
+        taskLists[index] = newTaskList;
       });
       projectState = { ...newState };
       break;
@@ -34,6 +38,7 @@ const projectReducer = (
     default:
       projectState = emptyProject;
   }
+
   return projectState;
 };
 

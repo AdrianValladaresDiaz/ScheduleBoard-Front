@@ -1,17 +1,11 @@
 const sampleProjectList = [
   {
-    _id: {
-      $oid: "622cdb2eaa2f5a4e7dd16915",
-    },
+    _id: "622cdb2eaa2f5a4e7dd16915",
+
     title: "Placeholder project 1",
-    dueDate: {
-      $date: "2009-02-15T00:00:00Z",
-    },
-    users: [
-      {
-        $oid: "6228c95243471fa6be08c26b",
-      },
-    ],
+    dueDate: new Date(2009),
+
+    users: ["6228c95243471fa6be08c26b"],
     taskLists: [
       {
         title: "valid title",
@@ -20,9 +14,7 @@ const sampleProjectList = [
             title: "task title 1",
             description: "an arbitratily long description, in string form 1",
             workHours: 84,
-            dueDate: {
-              $date: "2009-02-15T00:00:00Z",
-            },
+            dueDate: new Date(2009),
             assignedTo: [],
             _id: "622cdb2eaa2f5a4e7dd16917",
           },
@@ -30,9 +22,8 @@ const sampleProjectList = [
             title: "task title 2",
             description: "an arbitratily long description, in string form 2",
             workHours: 84,
-            dueDate: {
-              $date: "2009-02-15T00:00:00Z",
-            },
+            dueDate: new Date(2009),
+
             assignedTo: [],
             _id: "622cdb2eaa2f5a4e7dd16918",
           },
@@ -40,16 +31,13 @@ const sampleProjectList = [
             title: "task title 3",
             description: "an arbitratily long description, in string form 3",
             workHours: 84,
-            dueDate: {
-              $date: "2009-02-15T00:00:00Z",
-            },
+            dueDate: new Date(2009),
+
             assignedTo: [],
             _id: "622cdb2eaa2f5a4e7dd16919",
           },
         ],
-        _id: {
-          $oid: "622cdb2eaa2f5a4e7dd16916",
-        },
+        _id: "622cdb2eaa2f5a4e7dd16916",
       },
       {
         title: "valid title 2",
@@ -58,9 +46,7 @@ const sampleProjectList = [
             title: "task title 1",
             description: "an arbitratily long description, in string form 1",
             workHours: 84,
-            dueDate: {
-              $date: "2009-02-15T00:00:00Z",
-            },
+            dueDate: new Date(2009),
             assignedTo: [],
             _id: "622cdb2eaa2f5a4e7dd1691b",
           },
@@ -68,9 +54,7 @@ const sampleProjectList = [
             title: "task title 2",
             description: "an arbitratily long description, in string form 2",
             workHours: 84,
-            dueDate: {
-              $date: "2009-02-15T00:00:00Z",
-            },
+            dueDate: new Date(2009),
             assignedTo: [],
             _id: "622cdb2eaa2f5a4e7dd1691c",
           },
@@ -78,16 +62,12 @@ const sampleProjectList = [
             title: "task title 3",
             description: "an arbitratily long description, in string form 3",
             workHours: 84,
-            dueDate: {
-              $date: "2009-02-15T00:00:00Z",
-            },
+            dueDate: new Date(2009),
             assignedTo: [],
             _id: "622cdb2eaa2f5a4e7dd1691d",
           },
         ],
-        _id: {
-          $oid: "622cdb2eaa2f5a4e7dd1691a",
-        },
+        _id: "622cdb2eaa2f5a4e7dd1691a",
       },
     ],
     __v: 0,
