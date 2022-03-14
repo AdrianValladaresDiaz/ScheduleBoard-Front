@@ -76,7 +76,6 @@ export const getStaticProps: GetStaticProps = async (
       message: `${error.toJSON()}`,
     };
   }
-  console.log(response.message);
   return {
     props: response,
   };
