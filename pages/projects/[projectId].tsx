@@ -71,10 +71,17 @@ export const getStaticProps: GetStaticProps = async (
     );
     response = axiosResponse.data;
   } catch (error: any) {
-    response = {
-      error: true,
-      message: error.toJSON(),
-    };
+    try {
+      response = {
+        error: true,
+        message: error.toJSON(),
+      };
+    } catch {
+      response = {
+        error: true,
+        message: "could not parse error",
+      };
+    }
   }
 
   return {
