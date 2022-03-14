@@ -72,9 +72,11 @@ export const getStaticProps: GetStaticProps = async (
     response = axiosResponse.data;
   } catch (error: any) {
     try {
+      const errmsg = error.toJSON();
+
       response = {
         error: true,
-        message: error.toJSON(),
+        message: errmsg ? errmsg : "wooops",
       };
     } catch {
       response = {
