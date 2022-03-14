@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
+import store from "../../redux/store";
+import { render, screen } from "@testing-library/react";
 import type { ProjectInfo } from "../../interfaces";
 import ProjectPage from "../../pages/projects/[projectId]";
-import store from "../../redux/store";
 
 describe("Given a project page", () => {
   describe("When received by the client", () => {

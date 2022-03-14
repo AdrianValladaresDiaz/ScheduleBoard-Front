@@ -70,10 +70,10 @@ export const getStaticProps: GetStaticProps = async (
       { params: { projectId } }
     );
     response = axiosResponse.data;
-  } catch {
+  } catch (error) {
     response = {
       error: true,
-      message: "something went wrong",
+      message: error,
     };
   }
 
