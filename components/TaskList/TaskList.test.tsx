@@ -13,7 +13,7 @@ describe("Given the TaskList component", () => {
 
       render(<TaskList taskList={{ title, tasks, _id }} />);
 
-      const heading = screen.getByText(/title/i);
+      const heading = screen.getByRole("heading", { name: /title/i });
       const list = screen.getByRole("list");
 
       expect(heading).toBeInTheDocument();

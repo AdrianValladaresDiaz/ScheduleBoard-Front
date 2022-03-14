@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { Task } from "../../interfaces";
+import { Project, Task } from "../../interfaces";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteTaskThunk } from "../../redux/thunks/projectThunks";
+import { RootState } from "../../redux/store";
 
 interface TaskProps {
   taskInfo: Task;
@@ -23,11 +24,15 @@ const StyledCard = styled.li`
 `;
 
 const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
-  const { title, description, _id } = taskInfo;
+  const { title, description, _id: taskId } = taskInfo;
+  const project: Project = useSelector<RootState>(
+    (state) => state.project
+  ) as Project;
   const dispatch = useDispatch();
 
   const deleteTask = async () => {
-    dispatch(deleteTaskThunk(_id));
+    console.log(project);
+    dispatch(deleteTaskThunk(taskId, project._id));
   };
 
   return (
@@ -38,7 +43,11 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
           ? description.slice(0, 35) + "..."
           : description}
       </p>
-      <ScheduleButton content="X" onClickAction={deleteTask} />
+      <ScheduleButton
+        content="X"
+        onClickAction={deleteTask}
+        isDisabled={false}
+      />
     </StyledCard>
   );
 };

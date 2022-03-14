@@ -1,5 +1,11 @@
+import React, { ChangeEventHandler, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { ITaskList } from "../../interfaces";
+import { ITaskList, Project } from "../../interfaces";
+import { createTaskAction } from "../../redux/actions/actionCreators";
+import { RootState } from "../../redux/store";
+import { createTaskThunk } from "../../redux/thunks/projectThunks";
+import ScheduleButton from "../ScheduleButton/ScheduleButton";
 import TaskCard from "../TaskCard/TaskCard";
 
 interface TaskListProps {
@@ -36,12 +42,45 @@ const StyledOrderedList = styled.ol`
 `;
 
 const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
-  const { title, tasks } = taskList;
+  const dispatch = useDispatch();
+  const { title, tasks, _id } = taskList;
+  const project: Project = useSelector<RootState>(
+    (state) => state.project
+  ) as Project;
+  const [createButtonEnabled, setCreateButtonEnabled] = useState(false);
+  const [newTaskTitle, setNewTaskTitle] = useState("");
+
+  const formHasContent = (target: HTMLInputElement): boolean => {
+    return (target.value as string) !== "";
+  };
+
+  const handleFormChange = (event: React.FormEvent): void => {
+    setCreateButtonEnabled(formHasContent(event.target as HTMLInputElement));
+    setNewTaskTitle((event.target as HTMLInputElement).value);
+  };
+
+  const handleCreateClick = (): void => {
+    dispatch(createTaskThunk(project._id, taskList._id, newTaskTitle));
+  };
+
   return (
     <StyledTaskList>
       <header>
         <h3>{title}</h3>
       </header>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
+        <label htmlFor={`taskList ${_id}`}>Write title of new task</label>
+        <input id={`taskList ${_id}`} type="text" onChange={handleFormChange} />
+        <ScheduleButton
+          content="+"
+          onClickAction={handleCreateClick}
+          isDisabled={!createButtonEnabled}
+        />
+      </form>
       <StyledOrderedList>
         {tasks.map((task) => (
           <TaskCard key={task._id} taskInfo={task} />
