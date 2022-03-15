@@ -1,8 +1,7 @@
-import React, { ChangeEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { ITaskList, Project } from "../../interfaces";
-import { createTaskAction } from "../../redux/actions/actionCreators";
 import { RootState } from "../../redux/store";
 import { createTaskThunk } from "../../redux/thunks/projectThunks";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";

@@ -13,4 +13,5 @@ export interface deleteTaskAction {
 export interface createTaskAction {
   type: string;
   task: Task;
+  taskListId: string;
 }

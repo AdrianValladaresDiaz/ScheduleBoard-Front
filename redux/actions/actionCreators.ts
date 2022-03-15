@@ -15,7 +15,11 @@ export const deleteTaskAction = (taskId: string): IDeleteTaskAction => ({
   taskId,
 });
 
-export const createTaskAction = (task: Task): IcreateTaskAction => ({
+export const createTaskAction = (
+  task: Task,
+  taskListId: string
+): IcreateTaskAction => ({
   type: actionTypes.createTask,
   task,
+  taskListId,
 });

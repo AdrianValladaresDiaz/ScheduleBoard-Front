@@ -1,6 +1,9 @@
 import { AnyAction } from "redux";
-import type { loadProjectAction, Project } from "../../interfaces";
-import { deleteTaskAction } from "../../interfaces/actionInterfaces";
+import type { ITaskList, loadProjectAction, Project } from "../../interfaces";
+import {
+  createTaskAction,
+  deleteTaskAction,
+} from "../../interfaces/actionInterfaces";
 import actionTypes from "../actions/actionTypes";
 
 const emptyProject: Project = {
@@ -33,6 +36,19 @@ const projectReducer = (
         taskLists[index] = newTaskList;
       });
       projectState = { ...newState };
+      break;
+
+    case actionTypes.createTask:
+      const newTaskState = { ...currentProject };
+      const taskListId = (action as createTaskAction).taskListId;
+      const newTask = (action as createTaskAction).task;
+
+      const updatedTaskList = newTaskState.taskLists.find(
+        (taskList) => taskList._id === taskListId
+      ) as ITaskList;
+      updatedTaskList.tasks.push(newTask);
+
+      projectState = { ...newTaskState };
       break;
 
     default:

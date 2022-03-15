@@ -54,6 +54,6 @@ export const createTaskThunk =
       };
     }
     if (!response.error) {
-      dispatch(createTaskAction(response.message));
+      dispatch(createTaskAction(response.message, taskListId));
     }
   };
