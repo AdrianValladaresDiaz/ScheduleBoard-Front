@@ -76,6 +76,7 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
         <label htmlFor={`taskList ${_id}`}>Write title of new task</label>
         <input id={`taskList ${_id}`} type="text" onChange={handleFormChange} />
         <ScheduleButton
+          title="create task"
           content="+"
           onClickAction={handleCreateClick}
           isDisabled={!createButtonEnabled}

@@ -31,7 +31,6 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
   const dispatch = useDispatch();
 
   const deleteTask = async () => {
-    console.log(project);
     dispatch(deleteTaskThunk(taskId, project._id));
   };
 
@@ -39,7 +38,7 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
     <StyledCard className="task">
       <h3>{title}</h3>
       <p>
-        {description.length > 35
+        {description?.length > 35
           ? description.slice(0, 35) + "..."
           : description}
       </p>

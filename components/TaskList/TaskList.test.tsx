@@ -11,7 +11,11 @@ describe("Given the TaskList component", () => {
       const tasks: any[] = [];
       const _id = "id";
 
-      render(<TaskList taskList={{ title, tasks, _id }} />);
+      render(
+        <Provider store={store}>
+          <TaskList taskList={{ title, tasks, _id }} />
+        </Provider>
+      );
 
       const heading = screen.getByRole("heading", { name: /title/i });
       const list = screen.getByRole("list");

@@ -43,6 +43,7 @@ export const createTaskThunk =
     try {
       const axiosResponse = await axios.post<ScheduleBoardResponse>(
         `${process.env.NEXT_PUBLIC_BACKEND}createTask`,
+        null,
         { params: { projectId, taskListId, taskTitle } }
       );
       response = axiosResponse.data;
