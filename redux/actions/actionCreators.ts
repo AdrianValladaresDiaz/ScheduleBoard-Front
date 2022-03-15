@@ -1,5 +1,8 @@
-import { Project } from "../../interfaces";
-import { deleteTaskAction as IDeleteTaskAction } from "../../interfaces/actionInterfaces";
+import { Project, Task } from "../../interfaces";
+import {
+  createTaskAction as IcreateTaskAction,
+  deleteTaskAction as IDeleteTaskAction,
+} from "../../interfaces/actionInterfaces";
 import actionTypes from "./actionTypes";
 
 export const loadProjectAction = (project: Project) => ({
@@ -10,4 +13,13 @@ export const loadProjectAction = (project: Project) => ({
 export const deleteTaskAction = (taskId: string): IDeleteTaskAction => ({
   type: actionTypes.deleteTask,
   taskId,
+});
+
+export const createTaskAction = (
+  task: Task,
+  taskListId: string
+): IcreateTaskAction => ({
+  type: actionTypes.createTask,
+  task,
+  taskListId,
 });

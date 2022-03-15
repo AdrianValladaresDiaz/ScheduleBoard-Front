@@ -3,75 +3,22 @@ import store from "../../redux/store";
 import { render, screen } from "@testing-library/react";
 import type { ProjectInfo } from "../../interfaces";
 import ProjectPage from "../../pages/projects/[projectId]";
+import sampleProjectList from "../../testingutils/sampleProjectList";
+import providerWrapper from "../../testingutils/providerWrapper";
+
+let projectTestingSample = { ...sampleProjectList[0] };
+beforeEach(() => {
+  projectTestingSample = { ...sampleProjectList[0] };
+});
 
 describe("Given a project page", () => {
   describe("When received by the client", () => {
     test("Then it should show the entire project", () => {
       const error = false;
-      const project: ProjectInfo = {
-        _id: "project id",
-        title: "Placeholder project 1",
-        dueDate: new Date(2009, 2),
-        users: [{ name: "user", surname: "surname", id: "one id" }],
-        taskLists: [
-          {
-            _id: "taskList id 1",
-            title: "Task List 1",
-            tasks: [
-              {
-                _id: "task id 1",
-                assignedTo: [],
-                title: "task title",
-                description: "an arbitratily long description, in string form",
-                workHours: 84,
-                dueDate: new Date(2009, 2),
-              },
-              {
-                _id: "task id 2",
-                assignedTo: [],
-                title: "task title",
-                description: "an arbitratily long description, in string form",
-                workHours: 84,
-                dueDate: new Date(2009, 2),
-              },
-            ],
-          },
-          {
-            _id: "taskList id 2",
-            title: "Task List 2",
-            tasks: [
-              {
-                _id: "task id 3",
-                assignedTo: [],
-                title: "task title",
-                description: "an arbitratily long description, in string form",
-                workHours: 84,
-                dueDate: new Date(2009, 2),
-              },
-              {
-                _id: "task id 4",
-                assignedTo: [],
-                title: "task title",
-                description: "an arbitratily long description, in string form",
-                workHours: 84,
-                dueDate: new Date(2009, 2),
-              },
-              {
-                _id: "task id 5",
-                assignedTo: [],
-                title: "task title",
-                description: "an arbitratily long description, in string form",
-                workHours: 84,
-                dueDate: new Date(2009, 2),
-              },
-            ],
-          },
-        ],
-      };
 
       render(
         <Provider store={store}>
-          <ProjectPage error={error} message={project} />
+          <ProjectPage error={error} message={projectTestingSample} />
         </Provider>
       );
 
@@ -80,6 +27,22 @@ describe("Given a project page", () => {
 
       expect(listTitle).toBeInTheDocument();
       expect(taskTitle).not.toHaveLength(0);
+    });
+  });
+
+  describe("When it renders tasklists", () => {
+    test("Each taskList should have a 'createTask' button and that button should create a task", async () => {
+      const error = false;
+
+      render(
+        <Provider store={store}>
+          <ProjectPage error={error} message={projectTestingSample} />
+        </Provider>
+      );
+
+      const createTaskButtonList = await screen.getAllByTitle("create task");
+
+      expect(createTaskButtonList).not.toHaveLength(0);
     });
   });
 });

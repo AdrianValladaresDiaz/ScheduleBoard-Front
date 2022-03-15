@@ -8,7 +8,7 @@ const sampleProjectList = [
     users: ["6228c95243471fa6be08c26b"],
     taskLists: [
       {
-        title: "valid title",
+        title: "task list 1",
         tasks: [
           {
             title: "task title 1",
@@ -40,7 +40,7 @@ const sampleProjectList = [
         _id: "622cdb2eaa2f5a4e7dd16916",
       },
       {
-        title: "valid title 2",
+        title: "task list 2",
         tasks: [
           {
             title: "task title 1",
