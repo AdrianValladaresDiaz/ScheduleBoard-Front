@@ -9,6 +9,7 @@ const defaultTheme = {
   textSizeMedium: "20px",
   textSizeSmallTitle: "18px",
   textSizeSmallText: "16px",
+  lineHeightSmallText: "25px",
 };
 
 export default defaultTheme;

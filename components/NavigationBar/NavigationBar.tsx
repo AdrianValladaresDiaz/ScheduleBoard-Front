@@ -14,6 +14,7 @@ const StyledLogo = styled.p`
 `;
 
 const StyledNav = styled.nav`
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   background-color: ${(props) => props.theme.accent};

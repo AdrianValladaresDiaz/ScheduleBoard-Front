@@ -11,6 +11,8 @@ const StyledProjectMiniature = styled.article`
   justify-content: space-between;
   max-width: 700px;
   width: 100%;
+  cursor: pointer;
+
   & .project-info {
     margin: ${(props) => props.theme.lateralPadding};
 
