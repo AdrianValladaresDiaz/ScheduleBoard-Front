@@ -10,17 +10,21 @@ interface TaskDetailProps {
 }
 
 const TaskDetail: FC<TaskDetailProps> = (props) => {
+  const { error, message } = props;
+
   return (
-    <TaskDetailForm
-      task={{
-        _id: "622c8df95a8ee80141edf60d",
-        assignedTo: [],
-        title: "task title 3",
-        description: "an arbitratily long description, in string form 3",
-        workHours: 84,
-        dueDate: new Date(2009),
-      }}
-    />
+    (error === false && (
+      <TaskDetailForm
+        task={{
+          _id: message._id,
+          assignedTo: message.assignedTo,
+          title: message.title,
+          description: message.description,
+          workHours: message.workHours,
+          dueDate: message.dueDate,
+        }}
+      />
+    )) || <h3>page not found</h3>
   );
 };
 
@@ -57,7 +61,6 @@ export const getStaticProps: GetStaticProps = async (
       message: `${error.toJSON()}`,
     };
   }
-
-  return { props: {} };
+  return { props: response };
 };
 export default TaskDetail;

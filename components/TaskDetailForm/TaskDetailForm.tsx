@@ -113,8 +113,6 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
         [target.id]: target.value,
       });
     }
-
-    console.log(formState);
   };
 
   const updateDate = (): string => {
@@ -174,7 +172,7 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
           id={"workHours"}
           type="number"
           onChange={handleChange}
-          value={formState.workHours}
+          value={formState.workHours ?? 0}
         />
       </div>
       <div className="taskForm__horizontalContainer">

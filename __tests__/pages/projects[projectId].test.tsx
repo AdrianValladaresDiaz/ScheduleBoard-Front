@@ -1,10 +1,8 @@
 import { Provider } from "react-redux";
 import store from "../../redux/store";
 import { render, screen } from "@testing-library/react";
-import type { ProjectInfo } from "../../interfaces";
 import ProjectPage from "../../pages/projects/[projectId]";
 import sampleProjectList from "../../testingutils/sampleProjectList";
-import providerWrapper from "../../testingutils/providerWrapper";
 
 let projectTestingSample = { ...sampleProjectList[0] };
 beforeEach(() => {
