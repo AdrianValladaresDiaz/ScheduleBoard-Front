@@ -1,6 +1,7 @@
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { FC } from "react";
+import TaskDetailForm from "../../../components/TaskDetailForm/TaskDetailForm";
 import { ScheduleBoardResponse, Task } from "../../../interfaces";
 
 interface TaskDetailProps {
@@ -9,7 +10,18 @@ interface TaskDetailProps {
 }
 
 const TaskDetail: FC<TaskDetailProps> = (props) => {
-  return <div>wooohoooo</div>;
+  return (
+    <TaskDetailForm
+      task={{
+        _id: "622c8df95a8ee80141edf60d",
+        assignedTo: [],
+        title: "task title 3",
+        description: "an arbitratily long description, in string form 3",
+        workHours: 84,
+        dueDate: new Date(2009),
+      }}
+    />
+  );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
