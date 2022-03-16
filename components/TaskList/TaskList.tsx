@@ -70,6 +70,8 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
       <form
         onSubmit={(event) => {
           event.preventDefault();
+
+          (event.target as HTMLFormElement).reset();
         }}
       >
         <label htmlFor={`taskList ${_id}`}>Write title of new task</label>
