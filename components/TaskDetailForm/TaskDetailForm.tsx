@@ -55,23 +55,30 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
     return outputDateString;
   };
 
-  const discardForm = () => {
+  const redirectToProject = () => {
     router.push(`/projects/${router.query.projectId}`);
   };
 
   const submitForm = async () => {
-    console.log("click");
-    const axiosResponse = await axios.put<ScheduleBoardResponse>(
-      `${process.env.NEXT_PUBLIC_BACKEND}task`,
-      {
-        params: {
-          projectId: router.query.projectId,
-          taskId: router.query.taskId,
-        },
-        data: formState,
+    try {
+      const axiosResponse = await axios.put<ScheduleBoardResponse>(
+        `${process.env.NEXT_PUBLIC_BACKEND}task`,
+        {
+          params: {
+            projectId: router.query.projectId,
+            taskId: router.query.taskId,
+          },
+          data: formState,
+        }
+      );
+      if (axiosResponse.statusText) {
+        redirectToProject();
+      } else {
+        setFormError(true);
       }
-    );
-    console.log(axiosResponse);
+    } catch {
+      setFormError(true);
+    }
   };
 
   const clickOnError = (event: React.MouseEvent) => {
@@ -90,7 +97,7 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
           bigContent="X"
           title="discard changes"
           content="discard changes"
-          onClickAction={discardForm}
+          onClickAction={redirectToProject}
           isDisabled={false}
         />
       </div>
@@ -151,7 +158,7 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
           isDisabled={false}
         />
         <ScheduleButton
-          content="Something went wrong"
+          content="Something went wrong :("
           onClickAction={clickOnError}
           className={`error_button error_button--${formError}`}
         />
