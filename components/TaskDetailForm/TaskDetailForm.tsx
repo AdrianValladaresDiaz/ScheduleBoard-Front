@@ -61,17 +61,29 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
 
   const submitForm = async () => {
     try {
+      const projectId = router.query.projectId;
+      const taskId = router.query.taskId;
+
       const axiosResponse = await axios.put<ScheduleBoardResponse>(
         `${process.env.NEXT_PUBLIC_BACKEND}task`,
         {
           params: {
-            projectId: router.query.projectId,
-            taskId: router.query.taskId,
+            projectId,
+            taskId,
           },
           data: formState,
         }
       );
       if (axiosResponse.statusText) {
+        await axios.post<ScheduleBoardResponse>(
+          `${process.env.NEXT_PUBLIC_FRONTEND}api/revalidate`,
+          {
+            data: {
+              secret: process.env.NEXT_PUBLIC_ODISR,
+              revalidatePath: `/task/${projectId}/${taskId}`,
+            },
+          }
+        );
         redirectToProject();
       } else {
         setFormError(true);
