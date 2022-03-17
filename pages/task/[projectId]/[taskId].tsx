@@ -1,8 +1,14 @@
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { FC } from "react";
+import styled from "styled-components";
 import TaskDetailForm from "../../../components/TaskDetailForm/TaskDetailForm";
 import { ScheduleBoardResponse, Task } from "../../../interfaces";
+
+const StyledPage = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 interface TaskDetailProps {
   error: boolean;
@@ -14,16 +20,18 @@ const TaskDetail: FC<TaskDetailProps> = (props) => {
 
   return (
     (error === false && (
-      <TaskDetailForm
-        task={{
-          _id: message._id,
-          assignedTo: message.assignedTo,
-          title: message.title,
-          description: message.description,
-          workHours: message.workHours,
-          dueDate: message.dueDate,
-        }}
-      />
+      <StyledPage>
+        <TaskDetailForm
+          task={{
+            _id: message._id,
+            assignedTo: message.assignedTo,
+            title: message.title,
+            description: message.description,
+            workHours: message.workHours,
+            dueDate: message.dueDate,
+          }}
+        />
+      </StyledPage>
     )) || <h3>page not found</h3>
   );
 };

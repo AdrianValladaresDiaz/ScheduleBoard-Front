@@ -1,84 +1,10 @@
+import axios from "axios";
+import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
-import styled from "styled-components";
-import { Task } from "../../interfaces";
+import { ScheduleBoardResponse, Task } from "../../interfaces";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
 import WidthDefinedButton from "../WidthDefinedButton/WidthDefinedButton";
-
-const StyledDetailForm = styled.form`
-  padding: 20px;
-  position: relative;
-  background-color: #cafbb2;
-  box-shadow: 3px 3px 3px grey;
-  display: flex;
-  flex-direction: column;
-
-  & #taskForm__label {
-    margin-top: 15px;
-    font-size: 18px;
-  }
-  & label {
-    margin: 10px 0 10px;
-    &[for="title"] {
-      margin-bottom: 0;
-    }
-  }
-  & input {
-    background-color: transparent;
-    border: none;
-    margin-top: 10px;
-
-    &#title {
-      margin-top: 0;
-      margin-bottom: 5px;
-      font-size: 25px;
-      border-bottom: 2px dotted #5c7251;
-    }
-    &#description {
-      width: 100%;
-    }
-    &#workHours ::after {
-      content: "h.";
-    }
-  }
-  & textarea {
-    background-color: transparent;
-    border: none;
-    resize: none;
-    font-size: ${(props) => props.theme.textSizeSmallText};
-    line-height: ${(props) => props.theme.lineHeightSmallText};
-    height: 200px;
-    overflow: auto;
-    background: repeating-linear-gradient(
-      to bottom,
-      #5c7251 0px,
-      #5c7251 1px,
-      rgba(255, 255, 255, 0) 1px,
-      rgba(255, 255, 255, 0) ${(props) => props.theme.lineHeightSmallText}
-    );
-  }
-
-  & > .taskForm__horizontalContainer {
-    position: relative;
-    width: 100%;
-    & label {
-      margin-right: 30px;
-      min-width: 40%;
-    }
-    & input {
-      font-size: ${(props) => props.theme.textSizeSmallText};
-    }
-  }
-
-  & .discard_button_container {
-    position: absolute;
-    right: 15px;
-  }
-  & .save_button_container {
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-  }
-`;
+import StyledDetailForm from "./TaskDetailForm.styles";
 
 const initialFormState = {
   title: "",
@@ -94,6 +20,8 @@ interface TaskDetailProps {
 
 const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
   const [formState, setFormState] = useState(initialFormState);
+  const [formError, setFormError] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const { _id, ...newTask } = task;
@@ -117,12 +45,38 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
 
   const updateDate = (): string => {
     let outputDateString;
+
     try {
-      outputDateString = `${formState.dueDate.toISOString().split("T")[0]}`;
+      const date = new Date(formState.dueDate);
+      outputDateString = `${date.toISOString().split("T")[0]}`;
     } catch {
       outputDateString = "2222-12-12";
     }
     return outputDateString;
+  };
+
+  const discardForm = () => {
+    router.push(`/projects/${router.query.projectId}`);
+  };
+
+  const submitForm = async () => {
+    console.log("click");
+    const axiosResponse = await axios.put<ScheduleBoardResponse>(
+      `${process.env.NEXT_PUBLIC_BACKEND}task`,
+      {
+        params: {
+          projectId: router.query.projectId,
+          taskId: router.query.taskId,
+        },
+        data: formState,
+      }
+    );
+    console.log(axiosResponse);
+  };
+
+  const clickOnError = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setFormError(false);
   };
 
   return (
@@ -136,7 +90,7 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
           bigContent="X"
           title="discard changes"
           content="discard changes"
-          onClickAction={() => {}}
+          onClickAction={discardForm}
           isDisabled={false}
         />
       </div>
@@ -193,8 +147,13 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
           bigContent="O"
           title="create task"
           content="save changes"
-          onClickAction={() => {}}
+          onClickAction={submitForm}
           isDisabled={false}
+        />
+        <ScheduleButton
+          content="Something went wrong"
+          onClickAction={() => setFormError(false)}
+          className={`error_button error_button--${formError}`}
         />
       </div>
     </StyledDetailForm>
