@@ -60,6 +60,7 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
   };
 
   const submitForm = async () => {
+    console.log("CALLED SUBMIT FORM");
     try {
       const projectId = router.query.projectId;
       const taskId = router.query.taskId;
@@ -75,6 +76,8 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
         }
       );
       if (axiosResponse.statusText) {
+        console.log("AXIOS FIRST RESPONSE OK");
+
         await axios.post<ScheduleBoardResponse>(
           `${process.env.NEXT_PUBLIC_FRONTEND}api/revalidate`,
           {
@@ -84,8 +87,10 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
             },
           }
         );
+        console.log("ABOUT TO REDIRECT");
         redirectToProject();
       } else {
+        console.log("ABOUT TO SET ERROR TRUE");
         setFormError(true);
       }
     } catch {

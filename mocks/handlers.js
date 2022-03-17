@@ -184,11 +184,45 @@ export const handlers = [
       );
     } else {
       return res(
-        ctx.status(404).json({
+        ctx.status(404),
+        ctx.json({
           error: true,
           message: "Couldn't find project",
         })
       );
     }
   }),
+
+  rest.put(`${process.env.NEXT_PUBLIC_BACKEND}task`, (req, res, ctx) => {
+    const projectId = req.body.params.projectId;
+    const taskId = req.body.params.taskId;
+
+    if (
+      projectId === "622cdb2eaa2f5a4e7dd16915" &&
+      taskId === "622cdb2eaa2f5a4e7dd16917"
+    ) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          error: false,
+          message: "task updated",
+        })
+      );
+    } else {
+      return res(
+        ctx.status(400),
+        ctx.json({
+          error: true,
+          message: "task not updated",
+        })
+      );
+    }
+  }),
+
+  rest.post(
+    `${process.env.NEXT_PUBLIC_FRONTEND}api/revalidate`,
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
 ];
