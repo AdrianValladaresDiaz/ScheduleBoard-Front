@@ -112,6 +112,16 @@ const StyledDetailForm = styled.form`
         visibility: visible;
       }
     }
+
+    &--true {
+      &:hover {
+        border: none;
+        &:active {
+          background-color: transparent;
+          box-shadow: none;
+        }
+      }
+    }
   }
 `;
 

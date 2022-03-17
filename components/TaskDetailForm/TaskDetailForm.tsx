@@ -161,13 +161,15 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
         />
       </div>
 
-      <div className="save_button_container">
+      <div
+        className={`save_button_container save_button_container--${formError}`}
+      >
         <WidthDefinedButton
           bigContent="O"
           title="create task"
           content="save changes"
           onClickAction={submitForm}
-          isDisabled={false}
+          isDisabled={formError}
         />
         <ScheduleButton
           content="Something went wrong :("

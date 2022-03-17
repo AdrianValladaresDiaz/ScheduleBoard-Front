@@ -25,6 +25,7 @@ interface WidthDefinedButtonProps {
   bigContent: string;
   isDisabled?: boolean;
   title?: string;
+  className?: string;
 }
 
 const WidthDefinedButton = ({
@@ -33,12 +34,14 @@ const WidthDefinedButton = ({
   bigContent,
   isDisabled = false,
   title = "",
+  className = "",
 }: WidthDefinedButtonProps): JSX.Element => {
   return (
     <GnarlyButton
       title={title}
       disabled={isDisabled}
       onClick={(event: React.MouseEvent<HTMLButtonElement>) => onClickAction()}
+      className={className}
     >
       <div className="content">{content}</div>
       <div className="bigContent">{bigContent}</div>
