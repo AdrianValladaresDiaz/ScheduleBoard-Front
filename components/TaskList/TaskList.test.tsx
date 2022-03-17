@@ -2,7 +2,16 @@ import { render, screen } from "@testing-library/react";
 import { Task, ITaskList as TaskListInterface } from "../../interfaces";
 import TaskList from "./TaskList";
 import { Provider } from "react-redux";
-import store from "../../redux/store";
+
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
+let store: any;
+beforeEach(() => {
+  store = mockStore({
+    project: { _id: "fakeId" },
+  });
+});
 
 describe("Given the TaskList component", () => {
   describe("When it is rendered", () => {

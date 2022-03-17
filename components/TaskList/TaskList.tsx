@@ -50,7 +50,7 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
   const formHasContent = (target: HTMLInputElement): boolean => {
-    return (target.value as string) !== "";
+    return target.value !== "";
   };
 
   const handleFormChange = (event: React.FormEvent): void => {

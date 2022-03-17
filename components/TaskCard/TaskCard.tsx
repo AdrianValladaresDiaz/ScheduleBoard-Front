@@ -60,8 +60,10 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
         onClickAction={deleteTask}
         isDisabled={false}
       />
-      <Link href={`/task/${project._id}/${taskId} `} passHref>
-        <GiHighlighter />
+      <Link href={`/task/${project._id}/${taskId}`} passHref>
+        <a>
+          <GiHighlighter />
+        </a>
       </Link>
     </StyledCard>
   );

@@ -1,6 +1,5 @@
-async function handler(req, res) {
+async function revalidate(req, res) {
   const { secret, revalidatePath } = req.body.data;
-
   if (secret !== process.env.NEXT_PUBLIC_ODISR) {
     return res.status(401).json({ message: "Invalid token" });
   }
@@ -13,4 +12,4 @@ async function handler(req, res) {
   }
 }
 
-export default handler;
+export default revalidate;
