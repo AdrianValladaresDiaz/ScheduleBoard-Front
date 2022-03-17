@@ -152,7 +152,7 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
         />
         <ScheduleButton
           content="Something went wrong"
-          onClickAction={() => setFormError(false)}
+          onClickAction={clickOnError}
           className={`error_button error_button--${formError}`}
         />
       </div>
