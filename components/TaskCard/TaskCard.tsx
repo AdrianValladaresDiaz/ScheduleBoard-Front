@@ -4,6 +4,9 @@ import ScheduleButton from "../ScheduleButton/ScheduleButton";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTaskThunk } from "../../redux/thunks/projectThunks";
 import { RootState } from "../../redux/store";
+import Link from "next/link";
+import { GiHighlighter } from "react-icons/gi";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 interface TaskProps {
   taskInfo: Task;
@@ -20,6 +23,16 @@ const StyledCard = styled.li`
   & p {
     line-height: 20px;
     font-size: ${(props) => props.theme.textSizeSmallText};
+  }
+  & button {
+    background-color: transparent;
+    border: none;
+    font-size: ${(props) => props.theme.textSizeSmallText};
+    cursor: pointer;
+  }
+  & svg {
+    font-size: ${(props) => props.theme.textSizeSmallText};
+    cursor: pointer;
   }
 `;
 
@@ -43,10 +56,13 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
           : description}
       </p>
       <ScheduleButton
-        content="X"
+        content={<RiDeleteBin5Line />}
         onClickAction={deleteTask}
         isDisabled={false}
       />
+      <Link href={`/task/${project._id}/${taskId} `} passHref>
+        <GiHighlighter />
+      </Link>
     </StyledCard>
   );
 };

@@ -5,6 +5,7 @@ interface ScheduleButtonProps {
   content: string | JSX.Element;
   isDisabled?: boolean;
   title?: string;
+  className?: string;
 }
 
 const ScheduleButton = ({
@@ -12,12 +13,16 @@ const ScheduleButton = ({
   content,
   isDisabled = false,
   title = "",
+  className = "",
 }: ScheduleButtonProps): JSX.Element => {
   return (
     <button
       title={title}
       disabled={isDisabled}
-      onClick={(event: React.MouseEvent<HTMLButtonElement>) => onClickAction()}
+      onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+        onClickAction(event)
+      }
+      className={className}
     >
       {content}
     </button>
