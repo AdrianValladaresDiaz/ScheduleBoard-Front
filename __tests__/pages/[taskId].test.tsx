@@ -2,7 +2,6 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { wait } from "@testing-library/user-event/dist/utils";
 import { useRouter } from "next/router";
-import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
 import TaskDetail from "../../pages/task/[projectId]/[taskId]";
 import store from "../../redux/store";
