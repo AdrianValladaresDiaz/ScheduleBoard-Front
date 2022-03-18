@@ -37,14 +37,14 @@ const StyledCard = styled.li`
 `;
 
 const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
-  const { title, description, _id: taskId } = taskInfo;
+  const { title, description, id: taskId } = taskInfo;
   const project: Project = useSelector<RootState>(
     (state) => state.project
   ) as Project;
   const dispatch = useDispatch();
 
   const deleteTask = async () => {
-    dispatch(deleteTaskThunk(taskId, project._id));
+    dispatch(deleteTaskThunk(taskId, project.id));
   };
 
   return (
@@ -60,8 +60,10 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
         onClickAction={deleteTask}
         isDisabled={false}
       />
-      <Link href={`/task/${project._id}/${taskId} `} passHref>
-        <GiHighlighter />
+      <Link href={`/task/${project.id}/${taskId}`} passHref>
+        <a>
+          <GiHighlighter />
+        </a>
       </Link>
     </StyledCard>
   );

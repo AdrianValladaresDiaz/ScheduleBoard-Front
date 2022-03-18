@@ -1,9 +1,24 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { wait } from "@testing-library/user-event/dist/utils";
+import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 import TaskDetail from "../../pages/task/[projectId]/[taskId]";
 import store from "../../redux/store";
 import sampleProjectList from "../../testingutils/sampleProjectList";
+
+jest.mock("next/router", () => {
+  const router = {
+    query: {
+      projectId: "622cdb2eaa2f5a4e7dd16915",
+      taskId: "622cdb2eaa2f5a4e7dd16917",
+    },
+    push: jest.fn(),
+  };
+  return {
+    useRouter: () => router,
+  };
+});
 
 describe("Given a task modification form page", () => {
   describe("When received by the client with a task and no error", () => {
@@ -49,6 +64,30 @@ describe("Given a task modification form page", () => {
       );
 
       expect(updatedTitle).toBeInTheDocument();
+    });
+  });
+
+  describe("When the client clicks the submit button and gets no error in response", () => {
+    test("Then redirect should be called and the error message should not show up", async () => {
+      const error = false;
+      const task = sampleProjectList[0].taskLists[0].tasks[0];
+      const redirect = useRouter().push;
+
+      render(
+        <Provider store={store}>
+          <TaskDetail error={error} message={task} />
+        </Provider>
+      );
+
+      const submitButton = screen.getByText(/save changes/i);
+      const errorButton = screen.getByText(/something went wrong/i);
+
+      userEvent.click(submitButton);
+
+      await wait(1000);
+
+      expect(errorButton).not.toBeVisible();
+      expect(redirect).toHaveBeenCalled();
     });
   });
 });

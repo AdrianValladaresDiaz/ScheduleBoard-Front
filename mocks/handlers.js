@@ -122,7 +122,7 @@ export const handlers = [
             workHours: 84,
             dueDate: "1970-01-01T00:00:02.009Z",
             assignedTo: [],
-            _id: "622cdb2eaa2f5a4e7dd16917",
+            id: "622cdb2eaa2f5a4e7dd16917",
           },
         })
       );
@@ -133,4 +133,96 @@ export const handlers = [
       );
     }
   }),
+
+  rest.delete(
+    `${process.env.NEXT_PUBLIC_BACKEND}deleteTask`,
+    (req, res, ctx) => {
+      const projectId = req.url.searchParams.get("projectId");
+      const taskId = req.url.searchParams.get("taskId");
+      if (
+        projectId === "622cdb2eaa2f5a4e7dd16915" &&
+        taskId === "622cdb2eaa2f5a4e7dd16917"
+      ) {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            error: false,
+            message: `task ${taskId} removed from project ${projectId}`,
+          })
+        );
+      } else {
+        return res(
+          ctx.status(404).json({
+            error: true,
+            message: `task ${taskId} was not found in project ${projectId}`,
+          })
+        );
+      }
+    }
+  ),
+
+  rest.post(`${process.env.NEXT_PUBLIC_BACKEND}createTask`, (req, res, ctx) => {
+    const projectId = req.url.searchParams.get("projectId");
+    const taskListId = req.url.searchParams.get("taskListId");
+    const taskTitle = req.url.searchParams.get("taskTitle");
+    if (
+      projectId === "622cdb2eaa2f5a4e7dd16915" &&
+      taskListId === "622cdb2eaa2f5a4e7dd16917" &&
+      taskTitle === "new title"
+    ) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          error: false,
+          message: {
+            title: "task title",
+            description: "an arbitratily long description, in string form",
+            workHours: 84,
+            dueDate: "2009-02-15T00:00:00Z",
+          },
+        })
+      );
+    } else {
+      return res(
+        ctx.status(404),
+        ctx.json({
+          error: true,
+          message: "Couldn't find project",
+        })
+      );
+    }
+  }),
+
+  rest.put(`${process.env.NEXT_PUBLIC_BACKEND}task`, (req, res, ctx) => {
+    const projectId = req.body.params.projectId;
+    const taskId = req.body.params.taskId;
+
+    if (
+      projectId === "622cdb2eaa2f5a4e7dd16915" &&
+      taskId === "622cdb2eaa2f5a4e7dd16917"
+    ) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          error: false,
+          message: "task updated",
+        })
+      );
+    } else {
+      return res(
+        ctx.status(400),
+        ctx.json({
+          error: true,
+          message: "task not updated",
+        })
+      );
+    }
+  }),
+
+  rest.post(
+    `${process.env.NEXT_PUBLIC_FRONTEND}api/revalidate`,
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
 ];

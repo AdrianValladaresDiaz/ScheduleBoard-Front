@@ -1,6 +1,6 @@
 const sampleProjectList = [
   {
-    _id: "622cdb2eaa2f5a4e7dd16915",
+    id: "622cdb2eaa2f5a4e7dd16915",
 
     title: "Placeholder project 1",
     dueDate: new Date(2009),
@@ -16,7 +16,7 @@ const sampleProjectList = [
             workHours: 84,
             dueDate: new Date(2009),
             assignedTo: [],
-            _id: "622cdb2eaa2f5a4e7dd16917",
+            id: "622cdb2eaa2f5a4e7dd16917",
           },
           {
             title: "task title 2",
@@ -25,7 +25,7 @@ const sampleProjectList = [
             dueDate: new Date(2009),
 
             assignedTo: [],
-            _id: "622cdb2eaa2f5a4e7dd16918",
+            id: "622cdb2eaa2f5a4e7dd16918",
           },
           {
             title: "task title 3",
@@ -34,10 +34,10 @@ const sampleProjectList = [
             dueDate: new Date(2009),
 
             assignedTo: [],
-            _id: "622cdb2eaa2f5a4e7dd16919",
+            id: "622cdb2eaa2f5a4e7dd16919",
           },
         ],
-        _id: "622cdb2eaa2f5a4e7dd16916",
+        id: "622cdb2eaa2f5a4e7dd16916",
       },
       {
         title: "task list 2",
@@ -48,7 +48,7 @@ const sampleProjectList = [
             workHours: 84,
             dueDate: new Date(2009),
             assignedTo: [],
-            _id: "622cdb2eaa2f5a4e7dd1691b",
+            id: "622cdb2eaa2f5a4e7dd1691b",
           },
           {
             title: "task title 2",
@@ -56,7 +56,7 @@ const sampleProjectList = [
             workHours: 84,
             dueDate: new Date(2009),
             assignedTo: [],
-            _id: "622cdb2eaa2f5a4e7dd1691c",
+            id: "622cdb2eaa2f5a4e7dd1691c",
           },
           {
             title: "task title 3",
@@ -64,10 +64,10 @@ const sampleProjectList = [
             workHours: 84,
             dueDate: new Date(2009),
             assignedTo: [],
-            _id: "622cdb2eaa2f5a4e7dd1691d",
+            id: "622cdb2eaa2f5a4e7dd1691d",
           },
         ],
-        _id: "622cdb2eaa2f5a4e7dd1691a",
+        id: "622cdb2eaa2f5a4e7dd1691a",
       },
     ],
     __v: 0,

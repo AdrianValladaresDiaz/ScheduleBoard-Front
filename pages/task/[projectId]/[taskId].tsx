@@ -23,7 +23,7 @@ const TaskDetail: FC<TaskDetailProps> = (props) => {
       <StyledPage>
         <TaskDetailForm
           task={{
-            _id: message._id,
+            id: message.id,
             assignedTo: message.assignedTo,
             title: message.title,
             description: message.description,

@@ -2,7 +2,15 @@ import { render, screen } from "@testing-library/react";
 import TaskCard from "./TaskCard";
 import { Task as TaskInterface } from "../../interfaces";
 import { Provider } from "react-redux";
-import store from "../../redux/store";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
+let store: any;
+beforeEach(() => {
+  store = mockStore({
+    project: { id: "fakeId" },
+  });
+});
 
 describe("Given a Task component", () => {
   describe("When it is rendered with task information", () => {
@@ -13,7 +21,7 @@ describe("Given a Task component", () => {
         workHours: 8,
         dueDate: new Date(2005, 3, 15),
         assignedTo: [],
-        _id: "task id",
+        id: "task id",
       };
 
       render(

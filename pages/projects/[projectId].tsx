@@ -45,7 +45,7 @@ const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
       {project && <LeftBorder className="left-border" />}
       {project &&
         project.taskLists?.map((taskList) => (
-          <TaskList key={taskList._id} taskList={taskList} />
+          <TaskList key={taskList.id} taskList={taskList} />
         ))}
     </StyledProject>
   );
