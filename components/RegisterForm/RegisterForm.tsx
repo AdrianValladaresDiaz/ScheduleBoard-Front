@@ -146,15 +146,16 @@ const RegisterForm = (): JSX.Element => {
         </div>
 
         <div
-          className={`save_button_container save_button_container--${formError}`}
+          className={`register-button-container register-button-container--${formError}`}
         >
-          <WidthDefinedButton
-            bigContent=""
-            title="register user"
-            content="Register me"
-            onClickAction={submitForm}
-            isDisabled={formError}
-          />
+          <button
+            className={`submit-button submit-button--${formError}`}
+            onClick={submitForm}
+            disabled={formError}
+          >
+            Register me
+          </button>
+
           <ScheduleButton
             content="Something went wrong :("
             onClickAction={clickOnError}

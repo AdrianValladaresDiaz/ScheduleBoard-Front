@@ -6,7 +6,7 @@ export const StyledRegisterForm = styled.form`
   background-color: ${(props) => props.theme.softGreen};
   box-shadow: 3px 3px 3px grey;
   box-shadow: 0 0 15px grey;
-
+  align-items: center;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -30,6 +30,50 @@ export const StyledRegisterForm = styled.form`
       border-bottom: 2px dotted black;
       font-size: ${(props) => props.theme.textSizeSmallText};
       height: ${(props) => props.theme.lineHeightSmallText};
+    }
+  }
+
+  & .register-button-container {
+    width: 100%;
+    position: relative;
+    height: 75px;
+    display: flex;
+    justify-content: end;
+    & .submit-button {
+      font-size: ${(props) => props.theme.textSizeMedium};
+      border: none;
+      background-color: transparent;
+      text-decoration: underline;
+      &:hover {
+        border: 2px dotted black;
+        transform: translateX(-2px) translateY(-2px);
+        &:active {
+          background-color: ${(props) => props.theme.background};
+          box-shadow: inset 3px 3px 3px grey;
+        }
+      }
+      &--true {
+        &:hover {
+          border: none;
+          &:active {
+            background-color: transparent;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    & > .error_button {
+      position: absolute;
+      top: 5px;
+      right: -10px;
+      transform: rotateZ(15deg);
+      background-color: ${(props) => props.theme.accent};
+      font-size: ${(props) => props.theme.textSizeSmallText};
+      width: 135px;
+      visibility: hidden;
+      &--true {
+        visibility: visible;
+      }
     }
   }
 `;
