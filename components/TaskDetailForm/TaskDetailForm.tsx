@@ -24,7 +24,7 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const { _id, ...newTask } = task;
+    const { id, ...newTask } = task;
     setFormState(newTask);
   }, [task]);
 

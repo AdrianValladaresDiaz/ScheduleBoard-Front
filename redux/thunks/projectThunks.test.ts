@@ -16,7 +16,7 @@ describe("Given 'deleteTaskThunk'", () => {
 
   describe("When called with nonexistant taskId, a projectId and an action", () => {
     test("That action should not be dispatched", async () => {
-      const taskId = "invalid_task_id";
+      const taskId = "invalid_taskid";
       const projectId = "622cdb2eaa2f5a4e7dd16915";
       const dispatch = jest.fn();
 

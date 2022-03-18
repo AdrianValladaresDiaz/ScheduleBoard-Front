@@ -13,14 +13,14 @@ describe("Given projectReducer", () => {
     test("Then it should return an empty project", () => {
       const badAction = { type: "" };
       const expectedOutput = {
-        _id: "",
+        id: "",
         dueDate: new Date(2009),
         taskLists: [],
         title: "empty project",
         users: [],
       };
       const exampleProject = {
-        _id: "45123",
+        id: "45123",
         dueDate: new Date(2010),
         taskLists: [],
         title: "Different project",
@@ -36,7 +36,7 @@ describe("Given projectReducer", () => {
   describe("When called with an action 'loadProject' that has a project in it ", () => {
     test("Then it should return that project", () => {
       const project = {
-        _id: "45123",
+        id: "45123",
         dueDate: new Date(2010),
         taskLists: [],
         title: "Different project",

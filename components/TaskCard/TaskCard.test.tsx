@@ -8,7 +8,7 @@ const mockStore = configureStore([]);
 let store: any;
 beforeEach(() => {
   store = mockStore({
-    project: { _id: "fakeId" },
+    project: { id: "fakeId" },
   });
 });
 
@@ -21,7 +21,7 @@ describe("Given a Task component", () => {
         workHours: 8,
         dueDate: new Date(2005, 3, 15),
         assignedTo: [],
-        _id: "task id",
+        id: "task id",
       };
 
       render(

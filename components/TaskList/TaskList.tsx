@@ -42,7 +42,7 @@ const StyledOrderedList = styled.ol`
 
 const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
   const dispatch = useDispatch();
-  const { title, tasks, _id } = taskList;
+  const { title, tasks, id } = taskList;
   const project: Project = useSelector<RootState>(
     (state) => state.project
   ) as Project;
@@ -59,7 +59,7 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
   };
 
   const handleCreateClick = (): void => {
-    dispatch(createTaskThunk(project._id, taskList._id, newTaskTitle));
+    dispatch(createTaskThunk(project.id, taskList.id, newTaskTitle));
   };
 
   return (
@@ -74,8 +74,8 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
           (event.target as HTMLFormElement).reset();
         }}
       >
-        <label htmlFor={`taskList ${_id}`}>Write title of new task</label>
-        <input id={`taskList ${_id}`} type="text" onChange={handleFormChange} />
+        <label htmlFor={`taskList ${id}`}>Write title of new task</label>
+        <input id={`taskList ${id}`} type="text" onChange={handleFormChange} />
         <ScheduleButton
           title="create task"
           content="+"
@@ -85,7 +85,7 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
       </form>
       <StyledOrderedList>
         {tasks.map((task) => (
-          <TaskCard key={task._id} taskInfo={task} />
+          <TaskCard key={task.id} taskInfo={task} />
         ))}
       </StyledOrderedList>
     </StyledTaskList>

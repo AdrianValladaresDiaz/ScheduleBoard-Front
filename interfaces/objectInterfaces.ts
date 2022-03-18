@@ -4,11 +4,11 @@ export interface Task {
   workHours: number;
   dueDate: Date;
   assignedTo: string[];
-  _id: string;
+  id: string;
 }
 
 export interface ITaskList {
-  _id: string;
+  id: string;
   title: string;
   tasks: Task[];
 }
@@ -18,7 +18,7 @@ export interface ProjectInfo {
   dueDate: Date;
   users: any[];
   taskLists: ITaskList[];
-  _id: string;
+  id: string;
 }
 
 export interface Project {
@@ -26,5 +26,5 @@ export interface Project {
   dueDate: Date;
   users: string[];
   taskLists: ITaskList[];
-  _id: string;
+  id: string;
 }

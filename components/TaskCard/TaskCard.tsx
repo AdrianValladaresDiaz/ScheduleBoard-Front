@@ -44,7 +44,7 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
   const dispatch = useDispatch();
 
   const deleteTask = async () => {
-    dispatch(deleteTaskThunk(taskId, project._id));
+    dispatch(deleteTaskThunk(taskId, project.id));
   };
 
   return (

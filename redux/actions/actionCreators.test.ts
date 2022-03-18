@@ -10,17 +10,17 @@ describe("Given action creator 'loadProjectAction'", () => {
     test("Then it should return an actionType with type 'LOAD_PROJECT'", () => {
       const expectedActionType = "LOAD_PROJECT";
       const project = {
-        _id: "project id",
+        id: "project id",
         title: "Placeholder project 1",
         dueDate: new Date(2009, 2),
         users: ["userIdFromMongoDb"],
         taskLists: [
           {
-            _id: "taskList id 1",
+            id: "taskList id 1",
             title: "Task List 1",
             tasks: [
               {
-                _id: "task id 1",
+                id: "task id 1",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -28,7 +28,7 @@ describe("Given action creator 'loadProjectAction'", () => {
                 dueDate: new Date(2009, 2),
               },
               {
-                _id: "task id 2",
+                id: "task id 2",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -38,11 +38,11 @@ describe("Given action creator 'loadProjectAction'", () => {
             ],
           },
           {
-            _id: "taskList id 2",
+            id: "taskList id 2",
             title: "Task List 2",
             tasks: [
               {
-                _id: "task id 3",
+                id: "task id 3",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -50,7 +50,7 @@ describe("Given action creator 'loadProjectAction'", () => {
                 dueDate: new Date(2009, 2),
               },
               {
-                _id: "task id 4",
+                id: "task id 4",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -58,7 +58,7 @@ describe("Given action creator 'loadProjectAction'", () => {
                 dueDate: new Date(2009, 2),
               },
               {
-                _id: "task id 5",
+                id: "task id 5",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -79,17 +79,17 @@ describe("Given action creator 'loadProjectAction'", () => {
   describe("When called with project info", () => {
     test("Then it should return an action with that project in it", () => {
       const project = {
-        _id: "project id",
+        id: "project id",
         title: "Placeholder project 1",
         dueDate: new Date(2009, 2),
         users: ["userIdFromMongoDb"],
         taskLists: [
           {
-            _id: "taskList id 1",
+            id: "taskList id 1",
             title: "Task List 1",
             tasks: [
               {
-                _id: "task id 1",
+                id: "task id 1",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -97,7 +97,7 @@ describe("Given action creator 'loadProjectAction'", () => {
                 dueDate: new Date(2009, 2),
               },
               {
-                _id: "task id 2",
+                id: "task id 2",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -107,11 +107,11 @@ describe("Given action creator 'loadProjectAction'", () => {
             ],
           },
           {
-            _id: "taskList id 2",
+            id: "taskList id 2",
             title: "Task List 2",
             tasks: [
               {
-                _id: "task id 3",
+                id: "task id 3",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -119,7 +119,7 @@ describe("Given action creator 'loadProjectAction'", () => {
                 dueDate: new Date(2009, 2),
               },
               {
-                _id: "task id 4",
+                id: "task id 4",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -127,7 +127,7 @@ describe("Given action creator 'loadProjectAction'", () => {
                 dueDate: new Date(2009, 2),
               },
               {
-                _id: "task id 5",
+                id: "task id 5",
                 assignedTo: [],
                 title: "task title",
                 description: "an arbitratily long description, in string form",
@@ -174,7 +174,7 @@ describe("Given action creator 'createTask'", () => {
     test("Then it should return an actionType with type 'CREATE_TASK' and that task", () => {
       const expectedActionType = "CREATE_TASK";
       const task: Task = {
-        _id: "task id",
+        id: "task id",
         title: "task title",
         description: "an arbitratily long description, in string form",
         workHours: 84,

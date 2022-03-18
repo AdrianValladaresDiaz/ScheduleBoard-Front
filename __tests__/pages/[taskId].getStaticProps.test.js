@@ -26,7 +26,7 @@ describe("Given getStaticProps from [taskId]", () => {
             workHours: 84,
             dueDate: "1970-01-01T00:00:02.009Z",
             assignedTo: [],
-            _id: "622cdb2eaa2f5a4e7dd16917",
+            id: "622cdb2eaa2f5a4e7dd16917",
           },
         },
       };

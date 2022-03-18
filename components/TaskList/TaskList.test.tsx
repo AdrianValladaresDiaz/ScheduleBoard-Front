@@ -9,7 +9,7 @@ const mockStore = configureStore([]);
 let store: any;
 beforeEach(() => {
   store = mockStore({
-    project: { _id: "fakeId" },
+    project: { id: "fakeId" },
   });
 });
 
@@ -18,11 +18,11 @@ describe("Given the TaskList component", () => {
     test("It should render a heading and a list", () => {
       const title = "title";
       const tasks: any[] = [];
-      const _id = "id";
+      const id = "id";
 
       render(
         <Provider store={store}>
-          <TaskList taskList={{ title, tasks, _id }} />
+          <TaskList taskList={{ title, tasks, id }} />
         </Provider>
       );
 
@@ -38,7 +38,7 @@ describe("Given the TaskList component", () => {
     test("It should render that list", () => {
       const expectedListLength = 3;
       const task1: Task = {
-        _id: "1",
+        id: "1",
         assignedTo: ["1"],
         description: "description",
         dueDate: new Date(500),
@@ -46,7 +46,7 @@ describe("Given the TaskList component", () => {
         workHours: 5,
       };
       const task2: Task = {
-        _id: "2",
+        id: "2",
         assignedTo: ["1"],
         description: "description",
         dueDate: new Date(500),
@@ -54,7 +54,7 @@ describe("Given the TaskList component", () => {
         workHours: 5,
       };
       const task3: Task = {
-        _id: "3",
+        id: "3",
         assignedTo: ["1"],
         description: "description",
         dueDate: new Date(500),
@@ -65,7 +65,7 @@ describe("Given the TaskList component", () => {
       const taskList: TaskListInterface = {
         title: "taskList",
         tasks: [task1, task2, task3],
-        _id: "6425",
+        id: "6425",
       };
 
       render(

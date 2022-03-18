@@ -7,7 +7,7 @@ import {
 import actionTypes from "../actions/actionTypes";
 
 const emptyProject: Project = {
-  _id: "",
+  id: "",
   dueDate: new Date(2009),
   taskLists: [],
   title: "empty project",
@@ -31,7 +31,7 @@ const projectReducer = (
 
       newState.taskLists.forEach((taskList, index, taskLists) => {
         const newTaskList = { ...taskList };
-        const newTasks = newTaskList.tasks.filter((task) => task._id !== id);
+        const newTasks = newTaskList.tasks.filter((task) => task.id !== id);
         newTaskList.tasks = newTasks;
         taskLists[index] = newTaskList;
       });
@@ -44,7 +44,7 @@ const projectReducer = (
       const newTask = (action as createTaskAction).task;
 
       const updatedTaskList = newTaskState.taskLists.find(
-        (taskList) => taskList._id === taskListId
+        (taskList) => taskList.id === taskListId
       ) as ITaskList;
       updatedTaskList.tasks.push(newTask);
 
