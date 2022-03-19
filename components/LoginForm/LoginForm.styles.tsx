@@ -1,21 +1,23 @@
 import styled from "styled-components";
 
-export const StyledRegisterForm = styled.form`
+export const StyledLoginForm = styled.form`
   padding: 20px;
   position: relative;
-  background-color: ${(props) => props.theme.softGreen};
+  background-color: ${(props) => props.theme.softBlue};
   box-shadow: 3px 3px 3px grey;
   box-shadow: 0 0 15px grey;
   align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex: 1 1 auto;
   max-width: 550px;
+  height: 365px;
 
-  & .register-form__input-container {
+  & .login-form__input-container {
     display: flex;
     align-items: center;
-    margin: 10px 0 0 10px;
+    margin: 40px 0 0 10px;
 
     & label {
       width: 100px;
@@ -32,13 +34,13 @@ export const StyledRegisterForm = styled.form`
       height: ${(props) => props.theme.lineHeightSmallText};
     }
   }
-
-  & .register-button-container {
+  & .login-button-container {
     width: 100%;
     position: relative;
     height: 75px;
     display: flex;
     justify-content: end;
+    margin-top: 45px;
     & .submit-button {
       font-size: ${(props) => props.theme.textSizeMedium};
       border: none;
@@ -84,7 +86,7 @@ export const StyledRegisterForm = styled.form`
     }
   }
 
-  & .register-form__success {
+  & .login-form__success {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,7 +112,7 @@ export const StyledRegisterForm = styled.form`
   }
 `;
 
-export const StyledRegisterContainer = styled.main`
+export const StyledLoginContainer = styled.main`
   display: flex;
   flex-direction: column;
 
@@ -124,14 +126,15 @@ export const StyledRegisterContainer = styled.main`
       min-width: 100px;
       text-align: center;
       &--login {
-        background-color: ${(props) => props.theme.softBlue};
         margin-left: 10px;
+        background-color: ${(props) => props.theme.softBlue};
+        z-index: 50;
         box-shadow: 0 0 15px grey;
         clip-path: inset(-15px -15px 0 -15px);
       }
       &--register {
         background-color: ${(props) => props.theme.softGreen};
-        z-index: 50;
+        margin-left: 10px;
         box-shadow: 0 0 15px grey;
         clip-path: inset(-15px -15px 0 -15px);
       }
