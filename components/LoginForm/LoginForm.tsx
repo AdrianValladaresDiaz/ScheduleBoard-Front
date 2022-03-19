@@ -51,7 +51,7 @@ const LoginForm = (): JSX.Element => {
           data: formState,
         }
       );
-      if (axiosResponse.statusText) {
+      if (axiosResponse.status === 200) {
         await handleSuccess(axiosResponse.data.message.token as string);
       } else {
         setFormError(true);
