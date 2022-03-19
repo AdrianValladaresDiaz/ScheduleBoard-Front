@@ -52,7 +52,7 @@ const LoginForm = (): JSX.Element => {
         }
       );
       if (axiosResponse.status === 200) {
-        await handleSuccess(axiosResponse.data.message.token as string);
+        handleSuccess(axiosResponse.data.message.token as string);
       } else {
         setFormError(true);
       }
@@ -61,10 +61,10 @@ const LoginForm = (): JSX.Element => {
     }
   };
 
-  const handleSuccess = async (token: string): Promise<void> => {
+  const handleSuccess = (token: string): void => {
     setFormSuccess(true);
     setCookie(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string, token);
-    await setTimeout(() => {
+    setTimeout(() => {
       redirectToLogin();
     }, 1500);
   };

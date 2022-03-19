@@ -53,9 +53,9 @@ const RegisterForm = (): JSX.Element => {
     router.push(`/login`);
   };
 
-  const handleSuccess = async (): Promise<void> => {
+  const handleSuccess = (): void => {
     setFormSuccess(true);
-    await setTimeout(() => {
+    setTimeout(() => {
       redirectToLogin();
     }, 1500);
   };
@@ -70,7 +70,7 @@ const RegisterForm = (): JSX.Element => {
         }
       );
       if (axiosResponse.status === 201) {
-        await handleSuccess();
+        handleSuccess();
       } else {
         setFormError(true);
       }
