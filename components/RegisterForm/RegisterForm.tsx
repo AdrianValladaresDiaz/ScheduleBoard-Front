@@ -69,8 +69,7 @@ const RegisterForm = (): JSX.Element => {
           data: userData,
         }
       );
-      console.log(axiosResponse);
-      if (axiosResponse.statusText) {
+      if (axiosResponse.status === 200) {
         await handleSuccess();
       } else {
         setFormError(true);
