@@ -113,6 +113,7 @@ export const StyledRegisterForm = styled.form`
 export const StyledRegisterContainer = styled.main`
   display: flex;
   flex-direction: column;
+  font-size: ${(props) => props.theme.textSizeMedium};
 
   & > nav > ul {
     list-style: none;
@@ -132,12 +133,12 @@ export const StyledRegisterContainer = styled.main`
       &--register {
         background-color: ${(props) => props.theme.softGreen};
         z-index: 50;
+        margin-left: 10px;
         box-shadow: 0 0 15px grey;
         clip-path: inset(-15px -15px 0 -15px);
       }
       & a:visited {
         color: black;
-        font-size: ${(props) => props.theme.textSizeMedium};
       }
     }
   }
