@@ -143,6 +143,7 @@ export const StyledLoginForm = styled.form`
 export const StyledLoginContainer = styled.main`
   display: flex;
   flex-direction: column;
+  font-size: ${(props) => props.theme.textSizeMedium};
 
   & > nav > ul {
     list-style: none;
@@ -171,7 +172,6 @@ export const StyledLoginContainer = styled.main`
       a:visited,
       a:active {
         color: black;
-        font-size: ${(props) => props.theme.textSizeMedium};
       }
     }
   }

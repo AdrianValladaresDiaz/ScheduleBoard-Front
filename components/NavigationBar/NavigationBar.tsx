@@ -37,9 +37,11 @@ const LinkList = styled.ul`
   a:hover,
   a:visited,
   a:active {
+    color: black;
     padding-top: 6px;
     margin-right: ${paddingSizes.mobileSidesPadding};
     width: 35px;
+    height: 35px;
   }
 `;
 
