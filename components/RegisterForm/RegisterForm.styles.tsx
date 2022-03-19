@@ -53,6 +53,12 @@ export const StyledRegisterForm = styled.form`
           box-shadow: inset 3px 3px 3px grey;
         }
       }
+      &:disabled {
+        text-decoration: none;
+        &:hover {
+          border: none;
+        }
+      }
       &--true {
         &:hover {
           border: none;

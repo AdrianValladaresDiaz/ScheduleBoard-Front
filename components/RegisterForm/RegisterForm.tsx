@@ -1,7 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScheduleBoardResponse } from "../../interfaces";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
 import {
@@ -21,7 +21,25 @@ const RegisterForm = (): JSX.Element => {
   const [formState, setFormState] = useState(initialFormState);
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
+  const [submitButtonEnabled, setSubmitButtonEnabled] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const { mail, name, surname, password, confirmPassword } = formState;
+    let passwordIsOk = false;
+    if (
+      password === confirmPassword &&
+      password !== "" &&
+      confirmPassword !== ""
+    ) {
+      passwordIsOk = true;
+    }
+    if (mail !== "" && name !== "" && surname !== "" && passwordIsOk) {
+      setSubmitButtonEnabled(true);
+    } else {
+      setSubmitButtonEnabled(false);
+    }
+  }, [formState]);
 
   const handleChange = (event: React.FormEvent): void => {
     const target = event.target as HTMLInputElement;
@@ -42,7 +60,7 @@ const RegisterForm = (): JSX.Element => {
     }, 1500);
   };
 
-  const submitForm = async () => {
+  const submitForm = async (): Promise<void> => {
     try {
       const { confirmPassword, ...userData } = formState;
       const axiosResponse = await axios.post<ScheduleBoardResponse>(
@@ -143,14 +161,11 @@ const RegisterForm = (): JSX.Element => {
             </div>
 
             <div className="register-form__input-container">
-              <label
-                htmlFor={`confirmPassword`}
-                className="register-form__label"
-              >
+              <label htmlFor="confirmPassword" className="register-form__label">
                 Confirm:
               </label>
               <input
-                id={"confirmPassword"}
+                id="confirmPassword"
                 type="password"
                 onChange={handleChange}
                 value={formState.confirmPassword ?? ""}
@@ -165,7 +180,7 @@ const RegisterForm = (): JSX.Element => {
               <button
                 className={`submit-button submit-button--${formError}`}
                 onClick={submitForm}
-                disabled={formError}
+                disabled={!submitButtonEnabled}
               >
                 Register me
               </button>

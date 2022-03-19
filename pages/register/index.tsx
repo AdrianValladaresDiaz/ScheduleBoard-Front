@@ -1,11 +1,6 @@
-import { FC } from "react";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
 
-interface RegisterPageProps {
-  error: boolean;
-}
-
-const RegisterPage: FC<RegisterPageProps> = ({ error }) => {
+const RegisterPage = (): JSX.Element => {
   return <RegisterForm />;
 };
 
