@@ -1,11 +1,9 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { ScheduleBoardResponse } from "../../interfaces";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
-import StyledDetailForm from "../TaskDetailForm/TaskDetailForm.styles";
-import WidthDefinedButton from "../WidthDefinedButton/WidthDefinedButton";
 import {
   StyledRegisterContainer,
   StyledRegisterForm,
@@ -22,6 +20,7 @@ const initialFormState = {
 const RegisterForm = (): JSX.Element => {
   const [formState, setFormState] = useState(initialFormState);
   const [formError, setFormError] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
   const router = useRouter();
 
   const handleChange = (event: React.FormEvent): void => {
@@ -32,20 +31,29 @@ const RegisterForm = (): JSX.Element => {
     });
   };
 
-  const redirectToLogin = () => {
+  const redirectToLogin = (): void => {
     router.push(`/login`);
+  };
+
+  const handleSuccess = async (): Promise<void> => {
+    setFormSuccess(true);
+    await setTimeout(() => {
+      redirectToLogin();
+    }, 1500);
   };
 
   const submitForm = async () => {
     try {
+      const { confirmPassword, ...userData } = formState;
       const axiosResponse = await axios.post<ScheduleBoardResponse>(
-        `${process.env.NEXT_PUBLIC_BACKEND}register`,
+        `${process.env.NEXT_PUBLIC_BACKEND}authentication/register`,
         {
-          data: formState,
+          data: userData,
         }
       );
+      console.log(axiosResponse);
       if (axiosResponse.statusText) {
-        redirectToLogin();
+        await handleSuccess();
       } else {
         setFormError(true);
       }
@@ -76,92 +84,106 @@ const RegisterForm = (): JSX.Element => {
           event.preventDefault();
         }}
       >
-        <div className="register-form__input-container">
-          <label htmlFor="mail" className="register-form__label">
-            e-mail:
-          </label>
-          <input
-            id="mail"
-            type="email"
-            onChange={handleChange}
-            value={formState.mail ?? ""}
-            placeholder={"write your e-mail"}
-          />
-        </div>
+        {!formSuccess && (
+          <>
+            <div className="register-form__input-container">
+              <label htmlFor="mail" className="register-form__label">
+                e-mail:
+              </label>
+              <input
+                id="mail"
+                type="email"
+                onChange={handleChange}
+                value={formState.mail ?? ""}
+                placeholder={"write your e-mail"}
+              />
+            </div>
 
-        <div className="register-form__input-container">
-          <label htmlFor={`name`} className="register-form__label">
-            Name:
-          </label>
-          <input
-            id={"name"}
-            type="text"
-            onChange={handleChange}
-            value={formState.name ?? ""}
-            placeholder="write your name"
-            maxLength={15}
-          />
-        </div>
+            <div className="register-form__input-container">
+              <label htmlFor={`name`} className="register-form__label">
+                Name:
+              </label>
+              <input
+                id={"name"}
+                type="text"
+                onChange={handleChange}
+                value={formState.name ?? ""}
+                placeholder="write your name"
+                maxLength={15}
+              />
+            </div>
 
-        <div className="register-form__input-container">
-          <label htmlFor={`surname`} className="register-form__label">
-            Surname:
-          </label>
-          <input
-            id={"surname"}
-            type="text"
-            onChange={handleChange}
-            value={formState.surname ?? ""}
-            placeholder="write your surname"
-            maxLength={15}
-          />
-        </div>
+            <div className="register-form__input-container">
+              <label htmlFor={`surname`} className="register-form__label">
+                Surname:
+              </label>
+              <input
+                id={"surname"}
+                type="text"
+                onChange={handleChange}
+                value={formState.surname ?? ""}
+                placeholder="write your surname"
+                maxLength={15}
+              />
+              <p className="register-form__warning-container"></p>
+            </div>
 
-        <div className="register-form__input-container">
-          <label htmlFor={`password`} className="register-form__label">
-            Password:
-          </label>
-          <input
-            id={"password"}
-            type="password"
-            onChange={handleChange}
-            value={formState.password ?? ""}
-            placeholder="enter your password"
-            maxLength={15}
-          />
-        </div>
+            <div className="register-form__input-container">
+              <label htmlFor={`password`} className="register-form__label">
+                Password:
+              </label>
+              <input
+                id={"password"}
+                type="password"
+                onChange={handleChange}
+                value={formState.password ?? ""}
+                placeholder="enter your password"
+                maxLength={15}
+              />
+            </div>
 
-        <div className="register-form__input-container">
-          <label htmlFor={`confirmPassword`} className="register-form__label">
-            Confirm:
-          </label>
-          <input
-            id={"confirmPassword"}
-            type="password"
-            onChange={handleChange}
-            value={formState.confirmPassword ?? ""}
-            placeholder="confirm your password"
-            maxLength={15}
-          />
-        </div>
+            <div className="register-form__input-container">
+              <label
+                htmlFor={`confirmPassword`}
+                className="register-form__label"
+              >
+                Confirm:
+              </label>
+              <input
+                id={"confirmPassword"}
+                type="password"
+                onChange={handleChange}
+                value={formState.confirmPassword ?? ""}
+                placeholder="confirm your password"
+                maxLength={15}
+              />
+            </div>
 
-        <div
-          className={`register-button-container register-button-container--${formError}`}
-        >
-          <button
-            className={`submit-button submit-button--${formError}`}
-            onClick={submitForm}
-            disabled={formError}
-          >
-            Register me
-          </button>
+            <div
+              className={`register-button-container register-button-container--${formError}`}
+            >
+              <button
+                className={`submit-button submit-button--${formError}`}
+                onClick={submitForm}
+                disabled={formError}
+              >
+                Register me
+              </button>
 
-          <ScheduleButton
-            content="Something went wrong :("
-            onClickAction={clickOnError}
-            className={`error_button error_button--${formError}`}
-          />
-        </div>
+              <ScheduleButton
+                content="Something went wrong :("
+                onClickAction={clickOnError}
+                className={`error_button error_button--${formError}`}
+              />
+            </div>
+          </>
+        )}
+        {formSuccess && (
+          <div className="register-form__success">
+            <h3>SUCCESS!</h3>
+            <p>{`Hi there, ${formState.name}. Redirecting you to the log in screen...`}</p>
+          </div>
+        )}
       </StyledRegisterForm>
     </StyledRegisterContainer>
   );

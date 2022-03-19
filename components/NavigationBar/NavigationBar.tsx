@@ -28,13 +28,14 @@ const StyledNav = styled.nav`
 const LinkList = styled.ul`
   display: flex;
   align-items: center;
-  &* {
-    margin-left: ${paddingSizes.mobileSidesPadding};
+  & * {
+    &:visited {
+      color: black;
+    }
   }
   & a {
     padding-top: 6px;
     margin-right: ${paddingSizes.mobileSidesPadding};
-
     width: 35px;
   }
 `;

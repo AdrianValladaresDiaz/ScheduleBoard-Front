@@ -42,11 +42,12 @@ export const StyledRegisterForm = styled.form`
     & .submit-button {
       font-size: ${(props) => props.theme.textSizeMedium};
       border: none;
+      padding: 0 15px;
       background-color: transparent;
       text-decoration: underline;
       &:hover {
         border: 2px dotted black;
-        transform: translateX(-2px) translateY(-2px);
+        transform: translateX(2px);
         &:active {
           background-color: ${(props) => props.theme.background};
           box-shadow: inset 3px 3px 3px grey;
@@ -76,11 +77,37 @@ export const StyledRegisterForm = styled.form`
       }
     }
   }
+
+  & .register-form__success {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 325px;
+    & > * {
+      margin-top: 15px;
+      text-align: center;
+      transform: rotateZ(-30deg);
+    }
+    & h3 {
+      width: min-content;
+      font-size: 60px;
+      line-height: 70px;
+      border-top: 5px solid darkgreen;
+      border-bottom: 5px solid darkgreen;
+      color: darkgreen;
+    }
+    & p {
+      text-align: center;
+    }
+  }
 `;
 
 export const StyledRegisterContainer = styled.main`
   display: flex;
   flex-direction: column;
+
   & > nav > ul {
     list-style: none;
     display: flex;
