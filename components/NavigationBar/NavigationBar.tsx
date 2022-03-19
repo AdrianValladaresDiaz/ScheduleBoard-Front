@@ -33,7 +33,10 @@ const LinkList = styled.ul`
       color: black;
     }
   }
-  & a {
+  & a,
+  a:hover,
+  a:visited,
+  a:active {
     padding-top: 6px;
     margin-right: ${paddingSizes.mobileSidesPadding};
     width: 35px;

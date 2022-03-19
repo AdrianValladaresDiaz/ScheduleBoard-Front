@@ -166,7 +166,10 @@ export const StyledLoginContainer = styled.main`
         box-shadow: 0 0 15px grey;
         clip-path: inset(-15px -15px 0 -15px);
       }
-      & a:visited {
+      & a,
+      a:hover,
+      a:visited,
+      a:active {
         color: black;
         font-size: ${(props) => props.theme.textSizeMedium};
       }
