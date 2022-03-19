@@ -1,21 +1,23 @@
 import styled from "styled-components";
 
-export const StyledRegisterForm = styled.form`
+export const StyledLoginForm = styled.form`
   padding: 20px;
   position: relative;
-  background-color: ${(props) => props.theme.softGreen};
+  background-color: ${(props) => props.theme.softBlue};
   box-shadow: 3px 3px 3px grey;
   box-shadow: 0 0 15px grey;
   align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex: 1 1 auto;
   max-width: 550px;
+  height: 365px;
 
-  & .register-form__input-container {
+  & .login-form__input-container {
     display: flex;
     align-items: center;
-    margin: 10px 0 0 10px;
+    margin: 40px 0 0 10px;
 
     & label {
       width: 100px;
@@ -32,13 +34,13 @@ export const StyledRegisterForm = styled.form`
       height: ${(props) => props.theme.lineHeightSmallText};
     }
   }
-
-  & .register-button-container {
+  & .login-button-container {
     width: 100%;
     position: relative;
     height: 75px;
     display: flex;
     justify-content: end;
+    margin-top: 45px;
     & .submit-button {
       font-size: ${(props) => props.theme.textSizeMedium};
       border: none;
@@ -84,33 +86,61 @@ export const StyledRegisterForm = styled.form`
     }
   }
 
-  & .register-form__success {
+  & .login-form__success {
+    box-shadow: 0 0 2px grey;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 325px;
+    background-color: azure;
     & > * {
       margin-top: 15px;
       text-align: center;
-      transform: rotateZ(-30deg);
     }
     & h3 {
       width: min-content;
-      font-size: 60px;
-      line-height: 70px;
-      border-top: 5px solid darkgreen;
-      border-bottom: 5px solid darkgreen;
-      color: darkgreen;
+      font-size: 35px;
+      line-height: 40px;
+      color: darkred;
     }
     & p {
       text-align: center;
     }
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      display: block;
+      height: 12px;
+      width: 100%;
+      background: #cb5a5e;
+      background: repeating-linear-gradient(
+        -45deg,
+        #cb5a5e,
+        #cb5a5e 12px,
+        transparent 10px,
+        transparent 23px
+      );
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-bottom: 0;
+    }
+
+    &:before {
+      top: 0;
+    }
+
+    &:after {
+      bottom: 0;
+    }
   }
 `;
 
-export const StyledRegisterContainer = styled.main`
+export const StyledLoginContainer = styled.main`
   display: flex;
   flex-direction: column;
 
@@ -124,18 +154,22 @@ export const StyledRegisterContainer = styled.main`
       min-width: 100px;
       text-align: center;
       &--login {
-        background-color: ${(props) => props.theme.softBlue};
         margin-left: 10px;
+        background-color: ${(props) => props.theme.softBlue};
+        z-index: 50;
         box-shadow: 0 0 15px grey;
         clip-path: inset(-15px -15px 0 -15px);
       }
       &--register {
         background-color: ${(props) => props.theme.softGreen};
-        z-index: 50;
+        margin-left: 10px;
         box-shadow: 0 0 15px grey;
         clip-path: inset(-15px -15px 0 -15px);
       }
-      & a:visited {
+      & a,
+      a:hover,
+      a:visited,
+      a:active {
         color: black;
         font-size: ${(props) => props.theme.textSizeMedium};
       }
