@@ -87,27 +87,55 @@ export const StyledLoginForm = styled.form`
   }
 
   & .login-form__success {
+    box-shadow: 0 0 2px grey;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 325px;
+    background-color: azure;
     & > * {
       margin-top: 15px;
       text-align: center;
-      transform: rotateZ(-30deg);
     }
     & h3 {
       width: min-content;
-      font-size: 60px;
-      line-height: 70px;
-      border-top: 5px solid darkgreen;
-      border-bottom: 5px solid darkgreen;
-      color: darkgreen;
+      font-size: 35px;
+      line-height: 40px;
+      color: darkred;
     }
     & p {
       text-align: center;
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      display: block;
+      height: 12px;
+      width: 100%;
+      background: #cb5a5e;
+      background: repeating-linear-gradient(
+        -45deg,
+        #cb5a5e,
+        #cb5a5e 12px,
+        transparent 10px,
+        transparent 23px
+      );
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-bottom: 0;
+    }
+
+    &:before {
+      top: 0;
+    }
+
+    &:after {
+      bottom: 0;
     }
   }
 `;

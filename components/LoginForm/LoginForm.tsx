@@ -136,6 +136,12 @@ const LoginForm = (): JSX.Element => {
             </div>
           </>
         )}
+        {formSuccess && (
+          <div className="login-form__success">
+            <h3>Successfully logged in</h3>
+            <p>{`Welcome. Redirecting to your home screen...`}</p>
+          </div>
+        )}
       </StyledLoginForm>
     </StyledLoginContainer>
   );
