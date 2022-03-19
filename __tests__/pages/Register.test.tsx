@@ -1,12 +1,10 @@
 import { Provider } from "react-redux";
 import store from "../../redux/store";
 import { render, screen } from "@testing-library/react";
-import ProjectPage from "../../pages/projects/[projectId]";
-import sampleProjectList from "../../testingutils/sampleProjectList";
 import RegisterPage from "../../pages/register";
 import userEvent from "@testing-library/user-event";
 
-describe("Given he register page", () => {
+describe("Given the register page", () => {
   describe("When received by the client", () => {
     test("Then it should show the register form", () => {
       render(

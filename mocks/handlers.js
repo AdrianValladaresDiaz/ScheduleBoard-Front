@@ -225,4 +225,29 @@ export const handlers = [
       return res(ctx.status(200));
     }
   ),
+
+  rest.post(
+    `${process.env.NEXT_PUBLIC_BACKEND}authentication/login`,
+    (req, res, ctx) => {
+      const { mail, password } = req.body.data;
+
+      if (mail === "usermail@mail.com" && password === "userPassword") {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            error: false,
+            message: "token",
+          })
+        );
+      } else {
+        return res(
+          ctx.status(400),
+          ctx.json({
+            error: true,
+            message: "random error",
+          })
+        );
+      }
+    }
+  ),
 ];
