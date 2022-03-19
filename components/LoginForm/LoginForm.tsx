@@ -2,6 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { ScheduleBoardResponse } from "../../interfaces";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
 import { StyledLoginContainer, StyledLoginForm } from "./LoginForm.styles";
@@ -16,6 +17,7 @@ const LoginForm = (): JSX.Element => {
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const [submitButtonEnabled, setSubmitButtonEnabled] = useState(false);
+  const [cookies, setCookie] = useCookies();
 
   const router = useRouter();
 
@@ -38,20 +40,19 @@ const LoginForm = (): JSX.Element => {
   };
 
   const redirectToLogin = (): void => {
-    router.push(`/login`);
+    router.push(`/home`);
   };
 
   const submitForm = async (): Promise<void> => {
     try {
       const axiosResponse = await axios.post<ScheduleBoardResponse>(
-        `${process.env.NEXT_PUBLIC_BACKEND}authentication/register`,
+        `${process.env.NEXT_PUBLIC_BACKEND}authentication/login`,
         {
           data: formState,
         }
       );
-      console.log(axiosResponse);
       if (axiosResponse.statusText) {
-        await handleSuccess();
+        await handleSuccess(axiosResponse.data.message.token as string);
       } else {
         setFormError(true);
       }
@@ -60,8 +61,9 @@ const LoginForm = (): JSX.Element => {
     }
   };
 
-  const handleSuccess = async (): Promise<void> => {
+  const handleSuccess = async (token: string): Promise<void> => {
     setFormSuccess(true);
+    setCookie(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string, token);
     await setTimeout(() => {
       redirectToLogin();
     }, 1500);
@@ -125,7 +127,7 @@ const LoginForm = (): JSX.Element => {
                 onClick={submitForm}
                 disabled={!submitButtonEnabled}
               >
-                Register me
+                Log me in
               </button>
 
               <ScheduleButton

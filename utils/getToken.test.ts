@@ -17,7 +17,7 @@ describe("Given getToken() function", () => {
     test("Then it should return the value of that cookie", () => {
       const expectedToken = "this is a token";
 
-      const receivedToken = getToken();
+      const receivedToken = getToken("randomCookieStr");
 
       expect(receivedToken).toBe(expectedToken);
     });
