@@ -23,6 +23,7 @@ const StyledNav = styled.nav`
   width: 100%;
   height: ${(props) => props.theme.headerHeight};
   padding: ${(props) => props.theme.lateralPadding};
+  box-shadow: 3px 0 15px grey;
 `;
 
 const LinkList = styled.ul`
