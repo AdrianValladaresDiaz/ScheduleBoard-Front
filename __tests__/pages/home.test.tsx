@@ -6,6 +6,7 @@ describe("Given the home page", () => {
     test("Should render a list of projects", async () => {
       const projects = [
         {
+          id: "id 1",
           title: "Placeholder project 1",
           dueDate: "2009-02-15T00:00:00Z",
           users: [{ name: "user", surname: "surname", id: "one id" }],

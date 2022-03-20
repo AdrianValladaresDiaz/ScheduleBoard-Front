@@ -1,4 +1,4 @@
-import { Project, Task } from "../../interfaces";
+import { Project, ProjectInfo, Task } from "../../interfaces";
 import {
   createTaskAction as IcreateTaskAction,
   deleteTaskAction as IDeleteTaskAction,
@@ -22,4 +22,9 @@ export const createTaskAction = (
   type: actionTypes.createTask,
   task,
   taskListId,
+});
+
+export const loadUserProjects = (projects: ProjectInfo[]) => ({
+  type: actionTypes.loadUserProjects,
+  projects,
 });

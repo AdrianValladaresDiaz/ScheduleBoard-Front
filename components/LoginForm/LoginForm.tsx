@@ -17,7 +17,7 @@ const LoginForm = (): JSX.Element => {
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const [submitButtonEnabled, setSubmitButtonEnabled] = useState(false);
-  const [cookies, setCookie] = useCookies();
+  const [, setCookie] = useCookies();
 
   const router = useRouter();
 
@@ -63,10 +63,12 @@ const LoginForm = (): JSX.Element => {
 
   const handleSuccess = (token: string): void => {
     setFormSuccess(true);
-    setCookie(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string, token);
+    setCookie(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string, token, {
+      maxAge: 60 * 60 * 24 * 5,
+    });
     setTimeout(() => {
       redirectToLogin();
-    }, 1500);
+    }, 1000);
   };
 
   const clickOnError = (event: React.MouseEvent) => {
