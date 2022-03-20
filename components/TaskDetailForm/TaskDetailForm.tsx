@@ -74,7 +74,7 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
           data: formState,
         }
       );
-      if (axiosResponse.statusText) {
+      if (axiosResponse.status === 200) {
         await axios.post<ScheduleBoardResponse>(
           `${process.env.NEXT_PUBLIC_FRONTEND}api/revalidate`,
           {
