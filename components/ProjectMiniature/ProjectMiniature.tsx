@@ -9,7 +9,7 @@ const StyledProjectMiniature = styled.article`
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: space-between;
-  max-width: 700px;
+  max-width: 500px;
   width: 100%;
   cursor: pointer;
 

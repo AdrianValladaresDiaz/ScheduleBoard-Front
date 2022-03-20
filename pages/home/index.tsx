@@ -26,6 +26,15 @@ const StyledUl = styled.ul`
     width: 100%;
     justify-content: center;
   }
+  @media (min-width: 715px) {
+    min-width: 700px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    & > li {
+      width: 100%;
+    }
+  }
 `;
 
 const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
