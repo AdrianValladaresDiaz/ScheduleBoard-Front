@@ -5,6 +5,11 @@ export interface AxiosUserProjectsGetResponse {
   message: ProjectInfo[];
 }
 
+export interface AxiosUserProjectPostResponse {
+  error: boolean;
+  message: ProjectInfo;
+}
+
 export interface AxiosProjectGetResponse {
   error: boolean;
   message: ProjectInfo;

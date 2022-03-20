@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import ProjectForm from "../../components/ProjectForm/ProjectForm";
 import ProjectMiniature from "../../components/ProjectMiniature/ProjectMiniature";
 import { AxiosUserProjectsGetResponse, ProjectInfo } from "../../interfaces";
 import { loadUserProjects } from "../../redux/actions/actionCreators";
@@ -50,7 +51,6 @@ const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
 
   const createProjectFetch = async () => {
     const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string];
-    console.log(token);
     const backendResponse = await axios.post<AxiosUserProjectsGetResponse>(
       `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
       {
@@ -71,6 +71,7 @@ const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
   console.log(userProjects);
   return (
     <>
+      <ProjectForm />
       <StyledUl>
         {userProjects.map((project: any) => (
           <li key={project.id}>
