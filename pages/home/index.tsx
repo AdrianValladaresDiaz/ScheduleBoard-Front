@@ -17,6 +17,7 @@ interface HomeProps {
 }
 
 const StyledUl = styled.ul`
+  width: 100%;
   list-style: none;
   display: flex;
   align-items: center;
@@ -29,6 +30,7 @@ const StyledUl = styled.ul`
   }
   @media (min-width: 715px) {
     min-width: 700px;
+    max-width: 1150px;
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr;
@@ -49,25 +51,6 @@ const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
     dispatch(loadUserProjects(projects));
   }, [dispatch, projects]);
 
-  const createProjectFetch = async () => {
-    const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string];
-    const backendResponse = await axios.post<AxiosUserProjectsGetResponse>(
-      `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
-      {
-        data: {
-          title: "title from frontend",
-          dueDate: new Date("2222-12-12"),
-        },
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    const data = backendResponse.data.message;
-  };
   console.log(userProjects);
   return (
     <>
@@ -79,7 +62,6 @@ const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
           </li>
         ))}
       </StyledUl>
-      <button onClick={createProjectFetch}>click me gently</button>
     </>
   );
 };

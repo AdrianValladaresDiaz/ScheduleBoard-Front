@@ -28,3 +28,8 @@ export const loadUserProjects = (projects: ProjectInfo[]) => ({
   type: actionTypes.loadUserProjects,
   projects,
 });
+
+export const addUserProject = (project: ProjectInfo) => ({
+  type: actionTypes.addUserProject,
+  project,
+});

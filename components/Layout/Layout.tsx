@@ -25,6 +25,13 @@ const StyledMain = styled.main`
   }
 `;
 
+const StyledContainer = styled.div`
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+`;
+
 const Layout: FunctionComponent = ({ children }: any) => {
   return (
     <>
@@ -35,7 +42,9 @@ const Layout: FunctionComponent = ({ children }: any) => {
       </Head>
       <Background />
       <NavigationBar />
-      <StyledMain className="main-container">{children}</StyledMain>
+      <StyledMain className="main-container">
+        <StyledContainer>{children}</StyledContainer>
+      </StyledMain>
     </>
   );
 };

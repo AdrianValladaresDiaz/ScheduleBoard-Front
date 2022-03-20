@@ -1,19 +1,22 @@
 import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import { useDispatch } from "react-redux";
 import { ScheduleBoardResponse, Task } from "../../interfaces";
 import { AxiosUserProjectPostResponse } from "../../interfaces/axiosResponseInterfaces";
+import { addUserProject } from "../../redux/actions/actionCreators";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
 import WidthDefinedButton from "../WidthDefinedButton/WidthDefinedButton";
 import StyledDetailForm from "./ProjectForm.styles";
 
 const initialFormState = {
   title: "",
-  dueDate: new Date(0),
+  dueDate: new Date(Date.now()),
 };
 
 const ProjectForm = (): JSX.Element => {
   const [cookies] = useCookies();
+  const dispatch = useDispatch();
   const [formState, setFormState] = useState(initialFormState);
   const [formError, setFormError] = useState(false);
 
@@ -44,8 +47,14 @@ const ProjectForm = (): JSX.Element => {
     return outputDateString;
   };
 
-  const handleSuccess = () => {
-    console.log("WOOOHOOOO");
+  const resetForm = () => {
+    setFormState(initialFormState);
+  };
+
+  const handleSuccess = (response: any) => {
+    const newProject = response.data.message;
+    dispatch(addUserProject(newProject));
+    resetForm();
   };
 
   const submitForm = async () => {
@@ -67,7 +76,7 @@ const ProjectForm = (): JSX.Element => {
         }
       );
       if (axiosResponse.status === 201) {
-        handleSuccess();
+        handleSuccess(axiosResponse);
       } else {
         setFormError(true);
       }
@@ -87,22 +96,24 @@ const ProjectForm = (): JSX.Element => {
         event.preventDefault();
       }}
     >
-      <label
-        htmlFor={`title`}
-        className="project-form project-form__label--title"
-      >
-        - Title:
-      </label>
-      <input
-        id="title"
-        type="text"
-        onChange={handleChange}
-        value={formState.title ?? "0"}
-      />
+      <div className="taskForm__horizontalContainer">
+        <label
+          htmlFor={`title`}
+          className="project-form project-form__label--title"
+        >
+          Project Title:
+        </label>
+        <input
+          id="title"
+          type="text"
+          onChange={handleChange}
+          value={formState.title ?? "0"}
+        />
+      </div>
 
       <div className="taskForm__horizontalContainer">
         <label htmlFor={`dueDate`} className="taskForm__label">
-          - Due Date:
+          Due Date:
         </label>
         <input
           id={"dueDate"}

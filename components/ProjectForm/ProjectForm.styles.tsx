@@ -2,13 +2,27 @@ import styled from "styled-components";
 
 const StyledProjectForm = styled.form`
   padding: 20px;
+  z-index: 4;
   position: relative;
   background-color: #cafbb2;
-  box-shadow: 3px 3px 3px grey;
+  box-shadow: 2px 2px 2px grey;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   flex: 1 1 auto;
-  max-width: 550px;
+  width: 100%;
+
+  & > .taskForm__horizontalContainer {
+    position: relative;
+    display: flex;
+    width: 100%;
+    & label {
+      margin-right: 30px;
+    }
+    & input {
+      font-size: ${(props) => props.theme.textSizeSmallText};
+    }
+  }
 
   & #taskForm__label {
     margin-top: 15px;
@@ -30,58 +44,8 @@ const StyledProjectForm = styled.form`
     &#title {
       margin-top: 0;
       margin-bottom: 5px;
-      font-size: 25px;
-      border-bottom: 2px dotted #5c7251;
-    }
-    &#description {
-      width: 100%;
-    }
-    &#workHours ::after {
-      content: "h.";
-    }
-  }
-
-  & textarea {
-    background-color: transparent;
-    border: none;
-    resize: none;
-    font-size: ${(props) => props.theme.textSizeSmallText};
-    line-height: ${(props) => props.theme.lineHeightSmallText};
-    height: 200px;
-    overflow: auto;
-    background: repeating-linear-gradient(
-      to bottom,
-      #5c7251 0px,
-      #5c7251 1px,
-      rgba(255, 255, 255, 0) 1px,
-      rgba(255, 255, 255, 0) ${(props) => props.theme.lineHeightSmallText}
-    );
-  }
-
-  & > .taskForm__horizontalContainer {
-    position: relative;
-    width: 100%;
-    & label {
-      margin-right: 30px;
-      min-width: 40%;
-    }
-    & input {
       font-size: ${(props) => props.theme.textSizeSmallText};
-    }
-  }
-
-  & .discard_button_container {
-    box-sizing: border-box;
-    position: absolute;
-    right: 15px;
-    padding: 0 15px;
-    &:hover {
-      border: 2px dotted black;
-      transform: translateX(2px) translateY(-2px);
-      &:active {
-        background-color: ${(props) => props.theme.background};
-        box-shadow: inset 3px 3px 3px grey;
-      }
+      border-bottom: 2px dotted #5c7251;
     }
   }
 
@@ -122,6 +86,11 @@ const StyledProjectForm = styled.form`
         }
       }
     }
+  }
+
+  @media (min-width: 715px) {
+    min-width: 700px;
+    max-width: 1150px;
   }
 `;
 

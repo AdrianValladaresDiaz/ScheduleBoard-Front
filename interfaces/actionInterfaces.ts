@@ -20,3 +20,8 @@ export interface loadUserProjectsAction {
   type: string;
   projects: ProjectInfo[];
 }
+
+export interface addUserProjectAction {
+  type: string;
+  project: ProjectInfo;
+}
