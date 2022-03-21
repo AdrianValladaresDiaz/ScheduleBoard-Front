@@ -1,5 +1,9 @@
 import { AnyAction } from "redux";
-import type { ITaskList, loadProjectAction, Project } from "../../interfaces";
+import type {
+  TaskList as ITaskList,
+  loadProjectAction,
+  Project,
+} from "../../interfaces";
 import {
   addTaskListAction,
   createTaskAction,
