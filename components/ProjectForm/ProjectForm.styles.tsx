@@ -14,6 +14,7 @@ const StyledProjectForm = styled.form`
 
   & > .taskForm__horizontalContainer {
     position: relative;
+    justify-content: space-evenly;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -23,6 +24,14 @@ const StyledProjectForm = styled.form`
     }
     & label {
       margin-right: 30px;
+      margin: 10px 0 10px;
+      &[for="title"] {
+        word-wrap: none;
+        margin-bottom: 0;
+      }
+      &[for="dueDate"] {
+        width: max-content;
+      }
     }
     & input {
       font-size: ${(props) => props.theme.textSizeSmallText};
@@ -32,16 +41,6 @@ const StyledProjectForm = styled.form`
   & #taskForm__label {
     margin-top: 15px;
     font-size: 18px;
-  }
-
-  & label {
-    margin: 10px 0 10px;
-    &[for="title"] {
-      margin-bottom: 0;
-    }
-    &[for="dueDate"] {
-      width: max-content;
-    }
   }
 
   & input {
@@ -100,6 +99,30 @@ const StyledProjectForm = styled.form`
   @media (min-width: 715px) {
     min-width: 700px;
     max-width: 1150px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    & > .taskForm__horizontalContainer {
+      justify-content: space-around;
+      flex-direction: column;
+      width: 45%;
+      & > label {
+        width: 35%;
+        &#dueDate {
+          max-width: 150px;
+        }
+      }
+
+      & input#dueDate {
+        width: 150px;
+      }
+    }
+
+    & .save_button_container {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
   }
 `;
 

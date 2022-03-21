@@ -39,6 +39,7 @@ export const StyledRegisterForm = styled.form`
     height: 75px;
     display: flex;
     justify-content: end;
+
     & .submit-button {
       font-size: ${(props) => props.theme.textSizeMedium};
       border: none;
@@ -118,6 +119,7 @@ export const StyledRegisterContainer = styled.main`
   & > nav > ul {
     list-style: none;
     display: flex;
+    color: black;
     & > li.register_nav {
       background-color: ${(props) => props.theme.softGreen};
       margin-right: 30px;
@@ -137,7 +139,10 @@ export const StyledRegisterContainer = styled.main`
         box-shadow: 0 0 15px grey;
         clip-path: inset(-15px -15px 0 -15px);
       }
-      & a:visited {
+
+      & a,
+      a:hover,
+      a:visited {
         color: black;
       }
     }

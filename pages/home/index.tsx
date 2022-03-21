@@ -18,11 +18,12 @@ interface HomeProps {
 
 const StyledUl = styled.ul`
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   list-style: none;
   display: flex;
   align-items: center;
   flex-direction: column;
+
   height: 80vh;
   & > li {
     display: flex;
@@ -34,6 +35,7 @@ const StyledUl = styled.ul`
     max-width: 1150px;
     display: grid;
     gap: 10px;
+    grid-auto-rows: min-content;
     grid-template-columns: 1fr 1fr;
     & > li {
       width: 100%;
@@ -52,7 +54,6 @@ const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
     dispatch(loadUserProjects(projects));
   }, [dispatch, projects]);
 
-  console.log(userProjects);
   return (
     <>
       <ProjectForm />
@@ -86,8 +87,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     data = backendResponse.data.message;
   }
-  console.log("DATA HERE");
-  console.log(data);
   return {
     props: {
       data,
