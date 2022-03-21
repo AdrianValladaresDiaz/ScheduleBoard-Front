@@ -36,6 +36,7 @@ const StyledDetailForm = styled.form`
     &#description {
       width: 100%;
     }
+
     &#workHours ::after {
       content: "h.";
     }
