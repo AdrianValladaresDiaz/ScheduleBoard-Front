@@ -65,7 +65,11 @@ export const createTaskThunk =
   };
 
 export const addTaskListThunk =
-  (title: string, token: string, projectId: string) =>
+  (
+    title: string,
+    token: string,
+    projectId: string
+  ): ThunkAction<void, RootState, unknown, IcreateTaskAction> =>
   async (dispatch: ThunkDispatch<RootState, unknown, IaddTaskListAction>) => {
     try {
       const axiosResponse = await axios.post<ScheduleBoardResponse>(
