@@ -84,6 +84,7 @@ describe("Given getServerSideProps from Home", () => {
           },
         },
       };
+
       const context = {
         res: {
           writeHead: jest.fn(),

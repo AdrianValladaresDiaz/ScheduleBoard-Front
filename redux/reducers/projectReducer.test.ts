@@ -1,6 +1,11 @@
-import { deleteTaskAction, loadProjectAction } from "../actions/actionCreators";
+import {
+  addTaskListAction,
+  deleteTaskAction,
+  loadProjectAction,
+} from "../actions/actionCreators";
 import projectReducer from "./projectReducer";
 import sampleProjectList from "../../testingutils/sampleProjectList";
+import { TaskList } from "../../interfaces/objectInterfaces";
 
 const projects = [...sampleProjectList];
 let sampleProject = { ...projects[0] };
@@ -63,6 +68,24 @@ describe("Given projectReducer", () => {
       const newState = projectReducer(currentState, action);
 
       expect(newState.taskLists[0].tasks[0]).not.toMatchObject(existingTask);
+    });
+  });
+
+  describe("When called with an action 'addTaskList' with a tasklist in it", () => {
+    test("Then it should return a project without that actionList added to its taskLists list", () => {
+      const currentState = sampleProject;
+      const newTaskList: TaskList = {
+        title: "title",
+        id: "newID",
+        tasks: [],
+      };
+      const action = addTaskListAction(newTaskList);
+      const currentTaksListLenght = sampleProject.taskLists.length;
+      const expectedTaskListLength = currentTaksListLenght + 1;
+
+      const newState = projectReducer(currentState, action);
+
+      expect(newState.taskLists.length).toBe(expectedTaskListLength);
     });
   });
 });

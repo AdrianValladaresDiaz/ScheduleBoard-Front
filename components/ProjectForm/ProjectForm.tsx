@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { ScheduleBoardResponse, Task } from "../../interfaces";
 import { AxiosUserProjectPostResponse } from "../../interfaces/axiosResponseInterfaces";
-import { addUserProject } from "../../redux/actions/actionCreators";
+import { addUserProjectAction } from "../../redux/actions/actionCreators";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
 import WidthDefinedButton from "../WidthDefinedButton/WidthDefinedButton";
 import StyledDetailForm from "./ProjectForm.styles";
@@ -53,7 +53,7 @@ const ProjectForm = (): JSX.Element => {
 
   const handleSuccess = (response: any) => {
     const newProject = response.data.message;
-    dispatch(addUserProject(newProject));
+    dispatch(addUserProjectAction(newProject));
     resetForm();
   };
 

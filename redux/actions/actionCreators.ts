@@ -3,6 +3,7 @@ import {
   createTaskAction as IcreateTaskAction,
   deleteTaskAction as IDeleteTaskAction,
 } from "../../interfaces/actionInterfaces";
+import { TaskList } from "../../interfaces/objectInterfaces";
 import actionTypes from "./actionTypes";
 
 export const loadProjectAction = (project: Project) => ({
@@ -24,12 +25,17 @@ export const createTaskAction = (
   taskListId,
 });
 
-export const loadUserProjects = (projects: ProjectInfo[]) => ({
+export const loadUserProjectsAction = (projects: ProjectInfo[]) => ({
   type: actionTypes.loadUserProjects,
   projects,
 });
 
-export const addUserProject = (project: ProjectInfo) => ({
+export const addUserProjectAction = (project: ProjectInfo) => ({
   type: actionTypes.addUserProject,
   project,
+});
+
+export const addTaskListAction = (taskList: TaskList) => ({
+  type: actionTypes.addTaskList,
+  taskList,
 });

@@ -1,3 +1,4 @@
+import TaskList from "../../components/TaskList/TaskList";
 import type { Project, ScheduleBoardResponse } from "../../interfaces";
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
@@ -5,9 +6,10 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import TaskList from "../../components/TaskList/TaskList";
 import { RootState } from "../../redux/store";
 import { loadProjectAction } from "../../redux/actions/actionCreators";
+import { useCookies } from "react-cookie";
+import TaskListForm from "../../components/TaskListForm/TaskListForm";
 
 const StyledProject = styled.div`
   display: flex;
@@ -24,6 +26,7 @@ interface ProjectPageProps {
 }
 
 const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
+  const [cookies] = useCookies();
   const router = useRouter();
   const dispatch = useDispatch();
   const project: Project = useSelector<RootState>(
@@ -40,14 +43,40 @@ const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
     dispatch(loadProjectAction(message));
   }, [dispatch, message]);
 
+  const clickMe = async () => {
+    const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string];
+
+    const axiosResponse = await axios.post<ScheduleBoardResponse>(
+      `${process.env.NEXT_PUBLIC_BACKEND}project/createTaskList`,
+      {
+        data: {
+          title: "new title",
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          projectId: project.id,
+        },
+      }
+    );
+    console.log(axiosResponse);
+  };
+
   return (
-    <StyledProject>
-      {project && <LeftBorder className="left-border" />}
-      {project &&
-        project.taskLists?.map((taskList) => (
-          <TaskList key={taskList.id} taskList={taskList} />
-        ))}
-    </StyledProject>
+    <>
+      <button onClick={clickMe}>click me</button>
+      <StyledProject>
+        {project && <LeftBorder className="left-border" />}
+        {project &&
+          project.taskLists?.map((taskList) => (
+            <TaskList key={taskList.id} taskList={taskList} />
+          ))}
+        <TaskListForm />
+      </StyledProject>
+    </>
   );
 };
 

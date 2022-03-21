@@ -1,5 +1,6 @@
+import { AnyAction } from "redux";
 import type { Project } from "./index";
-import { ProjectInfo, Task } from "./objectInterfaces";
+import { ProjectInfo, Task, TaskList } from "./objectInterfaces";
 
 export interface loadProjectAction {
   type: string;
@@ -24,4 +25,8 @@ export interface loadUserProjectsAction {
 export interface addUserProjectAction {
   type: string;
   project: ProjectInfo;
+}
+
+export interface addTaskListAction extends AnyAction {
+  taskList: TaskList;
 }
