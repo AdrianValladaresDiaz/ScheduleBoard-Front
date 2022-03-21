@@ -7,7 +7,7 @@ import styled from "styled-components";
 import ProjectForm from "../../components/ProjectForm/ProjectForm";
 import ProjectMiniature from "../../components/ProjectMiniature/ProjectMiniature";
 import { AxiosUserProjectsGetResponse, ProjectInfo } from "../../interfaces";
-import { loadUserProjects } from "../../redux/actions/actionCreators";
+import { loadUserProjectsAction } from "../../redux/actions/actionCreators";
 import { RootState } from "../../redux/store";
 import checkToken from "../../utils/checkToken";
 import getToken from "../../utils/getToken";
@@ -51,7 +51,7 @@ const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
   ) as ProjectInfo[];
 
   useEffect(() => {
-    dispatch(loadUserProjects(projects));
+    dispatch(loadUserProjectsAction(projects));
   }, [dispatch, projects]);
 
   return (

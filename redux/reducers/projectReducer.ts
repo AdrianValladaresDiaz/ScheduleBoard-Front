@@ -1,6 +1,7 @@
 import { AnyAction } from "redux";
 import type { ITaskList, loadProjectAction, Project } from "../../interfaces";
 import {
+  addTaskListAction,
   createTaskAction,
   deleteTaskAction,
 } from "../../interfaces/actionInterfaces";
@@ -16,7 +17,13 @@ const emptyProject: Project = {
 
 const projectReducer = (
   currentProject: Project = emptyProject,
-  action: AnyAction | loadProjectAction | deleteTaskAction = { type: "" }
+  action:
+    | AnyAction
+    | loadProjectAction
+    | deleteTaskAction
+    | addTaskListAction = {
+    type: "",
+  }
 ): Project => {
   let projectState: Project;
 
@@ -49,6 +56,11 @@ const projectReducer = (
       updatedTaskList.tasks.push(newTask);
 
       projectState = { ...newTaskState };
+      break;
+
+    case actionTypes.addTaskList:
+      projectState = { ...currentProject };
+      projectState.taskLists.push((action as addTaskListAction).taskList);
       break;
 
     default:

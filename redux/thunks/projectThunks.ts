@@ -1,12 +1,18 @@
 import { ThunkDispatch, ThunkAction } from "redux-thunk";
 import { RootState } from "../store";
 import {
+  addTaskListAction as IaddTaskListAction,
   createTaskAction as IcreateTaskAction,
   deleteTaskAction as IDeleteTaskAction,
 } from "../../interfaces/actionInterfaces";
 import axios from "axios";
 import { ScheduleBoardResponse } from "../../interfaces";
-import { createTaskAction, deleteTaskAction } from "../actions/actionCreators";
+import {
+  addTaskListAction,
+  createTaskAction,
+  deleteTaskAction,
+} from "../actions/actionCreators";
+import { TaskList } from "../../interfaces/objectInterfaces";
 
 export const deleteTaskThunk =
   (
@@ -57,3 +63,33 @@ export const createTaskThunk =
       dispatch(createTaskAction(response.message, taskListId));
     }
   };
+
+export const addTaskListThunk =
+  (
+    title: string,
+    token: string,
+    projectId: string
+  ): ThunkAction<void, RootState, unknown, IaddTaskListAction> =>
+  async (dispatch: ThunkDispatch<RootState, unknown, IaddTaskListAction>) => {
+    let response: ScheduleBoardResponse;
+    try {
+      const axiosResponse = await axios.post<ScheduleBoardResponse>(
+        `${process.env.NEXT_PUBLIC_BACKEND}project/createTaskList`,
+        { data: { title } },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: { projectId },
+        }
+      );
+
+      if (axiosResponse.status === 201) {
+        const a = dispatch(addTaskListAction());
+        return;
+      }
+    } catch {
+      return;
+    }
+  };
+//el retorno del dispatch lo returneo

@@ -7,7 +7,7 @@ export interface Task {
   id: string;
 }
 
-export interface ITaskList {
+export interface TaskList {
   id: string;
   title: string;
   tasks: Task[];
@@ -24,6 +24,6 @@ export interface Project {
   title: string;
   dueDate: Date;
   users: string[];
-  taskLists: ITaskList[];
+  taskLists: TaskList[];
   id: string;
 }
