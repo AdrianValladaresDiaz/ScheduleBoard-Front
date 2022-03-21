@@ -18,11 +18,12 @@ interface HomeProps {
 
 const StyledUl = styled.ul`
   width: 100%;
+  overflow-y: scroll;
   list-style: none;
   display: flex;
   align-items: center;
   flex-direction: column;
-  position: realative;
+  height: 80vh;
   & > li {
     display: flex;
     width: 100%;

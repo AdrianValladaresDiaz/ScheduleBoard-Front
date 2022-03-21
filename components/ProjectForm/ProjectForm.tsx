@@ -112,33 +112,34 @@ const ProjectForm = (): JSX.Element => {
       </div>
 
       <div className="taskForm__horizontalContainer">
-        <label htmlFor={`dueDate`} className="taskForm__label">
-          Due Date:
-        </label>
-        <input
-          id={"dueDate"}
-          type="date"
-          onChange={handleChange}
-          max="5000-01-01"
-          value={updateDate()}
-        />
-      </div>
-
-      <div
-        className={`save_button_container save_button_container--${formError}`}
-      >
-        <WidthDefinedButton
-          bigContent="O"
-          title="create task"
-          content="save changes"
-          onClickAction={submitForm}
-          isDisabled={formError}
-        />
-        <ScheduleButton
-          content="Something went wrong :("
-          onClickAction={clickOnError}
-          className={`error_button error_button--${formError}`}
-        />
+        <div>
+          <label htmlFor={`dueDate`} className="taskForm__label">
+            Due Date:
+          </label>
+          <input
+            id={"dueDate"}
+            type="date"
+            onChange={handleChange}
+            max="5000-01-01"
+            value={updateDate()}
+          />
+        </div>
+        <div
+          className={`save_button_container save_button_container--${formError}`}
+        >
+          <WidthDefinedButton
+            bigContent="O"
+            title="create task"
+            content="save changes"
+            onClickAction={submitForm}
+            isDisabled={formError}
+          />
+          <ScheduleButton
+            content="Something went wrong :("
+            onClickAction={clickOnError}
+            className={`error_button error_button--${formError}`}
+          />
+        </div>
       </div>
     </StyledDetailForm>
   );

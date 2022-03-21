@@ -20,7 +20,7 @@ const userProjectsReducer = (
       break;
 
     case actionTypes.addUserProject:
-      updatedProjects = [...projects, (action as addUserProjectAction).project];
+      updatedProjects = [(action as addUserProjectAction).project, ...projects];
       break;
 
     default:

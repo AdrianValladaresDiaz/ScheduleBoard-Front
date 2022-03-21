@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledProjectForm = styled.form`
-  padding: 20px;
+  padding: 10px 15px;
   z-index: 4;
   position: relative;
   background-color: #cafbb2;
@@ -15,7 +15,12 @@ const StyledProjectForm = styled.form`
   & > .taskForm__horizontalContainer {
     position: relative;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     width: 100%;
+    height: 55px;
+    & > div {
+    }
     & label {
       margin-right: 30px;
     }
@@ -34,14 +39,17 @@ const StyledProjectForm = styled.form`
     &[for="title"] {
       margin-bottom: 0;
     }
+    &[for="dueDate"] {
+      width: max-content;
+    }
   }
 
   & input {
     background-color: transparent;
     border: none;
-    margin-top: 10px;
 
     &#title {
+      margin-top: 10px;
       margin-top: 0;
       margin-bottom: 5px;
       font-size: ${(props) => props.theme.textSizeSmallText};
@@ -50,10 +58,8 @@ const StyledProjectForm = styled.form`
   }
 
   & .save_button_container {
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-    padding: 0 15px;
+    position: relative;
+    padding: 0 5px;
     &:hover {
       border: 2px dotted black;
       transform: translateX(2px) translateY(2px);
@@ -61,6 +67,9 @@ const StyledProjectForm = styled.form`
         background-color: ${(props) => props.theme.background};
         box-shadow: inset 3px 3px 3px grey;
       }
+    }
+    & > button:nth-child(0) {
+      line-height: 15px;
     }
 
     & > .error_button {
