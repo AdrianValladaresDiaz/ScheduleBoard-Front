@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { ITaskList, Project } from "../../interfaces";
+import { Project, TaskList } from "../../interfaces";
 import { RootState } from "../../redux/store";
 import { createTaskThunk } from "../../redux/thunks/projectThunks";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
 import TaskCard from "../TaskCard/TaskCard";
 
 interface TaskListProps {
-  taskList: ITaskList;
+  taskList: TaskList;
 }
 
 const StyledTaskList = styled.article`
