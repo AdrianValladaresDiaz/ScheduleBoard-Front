@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import { Task, ITaskList as TaskListInterface } from "../../interfaces";
 import TaskList from "./TaskList";
+import { render, screen } from "@testing-library/react";
+import { Task, TaskList as TaskListInterface } from "../../interfaces";
 import { Provider } from "react-redux";
 
 import configureStore from "redux-mock-store";
