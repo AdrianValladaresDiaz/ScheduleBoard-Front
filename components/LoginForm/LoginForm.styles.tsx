@@ -4,7 +4,6 @@ export const StyledLoginForm = styled.form`
   padding: 20px;
   position: relative;
   background-color: ${(props) => props.theme.softBlue};
-  box-shadow: 3px 3px 3px grey;
   box-shadow: 0 0 15px grey;
   align-items: center;
   display: flex;

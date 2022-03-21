@@ -1,11 +1,14 @@
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
 import Home from "../../pages/home";
+import store from "../../redux/store";
 
 describe("Given the home page", () => {
   describe("When received by the client ", () => {
     test("Should render a list of projects", async () => {
       const projects = [
         {
+          id: "id 1",
           title: "Placeholder project 1",
           dueDate: "2009-02-15T00:00:00Z",
           users: [{ name: "user", surname: "surname", id: "one id" }],
@@ -68,7 +71,11 @@ describe("Given the home page", () => {
 
       const data = { projects };
 
-      render(<Home data={data} />);
+      render(
+        <Provider store={store}>
+          <Home data={data} />{" "}
+        </Provider>
+      );
 
       const listOfLists = await screen.getAllByRole("list");
 

@@ -17,7 +17,6 @@ export interface ProjectInfo {
   title: string;
   dueDate: Date;
   users: any[];
-  taskLists: ITaskList[];
   id: string;
 }
 

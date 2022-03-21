@@ -1,5 +1,5 @@
 import type { Project } from "./index";
-import { Task } from "./objectInterfaces";
+import { ProjectInfo, Task } from "./objectInterfaces";
 
 export interface loadProjectAction {
   type: string;
@@ -14,4 +14,14 @@ export interface createTaskAction {
   type: string;
   task: Task;
   taskListId: string;
+}
+
+export interface loadUserProjectsAction {
+  type: string;
+  projects: ProjectInfo[];
+}
+
+export interface addUserProjectAction {
+  type: string;
+  project: ProjectInfo;
 }

@@ -18,11 +18,18 @@ const StyledMain = styled.main`
   padding-top: ${(props) => props.theme.headerHeight};
   padding-left: ${(props) => props.theme.lateralPadding};
   padding-right: ${(props) => props.theme.lateralPadding};
-
+  margin-top: calc(${(props) => props.theme.lateralPadding} + 15px);
   @media (min-width: 715px) {
     padding-left: 150px;
     padding-right: 150px;
   }
+`;
+
+const StyledContainer = styled.div`
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 `;
 
 const Layout: FunctionComponent = ({ children }: any) => {
@@ -35,7 +42,9 @@ const Layout: FunctionComponent = ({ children }: any) => {
       </Head>
       <Background />
       <NavigationBar />
-      <StyledMain className="main-container">{children}</StyledMain>
+      <StyledMain className="main-container">
+        <StyledContainer>{children}</StyledContainer>
+      </StyledMain>
     </>
   );
 };
