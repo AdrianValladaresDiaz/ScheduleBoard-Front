@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import ScheduleButton from "../ScheduleButton/ScheduleButton";
+import { Project } from "../../interfaces";
+import { RootState } from "../../redux/store";
+import { addTaskListThunk } from "../../redux/thunks/projectThunks";
 
 const StyledTaskCreationForm = styled.article`
   border-color: black;
@@ -44,9 +48,15 @@ const StyledTaskCreationForm = styled.article`
 `;
 
 const TaskListForm = (): JSX.Element => {
+  const [cookies] = useCookies();
+  const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [formError, setFormError] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  const project: Project = useSelector<RootState>(
+    (state) => state.project
+  ) as Project;
 
   const handleChange = (event: React.FormEvent): void => {
     const target = event.target as HTMLInputElement;
@@ -58,7 +68,26 @@ const TaskListForm = (): JSX.Element => {
   }, [title]);
 
   const submitForm = async () => {
+    const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string];
+
+    const thunkResult: any = await dispatch(
+      addTaskListThunk(title, token, project.id)
+    );
+
+    if (thunkResult) {
+      handleSuccess();
+    } else {
+      handleFailure();
+    }
     setFormError(true);
+  };
+
+  const handleSuccess = () => {
+    setTitle("");
+    setButtonDisabled(true);
+  };
+
+  const handleFailure = () => {
     setTitle("");
     setButtonDisabled(true);
   };

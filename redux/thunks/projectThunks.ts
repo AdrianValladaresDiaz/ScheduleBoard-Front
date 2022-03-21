@@ -65,13 +65,8 @@ export const createTaskThunk =
   };
 
 export const addTaskListThunk =
-  (
-    title: string,
-    token: string,
-    projectId: string
-  ): ThunkAction<void, RootState, unknown, IaddTaskListAction> =>
+  (title: string, token: string, projectId: string) =>
   async (dispatch: ThunkDispatch<RootState, unknown, IaddTaskListAction>) => {
-    let response: ScheduleBoardResponse;
     try {
       const axiosResponse = await axios.post<ScheduleBoardResponse>(
         `${process.env.NEXT_PUBLIC_BACKEND}project/createTaskList`,
@@ -85,11 +80,11 @@ export const addTaskListThunk =
       );
 
       if (axiosResponse.status === 201) {
-        const a = dispatch(addTaskListAction());
-        return;
+        dispatch(addTaskListAction(axiosResponse.data.message));
+        return true;
       }
+      return false;
     } catch {
-      return;
+      return false;
     }
   };
-//el retorno del dispatch lo returneo
