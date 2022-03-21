@@ -38,6 +38,8 @@ const StyledOrderedList = styled.ol`
   display: flex;
   flex-direction: column;
   padding: 10px;
+  overflow-y: auto;
+  max-height: 60vh;
 `;
 
 const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
