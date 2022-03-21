@@ -59,16 +59,18 @@ const StyledProjectForm = styled.form`
   & .save_button_container {
     position: relative;
     padding: 0 5px;
+    height: 50px;
     &:hover {
       border: 2px dotted black;
-      transform: translateX(2px) translateY(2px);
+      transform: translateX(2px) translateY(-2px);
       &:active {
         background-color: ${(props) => props.theme.background};
         box-shadow: inset 3px 3px 3px grey;
       }
     }
-    & > button:nth-child(0) {
-      line-height: 15px;
+    & .bigContent {
+      height: 50px;
+      padding: 0;
     }
 
     & > .error_button {

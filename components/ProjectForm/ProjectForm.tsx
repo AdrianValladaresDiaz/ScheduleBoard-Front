@@ -128,9 +128,9 @@ const ProjectForm = (): JSX.Element => {
           className={`save_button_container save_button_container--${formError}`}
         >
           <WidthDefinedButton
-            bigContent="O"
+            bigContent=""
             title="create task"
-            content="save changes"
+            content="create project"
             onClickAction={submitForm}
             isDisabled={formError}
           />
