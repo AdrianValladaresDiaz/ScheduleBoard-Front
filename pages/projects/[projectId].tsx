@@ -14,6 +14,7 @@ import TaskListForm from "../../components/TaskListForm/TaskListForm";
 const StyledProject = styled.div`
   display: flex;
   position: relative;
+  overflow-x: auto;
 `;
 
 const LeftBorder = styled.div`
@@ -43,31 +44,8 @@ const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
     dispatch(loadProjectAction(message));
   }, [dispatch, message]);
 
-  const clickMe = async () => {
-    const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string];
-
-    const axiosResponse = await axios.post<ScheduleBoardResponse>(
-      `${process.env.NEXT_PUBLIC_BACKEND}project/createTaskList`,
-      {
-        data: {
-          title: "new title",
-        },
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          projectId: project.id,
-        },
-      }
-    );
-    console.log(axiosResponse);
-  };
-
   return (
     <>
-      <button onClick={clickMe}>click me</button>
       <StyledProject>
         {project && <LeftBorder className="left-border" />}
         {project &&
