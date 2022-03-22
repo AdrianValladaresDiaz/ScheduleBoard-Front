@@ -5,6 +5,9 @@ import Avatar from "../Avatar/Avatar";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { useSelector, useStore } from "react-redux";
+import store, { RootState } from "../../redux/store";
+import { UserInfo } from "../../interfaces";
 
 const StyledLogo = styled.p`
   font-size: ${textSizes.medium};
@@ -47,6 +50,9 @@ const LinkList = styled.ul`
 `;
 
 const NavigationBar = (): JSX.Element => {
+  const user = useSelector<RootState>((state) => state.userInfo) as UserInfo;
+  console.log(user);
+
   return (
     <StyledNav>
       <StyledLogo>Schedule Board </StyledLogo>
@@ -56,7 +62,9 @@ const NavigationBar = (): JSX.Element => {
             <FontAwesomeIcon icon={faHouse} />
           </a>
         </Link>
-        <Avatar letters="AV" />
+        <Avatar
+          letters={user.name ? `${user.name[0]}${user.surname[0]}` : ""}
+        />
       </LinkList>
     </StyledNav>
   );
