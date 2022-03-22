@@ -68,7 +68,7 @@ const projectReducer = (
       break;
 
     default:
-      projectState = emptyProject;
+      projectState = { ...currentProject };
   }
 
   return projectState;
