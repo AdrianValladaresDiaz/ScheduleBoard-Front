@@ -4,7 +4,7 @@ export const handlers = [
   rest.get(
     `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
     (req, res, ctx) => {
-      if (req.headers._headers.authorization  "Bearer invalidToken") {
+      if (req.headers._headers.authorization === "Bearer invalidToken") {
         return res(
           ctx.status(401),
           ctx.json({
@@ -86,7 +86,7 @@ export const handlers = [
   ),
 
   rest.get("https://schedule-board.onrender.com/ping", (req, res, ctx) => {
-    if (req.headers._headers.authorization  "Bearer invalidToken") {
+    if (req.headers._headers.authorization === "Bearer invalidToken") {
       return res(
         ctx.status(401),
         ctx.json({
@@ -109,8 +109,8 @@ export const handlers = [
     const projectId = req.url.searchParams.get("projectId");
     const taskId = req.url.searchParams.get("taskId");
     if (
-      projectId  "622cdb2eaa2f5a4e7dd16915" &&
-      taskId  "622cdb2eaa2f5a4e7dd16917"
+      projectId === "622cdb2eaa2f5a4e7dd16915" &&
+      taskId === "622cdb2eaa2f5a4e7dd16917"
     ) {
       return res(
         ctx.status(200),
@@ -140,8 +140,8 @@ export const handlers = [
       const projectId = req.url.searchParams.get("projectId");
       const taskId = req.url.searchParams.get("taskId");
       if (
-        projectId  "622cdb2eaa2f5a4e7dd16915" &&
-        taskId  "622cdb2eaa2f5a4e7dd16917"
+        projectId === "622cdb2eaa2f5a4e7dd16915" &&
+        taskId === "622cdb2eaa2f5a4e7dd16917"
       ) {
         return res(
           ctx.status(200),
@@ -166,9 +166,9 @@ export const handlers = [
     const taskListId = req.url.searchParams.get("taskListId");
     const taskTitle = req.url.searchParams.get("taskTitle");
     if (
-      projectId  "622cdb2eaa2f5a4e7dd16915" &&
-      taskListId  "622cdb2eaa2f5a4e7dd16917" &&
-      taskTitle  "new title"
+      projectId === "622cdb2eaa2f5a4e7dd16915" &&
+      taskListId === "622cdb2eaa2f5a4e7dd16917" &&
+      taskTitle === "new title"
     ) {
       return res(
         ctx.status(200),
@@ -198,8 +198,8 @@ export const handlers = [
     const taskId = req.body.params.taskId;
 
     if (
-      projectId  "622cdb2eaa2f5a4e7dd16915" &&
-      taskId  "622cdb2eaa2f5a4e7dd16917"
+      projectId === "622cdb2eaa2f5a4e7dd16915" &&
+      taskId === "622cdb2eaa2f5a4e7dd16917"
     ) {
       return res(
         ctx.status(200),
@@ -231,7 +231,7 @@ export const handlers = [
     (req, res, ctx) => {
       const { mail, password } = req.body.data;
 
-      if (mail  "usermail@mail.com" && password  "userPassword") {
+      if (mail === "usermail@mail.com" && password === "userPassword") {
         return res(
           ctx.status(200),
           ctx.json({
