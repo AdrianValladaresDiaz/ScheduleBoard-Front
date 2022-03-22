@@ -1,5 +1,7 @@
 import { getServerSideProps } from "../../pages/home";
 import "whatwg-fetch";
+import { GetServerSidePropsContext } from "next";
+import { ServerResponse } from "http";
 
 const OLD_ENV = process.env;
 

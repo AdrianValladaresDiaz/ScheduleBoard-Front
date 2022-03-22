@@ -5,8 +5,8 @@ import Avatar from "../Avatar/Avatar";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector, useStore } from "react-redux";
-import store, { RootState } from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import { UserInfo } from "../../interfaces";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
@@ -59,12 +59,11 @@ const NavigationBar = (): JSX.Element => {
   const [cookies] = useCookies();
 
   useEffect(() => {
-    const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string];
-
+    const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!];
     if (token) {
       const { name, surname, mail } = jwt_decode(token) as UserInfo;
-      console.log({ name, surname, mail });
       dispatch(loadUserInfoAction({ name, surname, mail }));
+    } else {
     }
   }, [cookies, dispatch]);
 

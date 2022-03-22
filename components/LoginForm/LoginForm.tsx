@@ -75,14 +75,14 @@ const LoginForm = (): JSX.Element => {
     }, 1000);
   };
 
-  const clickOnError = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    setFormError(false);
-  };
-
   const handleError = () => {
     setSpinnerVisible(false);
     setFormError(true);
+  };
+
+  const clickOnError = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setFormError(false);
   };
 
   return (

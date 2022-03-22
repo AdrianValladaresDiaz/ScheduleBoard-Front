@@ -52,6 +52,17 @@ export const createTaskThunk =
         { params: { projectId, taskListId, taskTitle } }
       );
       response = axiosResponse.data;
+      if (axiosResponse.status === 201) {
+        await axios.post<ScheduleBoardResponse>(
+          `${process.env.NEXT_PUBLIC_FRONTEND}api/revalidate`,
+          {
+            data: {
+              secret: process.env.NEXT_PUBLIC_ODISR,
+              revalidatePath: `/projects/${projectId}`,
+            },
+          }
+        );
+      }
     } catch {
       response = {
         error: true,
@@ -68,7 +79,7 @@ export const addTaskListThunk =
     title: string,
     token: string,
     projectId: string
-  ): ThunkAction<void, RootState, unknown, IcreateTaskAction> =>
+  ): ThunkAction<Promise<boolean>, RootState, unknown, IcreateTaskAction> =>
   async (dispatch: ThunkDispatch<RootState, unknown, IaddTaskListAction>) => {
     try {
       const axiosResponse = await axios.post<ScheduleBoardResponse>(
