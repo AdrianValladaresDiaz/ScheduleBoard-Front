@@ -12,7 +12,6 @@ import {
   createTaskAction,
   deleteTaskAction,
 } from "../actions/actionCreators";
-import { TaskList } from "../../interfaces/objectInterfaces";
 
 export const deleteTaskThunk =
   (
