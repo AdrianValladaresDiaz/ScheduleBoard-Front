@@ -15,13 +15,13 @@ beforeEach(() => {
 
 describe("Given projectReducer", () => {
   describe("When called with an unmatched action type", () => {
-    test("Then it should return an empty project", () => {
+    test("Then it should return the project already in the state", () => {
       const badAction = { type: "" };
       const expectedOutput = {
-        id: "",
-        dueDate: new Date(2009),
+        id: "45123",
+        dueDate: new Date(2010),
         taskLists: [],
-        title: "empty project",
+        title: "Different project",
         users: [],
       };
       const exampleProject = {
