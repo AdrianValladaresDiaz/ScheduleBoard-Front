@@ -1,11 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import Layout from "../../components/Layout/Layout";
+import renderWithProviders from "../../mocks/renderWithProviders";
 
 describe("Given a Layout component", () => {
   describe("When it's rendered with an anchor inside", () => {
     test("Then it should show an anchor and a main", () => {
       const name = "layoutTest";
-      render(
+
+      renderWithProviders(
         <Layout>
           <a href="home">{name}</a>
         </Layout>

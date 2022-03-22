@@ -17,7 +17,6 @@ const userReducer = (
   action: AnyAction | loadUserInfoAction | removeUserInfoAction = { type: "" }
 ): UserInfo => {
   let newUser;
-
   switch (action.type) {
     case actionTypes.loadUserInfo:
       newUser = { ...(action as loadUserInfoAction).userInfo };
@@ -25,7 +24,7 @@ const userReducer = (
     case actionTypes.removeUserInfo:
       newUser = { ...emptyUser };
     default:
-      newUser = emptyUser;
+      newUser = { ...user };
   }
 
   return newUser;

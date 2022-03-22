@@ -5,9 +5,13 @@ import Avatar from "../Avatar/Avatar";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { useSelector, useStore } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import store, { RootState } from "../../redux/store";
 import { UserInfo } from "../../interfaces";
+import { useCookies } from "react-cookie";
+import { useEffect } from "react";
+import jwt_decode from "jwt-decode";
+import { loadUserInfoAction } from "../../redux/actions/actionCreators";
 
 const StyledLogo = styled.p`
   font-size: ${textSizes.medium};
@@ -51,7 +55,18 @@ const LinkList = styled.ul`
 
 const NavigationBar = (): JSX.Element => {
   const user = useSelector<RootState>((state) => state.userInfo) as UserInfo;
-  console.log(user);
+  const dispatch = useDispatch();
+  const [cookies] = useCookies();
+
+  useEffect(() => {
+    const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string];
+
+    if (token) {
+      const { name, surname, mail } = jwt_decode(token) as UserInfo;
+      console.log({ name, surname, mail });
+      dispatch(loadUserInfoAction({ name, surname, mail }));
+    }
+  }, [cookies, dispatch]);
 
   return (
     <StyledNav>
@@ -63,7 +78,11 @@ const NavigationBar = (): JSX.Element => {
           </a>
         </Link>
         <Avatar
-          letters={user.name ? `${user.name[0]}${user.surname[0]}` : ""}
+          letters={
+            user.name
+              ? `${user.name[0].toUpperCase()}${user.surname[0].toUpperCase()}`
+              : ""
+          }
         />
       </LinkList>
     </StyledNav>
