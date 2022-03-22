@@ -27,3 +27,9 @@ export interface Project {
   taskLists: TaskList[];
   id: string;
 }
+
+export interface UserInfo {
+  name: string;
+  surname: string;
+  mail: string;
+}

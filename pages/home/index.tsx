@@ -1,7 +1,6 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import { useEffect } from "react";
-import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import ProjectForm from "../../components/ProjectForm/ProjectForm";
@@ -44,7 +43,6 @@ const StyledUl = styled.ul`
 `;
 
 const Home = ({ data: { projects } }: HomeProps): JSX.Element => {
-  const [cookies, setCookie] = useCookies();
   const dispatch = useDispatch();
   const userProjects = useSelector<RootState>(
     (state) => state.userProjects

@@ -1,8 +1,7 @@
 import axios from "axios";
-import React, { FC, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
-import { ScheduleBoardResponse, Task } from "../../interfaces";
 import { AxiosUserProjectPostResponse } from "../../interfaces/axiosResponseInterfaces";
 import { addUserProjectAction } from "../../redux/actions/actionCreators";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";

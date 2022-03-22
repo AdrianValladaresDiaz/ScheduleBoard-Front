@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../redux/store";
 import { loadProjectAction } from "../../redux/actions/actionCreators";
-import { useCookies } from "react-cookie";
 import TaskListForm from "../../components/TaskListForm/TaskListForm";
 
 const StyledProject = styled.div`
@@ -27,7 +26,6 @@ interface ProjectPageProps {
 }
 
 const ProjectPage = ({ error, message }: ProjectPageProps): JSX.Element => {
-  const [cookies] = useCookies();
   const router = useRouter();
   const dispatch = useDispatch();
   const project: Project = useSelector<RootState>(
