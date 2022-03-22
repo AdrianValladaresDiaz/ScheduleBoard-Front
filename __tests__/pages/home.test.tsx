@@ -1,7 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
+import { screen } from "@testing-library/react";
+import renderWithProviders from "../../mocks/renderWithProviders";
 import Home from "../../pages/home";
-import store from "../../redux/store";
 
 describe("Given the home page", () => {
   describe("When received by the client ", () => {
@@ -71,11 +70,7 @@ describe("Given the home page", () => {
 
       const data = { projects };
 
-      render(
-        <Provider store={store}>
-          <Home data={data} />{" "}
-        </Provider>
-      );
+      renderWithProviders(<Home data={data} />);
 
       const listOfLists = await screen.getAllByRole("list");
 

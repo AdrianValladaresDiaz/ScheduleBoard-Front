@@ -1,8 +1,9 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Project } from "../../interfaces";
+import { Project, ScheduleBoardResponse } from "../../interfaces";
 import { RootState } from "../../redux/store";
 import { addTaskListThunk } from "../../redux/thunks/projectThunks";
 
@@ -70,7 +71,7 @@ const TaskListForm = (): JSX.Element => {
   const submitForm = async () => {
     const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string];
 
-    const thunkResult: any = await dispatch(
+    const thunkResult: any = dispatch(
       addTaskListThunk(title, token, project.id)
     );
 
@@ -82,7 +83,16 @@ const TaskListForm = (): JSX.Element => {
     setFormError(true);
   };
 
-  const handleSuccess = () => {
+  const handleSuccess = async () => {
+    await axios.post<ScheduleBoardResponse>(
+      `${process.env.NEXT_PUBLIC_FRONTEND}api/revalidate`,
+      {
+        data: {
+          secret: process.env.NEXT_PUBLIC_ODISR,
+          revalidatePath: `/projects/${project.id}`,
+        },
+      }
+    );
     setTitle("");
     setButtonDisabled(true);
   };
