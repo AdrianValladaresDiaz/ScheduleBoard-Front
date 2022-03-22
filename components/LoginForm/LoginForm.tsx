@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { ScheduleBoardResponse } from "../../interfaces";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
+import Spinner from "../Spinner/Spinner";
 import { StyledLoginContainer, StyledLoginForm } from "./LoginForm.styles";
 
 const initialFormState = {
@@ -17,6 +18,7 @@ const LoginForm = (): JSX.Element => {
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const [submitButtonEnabled, setSubmitButtonEnabled] = useState(false);
+  const [spinnerVisible, setSpinnerVisible] = useState(false);
   const [, setCookie] = useCookies();
 
   const router = useRouter();
@@ -45,6 +47,7 @@ const LoginForm = (): JSX.Element => {
 
   const submitForm = async (): Promise<void> => {
     try {
+      setSpinnerVisible(true);
       const axiosResponse = await axios.post<ScheduleBoardResponse>(
         `${process.env.NEXT_PUBLIC_BACKEND}authentication/login`,
         {
@@ -54,14 +57,15 @@ const LoginForm = (): JSX.Element => {
       if (axiosResponse.status === 200) {
         handleSuccess(axiosResponse.data.message.token as string);
       } else {
-        setFormError(true);
+        handleError();
       }
     } catch {
-      setFormError(true);
+      handleError();
     }
   };
 
   const handleSuccess = (token: string): void => {
+    setSpinnerVisible(false);
     setFormSuccess(true);
     setCookie(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string, token, {
       maxAge: 60 * 60 * 24 * 5,
@@ -75,6 +79,12 @@ const LoginForm = (): JSX.Element => {
     event.stopPropagation();
     setFormError(false);
   };
+
+  const handleError = () => {
+    setSpinnerVisible(false);
+    setFormError(true);
+  };
+
   return (
     <StyledLoginContainer
       onSubmit={(event) => {
@@ -146,6 +156,7 @@ const LoginForm = (): JSX.Element => {
             <p>{`Welcome. Redirecting to your home screen...`}</p>
           </div>
         )}
+        {spinnerVisible && <Spinner />}
       </StyledLoginForm>
     </StyledLoginContainer>
   );

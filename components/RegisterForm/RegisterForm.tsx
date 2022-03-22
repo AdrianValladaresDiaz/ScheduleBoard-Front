@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { ScheduleBoardResponse } from "../../interfaces";
 import ScheduleButton from "../ScheduleButton/ScheduleButton";
+import Spinner from "../Spinner/Spinner";
 import {
   StyledRegisterContainer,
   StyledRegisterForm,
@@ -22,6 +23,8 @@ const RegisterForm = (): JSX.Element => {
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const [submitButtonEnabled, setSubmitButtonEnabled] = useState(false);
+  const [spinnerVisible, setSpinnerVisible] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -54,13 +57,20 @@ const RegisterForm = (): JSX.Element => {
   };
 
   const handleSuccess = (): void => {
+    setSpinnerVisible(false);
     setFormSuccess(true);
     setTimeout(() => {
       redirectToLogin();
     }, 1500);
   };
 
+  const handleFailure = (): void => {
+    setSpinnerVisible(false);
+    setFormError(true);
+  };
+
   const submitForm = async (): Promise<void> => {
+    setSpinnerVisible(true);
     try {
       const { confirmPassword, ...userData } = formState;
       const axiosResponse = await axios.post<ScheduleBoardResponse>(
@@ -72,10 +82,10 @@ const RegisterForm = (): JSX.Element => {
       if (axiosResponse.status === 201) {
         handleSuccess();
       } else {
-        setFormError(true);
+        handleFailure();
       }
     } catch {
-      setFormError(true);
+      handleFailure();
     }
   };
 
@@ -198,6 +208,7 @@ const RegisterForm = (): JSX.Element => {
             <p>{`Hi there, ${formState.name}. Redirecting you to the log in screen...`}</p>
           </div>
         )}
+        {spinnerVisible && <Spinner />}
       </StyledRegisterForm>
     </StyledRegisterContainer>
   );
