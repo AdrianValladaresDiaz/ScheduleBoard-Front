@@ -87,14 +87,16 @@ describe("Given getServerSideProps from Home", () => {
         },
       };
 
-      const context = {
+      const context: unknown = {
         res: {
           writeHead: jest.fn(),
           end: jest.fn(),
         },
       };
 
-      const result = await getServerSideProps(context);
+      const result = await getServerSideProps(
+        context as GetServerSidePropsContext
+      );
 
       expect(result).toEqual(expectedReturn);
     });
@@ -104,14 +106,14 @@ describe("Given getServerSideProps from Home", () => {
     test("it should redirect to the login screen", async () => {
       process.env.DEV_JWT_TOKEN = "invalidToken";
       const endResponse = jest.fn();
-      const context = {
+      const context: unknown = {
         res: {
           writeHead: jest.fn(),
           end: endResponse,
         },
       };
 
-      await getServerSideProps(context);
+      await getServerSideProps(context as GetServerSidePropsContext);
 
       expect(endResponse).toHaveBeenCalled();
     });

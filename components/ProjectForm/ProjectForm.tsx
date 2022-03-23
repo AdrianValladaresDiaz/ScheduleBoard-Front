@@ -56,10 +56,14 @@ const ProjectForm = (): JSX.Element => {
     resetForm();
   };
 
+  const handleFailure = () => {
+    resetForm();
+    setFormError(true);
+  };
+
   const submitForm = async () => {
     try {
       const token = cookies[process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string];
-
       const axiosResponse = await axios.post<AxiosUserProjectPostResponse>(
         `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
         {
@@ -74,13 +78,14 @@ const ProjectForm = (): JSX.Element => {
           },
         }
       );
+
       if (axiosResponse.status === 201) {
         handleSuccess(axiosResponse);
       } else {
-        setFormError(true);
+        handleFailure();
       }
-    } catch {
-      setFormError(true);
+    } catch (error) {
+      handleFailure();
     }
   };
 
