@@ -16,8 +16,8 @@ const StyledTaskList = styled.article`
   border-right: 4px solid black;
   display: flex;
   flex-direction: column;
-  max-width: 200px;
-
+  width: 250px;
+  flex-shrink: 0;
   & header {
     overflow: hidden;
     height: 75px;
@@ -25,10 +25,20 @@ const StyledTaskList = styled.article`
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     & > h3 {
       text-align: center;
       line-height: 30px;
+    }
+  }
+
+  & > form {
+    height: 126px;
+    padding: 5px;
+    & > * {
+      width: 100%;
+    }
+    & button {
+      width: 100%;
     }
   }
 `;
@@ -61,6 +71,8 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
   };
 
   const handleCreateClick = (): void => {
+    setNewTaskTitle("");
+    setCreateButtonEnabled(false);
     dispatch(createTaskThunk(project.id, taskList.id, newTaskTitle));
   };
 
@@ -72,12 +84,16 @@ const TaskList = ({ taskList }: TaskListProps): JSX.Element => {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-
           (event.target as HTMLFormElement).reset();
         }}
       >
         <label htmlFor={`taskList ${id}`}>Write title of new task</label>
-        <input id={`taskList ${id}`} type="text" onChange={handleFormChange} />
+        <input
+          id={`taskList ${id}`}
+          type="text"
+          onChange={handleFormChange}
+          value={newTaskTitle}
+        />
         <ScheduleButton
           title="create task"
           content="+"

@@ -16,9 +16,23 @@ const StyledCard = styled.li`
   background-color: #b2d4fb;
   margin: 5px;
   padding: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  box-shadow: 0 2px 2px grey;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  & .button-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
   & h3 {
     text-decoration: underline;
     font-size: ${(props) => props.theme.textSizeSmallTitle};
+    text-align: center;
+    line-height: ${(props) => props.theme.textSizeSmallTitle};
   }
   & p {
     line-height: 20px;
@@ -30,9 +44,12 @@ const StyledCard = styled.li`
     font-size: ${(props) => props.theme.textSizeSmallText};
     cursor: pointer;
   }
-  & svg {
-    font-size: ${(props) => props.theme.textSizeSmallText};
+  & svg,
+  svg:visited,
+  svg:active {
+    font-size: ${(props) => props.theme.textSizeMedium};
     cursor: pointer;
+    color: black;
   }
 `;
 
@@ -55,16 +72,19 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
           ? description.slice(0, 35) + "..."
           : description}
       </p>
-      <ScheduleButton
-        content={<RiDeleteBin5Line />}
-        onClickAction={deleteTask}
-        isDisabled={false}
-      />
-      <Link href={`/task/${project.id}/${taskId}`} passHref>
-        <a>
-          <GiHighlighter />
-        </a>
-      </Link>
+
+      <div className="button-container">
+        <ScheduleButton
+          content={<RiDeleteBin5Line />}
+          onClickAction={deleteTask}
+          isDisabled={false}
+        />
+        <Link href={`/task/${project.id}/${taskId}`} passHref>
+          <a>
+            <GiHighlighter />
+          </a>
+        </Link>
+      </div>
     </StyledCard>
   );
 };
