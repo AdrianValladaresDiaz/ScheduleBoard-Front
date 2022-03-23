@@ -1,4 +1,8 @@
-import { screen, waitFor } from "@testing-library/react";
+import {
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import renderWithProviders from "../../mocks/renderWithProviders";
 import Home from "../../pages/home";
@@ -138,17 +142,16 @@ describe("Given the home page", () => {
 
       userEvent.click(createButton);
 
-      await wait(1000);
-
-      const errorButton = screen.getByRole("button", {
-        name: /something went wrong/i,
+      let errorButton: unknown;
+      await waitFor(() => {
+        errorButton = screen.getByRole("button", {
+          name: /something went wrong/i,
+        });
       });
 
       expect(errorButton).toBeVisible();
 
-      userEvent.click(errorButton);
-
-      await waitFor(() => expect(errorButton).not.toBeVisible());
+      userEvent.click(errorButton as Element);
 
       expect(errorButton).not.toBeVisible();
     });
