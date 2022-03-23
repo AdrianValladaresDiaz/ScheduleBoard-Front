@@ -80,6 +80,15 @@ const TaskDetailForm: FC<TaskDetailProps> = ({ task }) => {
           {
             data: {
               secret: process.env.NEXT_PUBLIC_ODISR,
+              revalidatePath: `/projects/${projectId}`,
+            },
+          }
+        );
+        await axios.post<ScheduleBoardResponse>(
+          `${process.env.NEXT_PUBLIC_FRONTEND}api/revalidate`,
+          {
+            data: {
+              secret: process.env.NEXT_PUBLIC_ODISR,
               revalidatePath: `/task/${projectId}/${taskId}`,
             },
           }
