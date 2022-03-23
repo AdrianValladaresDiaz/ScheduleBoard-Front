@@ -144,34 +144,45 @@ export const StyledRegisterContainer = styled.main`
   flex-direction: column;
   font-size: ${(props) => props.theme.textSizeMedium};
 
-  & > nav > ul {
-    list-style: none;
-    display: flex;
-    color: black;
-    & > li.register_nav {
-      background-color: ${(props) => props.theme.softGreen};
-      margin-right: 30px;
-      padding: 5px 15px;
-      min-width: 100px;
-      text-align: center;
-      &--login {
-        background-color: ${(props) => props.theme.softBlue};
-        margin-left: 10px;
-        box-shadow: 0 0 15px grey;
-        clip-path: inset(-15px -15px 0 -15px);
+  @media (min-width: 715px) {
+    align-items: center;
+    & > div {
+      min-width: 550px;
+      & > nav > ul {
       }
-      &--register {
-        background-color: ${(props) => props.theme.softGreen};
-        z-index: 50;
-        margin-left: 10px;
-        box-shadow: 0 0 15px grey;
-        clip-path: inset(-15px -15px 0 -15px);
-      }
+    }
+  }
 
-      & a,
-      a:hover,
-      a:visited {
-        color: black;
+  & > div {
+    & > nav > ul {
+      list-style: none;
+      display: flex;
+      color: black;
+      & > li.register_nav {
+        background-color: ${(props) => props.theme.softGreen};
+        margin-right: 30px;
+        padding: 5px 15px;
+        min-width: 100px;
+        text-align: center;
+        &--login {
+          background-color: ${(props) => props.theme.softBlue};
+          margin-left: 10px;
+          box-shadow: 0 0 15px grey;
+          clip-path: inset(-15px -15px 0 -15px);
+        }
+        &--register {
+          background-color: ${(props) => props.theme.softGreen};
+          z-index: 50;
+          margin-left: 10px;
+          box-shadow: 0 0 15px grey;
+          clip-path: inset(-15px -15px 0 -15px);
+        }
+
+        & a,
+        a:hover,
+        a:visited {
+          color: black;
+        }
       }
     }
   }

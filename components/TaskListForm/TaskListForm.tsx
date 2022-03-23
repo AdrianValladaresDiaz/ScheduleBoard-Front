@@ -52,9 +52,8 @@ const TaskListForm = (): JSX.Element => {
   const [cookies] = useCookies();
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
-  const [formError, setFormError] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [, setButtonText] = useState("Create column");
+  const [buttonText, setButtonText] = useState("Create column");
 
   const project: Project = useSelector<RootState>(
     (state) => state.project
@@ -81,7 +80,6 @@ const TaskListForm = (): JSX.Element => {
     } else {
       handleFailure();
     }
-    setFormError(true);
   };
 
   const handleSuccess = async () => {
@@ -126,7 +124,7 @@ const TaskListForm = (): JSX.Element => {
         </form>
       </header>
       <button disabled={buttonDisabled} onClick={submitForm}>
-        {formError ? "Creation failed" : "Create Column"}
+        {buttonText}
       </button>
     </StyledTaskCreationForm>
   );

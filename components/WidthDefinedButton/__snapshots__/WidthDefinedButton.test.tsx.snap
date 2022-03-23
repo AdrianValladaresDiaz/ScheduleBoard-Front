@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given the WidthDefinedButton When rendered It should match the snapshot 1`] = `
+<button
+  class="sc-bdvvtL hzREMf"
+  title=""
+>
+  <div
+    class="content"
+  >
+    normal content
+  </div>
+  <div
+    class="bigContent"
+  >
+    O
+  </div>
+</button>
+`;

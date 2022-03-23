@@ -91,73 +91,75 @@ const LoginForm = (): JSX.Element => {
         event.preventDefault();
       }}
     >
-      <nav>
-        <ul>
-          <li className="register_nav register_nav--login">
-            <Link href={"/login"}>Log in</Link>
-          </li>
-          <li className="register_nav register_nav--register">
-            <Link href={"/register"}>Register</Link>
-          </li>
-        </ul>
-      </nav>
-      <StyledLoginForm>
-        {!formSuccess && (
-          <>
-            <div className="login-form__input-container">
-              <label htmlFor="mail" className="login-form__label">
-                e-mail:
-              </label>
-              <input
-                id="mail"
-                type="email"
-                onChange={handleChange}
-                value={formState.mail ?? ""}
-                placeholder={"write your e-mail"}
-              />
-            </div>
+      <div>
+        <nav>
+          <ul>
+            <li className="register_nav register_nav--login">
+              <Link href={"/login"}>Log in</Link>
+            </li>
+            <li className="register_nav register_nav--register">
+              <Link href={"/register"}>Register</Link>
+            </li>
+          </ul>
+        </nav>
+        <StyledLoginForm>
+          {!formSuccess && (
+            <>
+              <div className="login-form__input-container">
+                <label htmlFor="mail" className="login-form__label">
+                  e-mail:
+                </label>
+                <input
+                  id="mail"
+                  type="email"
+                  onChange={handleChange}
+                  value={formState.mail ?? ""}
+                  placeholder={"write your e-mail"}
+                />
+              </div>
 
-            <div className="login-form__input-container">
-              <label htmlFor={`password`} className="login-form__label">
-                Password:
-              </label>
-              <input
-                id={"password"}
-                type="password"
-                onChange={handleChange}
-                value={formState.password ?? ""}
-                placeholder="enter your password"
-                maxLength={15}
-              />
-            </div>
+              <div className="login-form__input-container">
+                <label htmlFor={`password`} className="login-form__label">
+                  Password:
+                </label>
+                <input
+                  id={"password"}
+                  type="password"
+                  onChange={handleChange}
+                  value={formState.password ?? ""}
+                  placeholder="enter your password"
+                  maxLength={15}
+                />
+              </div>
 
-            <div
-              className={`login-button-container login-button-container--${formError}`}
-            >
-              <button
-                className={`submit-button submit-button--${formError}`}
-                onClick={submitForm}
-                disabled={!submitButtonEnabled}
+              <div
+                className={`login-button-container login-button-container--${formError}`}
               >
-                Log me in
-              </button>
+                <button
+                  className={`submit-button submit-button--${formError}`}
+                  onClick={submitForm}
+                  disabled={!submitButtonEnabled}
+                >
+                  Log me in
+                </button>
 
-              <ScheduleButton
-                content="Something went wrong :("
-                onClickAction={clickOnError}
-                className={`error_button error_button--${formError}`}
-              />
+                <ScheduleButton
+                  content="Something went wrong :("
+                  onClickAction={clickOnError}
+                  className={`error_button error_button--${formError}`}
+                />
+              </div>
+            </>
+          )}
+          {formSuccess && (
+            <div className="login-form__success">
+              <h3>Successfully logged in</h3>
+              <p>{`Welcome. Redirecting to your home screen...`}</p>
             </div>
-          </>
-        )}
-        {formSuccess && (
-          <div className="login-form__success">
-            <h3>Successfully logged in</h3>
-            <p>{`Welcome. Redirecting to your home screen...`}</p>
-          </div>
-        )}
-        {spinnerVisible && <Spinner />}
-      </StyledLoginForm>
+          )}
+          {spinnerVisible && <Spinner />}
+        </StyledLoginForm>
+      </div>
     </StyledLoginContainer>
   );
 };
