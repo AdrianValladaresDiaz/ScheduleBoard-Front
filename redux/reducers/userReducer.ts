@@ -23,6 +23,7 @@ const userReducer = (
       break;
     case actionTypes.removeUserInfo:
       newUser = { ...emptyUser };
+      break;
     default:
       newUser = { ...user };
   }

@@ -54,7 +54,7 @@ const TaskListForm = (): JSX.Element => {
   const [title, setTitle] = useState("");
   const [formError, setFormError] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [buttonText, setButtonText] = useState("Create column");
+  const [, setButtonText] = useState("Create column");
 
   const project: Project = useSelector<RootState>(
     (state) => state.project

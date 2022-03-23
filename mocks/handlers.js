@@ -85,6 +85,34 @@ export const handlers = [
     }
   ),
 
+  rest.post(
+    `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
+    (req, res, next) => {
+      if (
+        req.headers._headers.authorization ===
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRyaSIsInN1cm5hbWUiOiJ2YWxsYSIsIm1haWwiOiJhZHJpLnZhbGxhQGdtYWlsLmNvbSJ9.rgAaV7f7UAayPP9cexY7qQZytsFtuqNHWCsyeiZLZlA.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.YjanxP0Nl6JCFQYI7cv83zdtiH5kvO-tmF1Rg3j55wk"
+      ) {
+        const { title, dueDate } = req.body.data;
+        const newProject = {
+          title,
+          dueDate,
+          id: "451387655113",
+          users: [],
+        };
+
+        return res(ctx.status(201), ctx.json(newProject));
+      } else {
+        return res(
+          ctx.status(400),
+          ctx.json({
+            error: false,
+            message: "disallowed by backend",
+          })
+        );
+      }
+    }
+  ),
+
   rest.get("https://schedule-board.onrender.com/ping", (req, res, ctx) => {
     if (req.headers._headers.authorization === "Bearer invalidToken") {
       return res(

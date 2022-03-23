@@ -63,7 +63,6 @@ const NavigationBar = (): JSX.Element => {
     if (token) {
       const { name, surname, mail } = jwt_decode(token) as UserInfo;
       dispatch(loadUserInfoAction({ name, surname, mail }));
-    } else {
     }
   }, [cookies, dispatch]);
 
