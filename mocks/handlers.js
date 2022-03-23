@@ -1,5 +1,6 @@
 // src/mocks/handlers.js
 import { rest } from "msw";
+import sampleProject from "../testingutils/sampleProject";
 export const handlers = [
   rest.get(
     `${process.env.NEXT_PUBLIC_BACKEND}userProjects`,
@@ -113,7 +114,7 @@ export const handlers = [
     }
   ),
 
-  rest.get("https://schedule-board.onrender.com/ping", (req, res, ctx) => {
+  rest.get(`${process.env.NEXT_PUBLIC_BACKEND}ping`, (req, res, ctx) => {
     if (req.headers._headers.authorization === "Bearer invalidToken") {
       return res(
         ctx.status(401),
@@ -245,6 +246,18 @@ export const handlers = [
         })
       );
     }
+  }),
+
+  rest.get(`${process.env.NEXT_PUBLIC_BACKEND}project`, (req, res, ctx) => {
+    const projectId = req.url.searchParams.get("projectId");
+    if (projectId === "622cdb2eaa2f5a4e7dd16915")
+      return res(
+        ctx.status(200),
+        ctx.json({
+          error: false,
+          message: sampleProject,
+        })
+      );
   }),
 
   rest.post(

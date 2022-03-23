@@ -15,7 +15,7 @@ describe("Given the WidthDefinedButton", () => {
 
       const button = screen.getByRole("button");
 
-      (expect(button) as any).toMatchSnapshot();
+      expect(button).toMatchSnapshot();
     });
   });
 });

@@ -46,10 +46,10 @@ const LinkList = styled.ul`
   a:visited,
   a:active {
     color: black;
-    padding-top: 6px;
+    padding-top: 1px;
     margin-right: ${paddingSizes.mobileSidesPadding};
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
   }
 `;
 

@@ -144,33 +144,44 @@ export const StyledLoginContainer = styled.main`
   flex-direction: column;
   font-size: ${(props) => props.theme.textSizeMedium};
 
-  & > nav > ul {
-    list-style: none;
-    display: flex;
-    & > li.register_nav {
-      background-color: ${(props) => props.theme.softGreen};
-      margin-right: 30px;
-      padding: 5px 15px;
-      min-width: 100px;
-      text-align: center;
-      &--login {
-        margin-left: 10px;
-        background-color: ${(props) => props.theme.softBlue};
-        z-index: 50;
-        box-shadow: 0 0 15px grey;
-        clip-path: inset(-15px -15px 0 -15px);
+  @media (min-width: 715px) {
+    align-items: center;
+    & > div {
+      min-width: 550px;
+      & > nav > ul {
       }
-      &--register {
+    }
+  }
+  & > div {
+    & > nav > ul {
+      list-style: none;
+      display: flex;
+      width: 100%;
+      & > li.register_nav {
         background-color: ${(props) => props.theme.softGreen};
-        margin-left: 10px;
-        box-shadow: 0 0 15px grey;
-        clip-path: inset(-15px -15px 0 -15px);
-      }
-      & a,
-      a:hover,
-      a:visited,
-      a:active {
-        color: black;
+        margin-right: 30px;
+        padding: 5px 15px;
+        min-width: 100px;
+        text-align: center;
+        &--login {
+          margin-left: 10px;
+          background-color: ${(props) => props.theme.softBlue};
+          z-index: 50;
+          box-shadow: 0 0 15px grey;
+          clip-path: inset(-15px -15px 0 -15px);
+        }
+        &--register {
+          background-color: ${(props) => props.theme.softGreen};
+          margin-left: 10px;
+          box-shadow: 0 0 15px grey;
+          clip-path: inset(-15px -15px 0 -15px);
+        }
+        & a,
+        a:hover,
+        a:visited,
+        a:active {
+          color: black;
+        }
       }
     }
   }
