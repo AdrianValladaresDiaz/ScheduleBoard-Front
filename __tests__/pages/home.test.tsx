@@ -1,10 +1,11 @@
 import { screen } from "@testing-library/react";
+import { title } from "process";
 import renderWithProviders from "../../mocks/renderWithProviders";
 import Home from "../../pages/home";
 
 describe("Given the home page", () => {
   describe("When received by the client ", () => {
-    test("Should render a list of projects", async () => {
+    test("Should render a list of projects and a project creation form", async () => {
       const projects = [
         {
           id: "id 1",
@@ -73,8 +74,23 @@ describe("Given the home page", () => {
       renderWithProviders(<Home data={data} />);
 
       const listOfLists = await screen.getAllByRole("list");
+      const createButton = await screen.getByRole("button", {
+        name: /create project/i,
+      });
 
       expect(listOfLists).not.toBeNull();
+      expect(createButton).toBeInTheDocument();
+    });
+  });
+
+  describe("When the user inputs information in the project form", () => {
+    test("That information should be reflected in the form", () => {
+      const data = { projects: [] };
+      renderWithProviders(<Home data={data} />);
+
+      const titleInput = screen.getByLabelText(/project title/i);
+
+      expect(titleInput).toBeInTheDocument();
     });
   });
 });

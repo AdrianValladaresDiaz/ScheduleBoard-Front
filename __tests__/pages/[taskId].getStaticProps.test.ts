@@ -1,5 +1,6 @@
 import { getStaticProps } from "../../pages/task/[projectId]/[taskId]";
 import "whatwg-fetch";
+import { GetStaticPropsContext } from "next";
 
 const OLD_ENV = process.env;
 
@@ -34,14 +35,14 @@ describe("Given getStaticProps from [taskId]", () => {
       const projectId = "622cdb2eaa2f5a4e7dd16915";
       const taskId = "622cdb2eaa2f5a4e7dd16917";
 
-      const context = {
+      const context: unknown = {
         params: {
           projectId,
           taskId,
         },
       };
 
-      const result = await getStaticProps(context);
+      const result = await getStaticProps(context as GetStaticPropsContext);
 
       expect(result).toEqual(expectedReturn);
     });
