@@ -21,6 +21,7 @@ const customJestConfig = {
     "!**/*.test.tsx",
     "!pages/_document.tsx",
     "!pages/_app.tsx",
+    "pages/api/revalidate.js",
   ],
 };
 
