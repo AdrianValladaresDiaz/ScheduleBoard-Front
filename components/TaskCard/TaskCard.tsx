@@ -27,6 +27,15 @@ const StyledCard = styled.li`
     display: flex;
     width: 100%;
     justify-content: space-between;
+    & span {
+      clip: rect(0 0 0 0);
+      clip-path: inset(100%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
   }
   & h3 {
     text-decoration: underline;
@@ -75,10 +84,14 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
 
       <div className="button-container">
         <ScheduleButton
-          content={<RiDeleteBin5Line />}
+          content={
+            <>
+              <RiDeleteBin5Line />
+              <span>delete task button</span>
+            </>
+          }
           onClickAction={deleteTask}
           isDisabled={false}
-          aria-label="delete task"
         />
         <Link href={`/task/${project.id}/${taskId}`} passHref>
           <a aria-label="task detail and edit page">

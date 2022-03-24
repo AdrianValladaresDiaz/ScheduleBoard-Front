@@ -31,7 +31,7 @@ describe("Given the 'revalidate' function", () => {
       };
 
       process.env.NEXT_PUBLIC_ODISR = "correct-public-odisr";
-      await revalidate(req, res);
+      await revalidate(req as any, res as any);
 
       expect(res.json).toHaveBeenCalledWith(expectedCallValue);
     });
@@ -56,7 +56,7 @@ describe("Given the 'revalidate' function", () => {
       };
 
       process.env.NEXT_PUBLIC_ODISR = "correct-public-odisr";
-      await revalidate(req, res);
+      await revalidate(req as any, res as any);
 
       expect(res.json).toHaveBeenCalledWith(expectedCallValue);
     });
@@ -83,7 +83,7 @@ describe("Given the 'revalidate' function", () => {
       };
 
       process.env.NEXT_PUBLIC_ODISR = "correct-public-odisr";
-      await revalidate(req, res);
+      await revalidate(req as any, res as any);
 
       expect(res.send).toHaveBeenCalledWith(expectedCallValue);
     });
