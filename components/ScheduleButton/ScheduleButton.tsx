@@ -6,6 +6,7 @@ interface ScheduleButtonProps {
   isDisabled?: boolean;
   title?: string;
   className?: string;
+  ariaLabel?: string;
 }
 
 const ScheduleButton = ({
@@ -14,6 +15,7 @@ const ScheduleButton = ({
   isDisabled = false,
   title = "",
   className = "",
+  ariaLabel = "",
 }: ScheduleButtonProps): JSX.Element => {
   return (
     <button

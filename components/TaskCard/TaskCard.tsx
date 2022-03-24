@@ -78,9 +78,10 @@ const TaskCard = ({ taskInfo }: TaskProps): JSX.Element => {
           content={<RiDeleteBin5Line />}
           onClickAction={deleteTask}
           isDisabled={false}
+          aria-label="delete task"
         />
         <Link href={`/task/${project.id}/${taskId}`} passHref>
-          <a>
+          <a aria-label="task detail and edit page">
             <GiHighlighter />
           </a>
         </Link>
