@@ -25,6 +25,7 @@ const ScheduleButton = ({
         onClickAction(event)
       }
       className={className}
+      aria-label={ariaLabel}
     >
       {content}
     </button>
