@@ -71,7 +71,7 @@ const NavigationBar = (): JSX.Element => {
       <StyledLogo>Schedule Board </StyledLogo>
       <LinkList>
         <Link href={"/home"} passHref>
-          <a>
+          <a aria-label="home page">
             <FontAwesomeIcon icon={faHouse} />
           </a>
         </Link>
