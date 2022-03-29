@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import textSizes from "../../styles/textSizes";
-import * as paddingSizes from "../../styles/paddings";
+import dimensions from "../../styles/dimensions";
 import Avatar from "../Avatar/Avatar";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +13,7 @@ import jwt_decode from "jwt-decode";
 import { loadUserInfoAction } from "../../redux/actions/actionCreators";
 
 const StyledLogo = styled.p`
-  font-size: ${textSizes.textSizeMedium};
+  font-size: ${dimensions.textSizeMedium};
   font-family: ${(props) => props.theme.logoFont};
   width: 5px;
   line-height: 20px;
@@ -28,8 +27,8 @@ const StyledNav = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
-  height: ${textSizes.headerHeight};
-  padding: ${textSizes.lateralPadding};
+  height: ${dimensions.headerHeight};
+  padding: ${dimensions.lateralPadding};
   box-shadow: 3px 0 15px grey;
 `;
 
@@ -47,7 +46,7 @@ const LinkList = styled.ul`
   a:active {
     color: black;
     padding-top: 1px;
-    margin-right: ${paddingSizes.mobileSidesPadding};
+    margin-right: ${dimensions.mobileSidesPadding};
     width: 30px;
     height: 30px;
   }

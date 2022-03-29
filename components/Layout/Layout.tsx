@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { FunctionComponent } from "react";
 import styled from "styled-components";
-import textSizes from "../../styles/textSizes";
+import dimensions from "../../styles/dimensions";
 import NavigationBar from "../NavigationBar/NavigationBar";
 
 const Background = styled.div`
@@ -17,9 +17,9 @@ const Background = styled.div`
 const StyledMain = styled.main`
   box-sizing: border-box;
   padding-top: ${(props) => props.theme.headerHeight};
-  padding-left: ${textSizes.lateralPadding};
-  padding-right: ${textSizes.lateralPadding};
-  margin-top: calc(${textSizes.lateralPadding} + 15px);
+  padding-left: ${dimensions.lateralPadding};
+  padding-right: ${dimensions.lateralPadding};
+  margin-top: calc(${dimensions.lateralPadding} + 15px);
   @media (min-width: 715px) {
     padding-left: 150px;
     padding-right: 150px;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import textSizes from "../../styles/textSizes";
+import dimensions from "../../styles/dimensions";
 
 const StyledProjectForm = styled.form`
   padding: 10px 15px;
@@ -35,7 +35,7 @@ const StyledProjectForm = styled.form`
       }
     }
     & input {
-      font-size: ${textSizes.textSizeSmallText};
+      font-size: ${dimensions.textSizeSmallText};
     }
   }
 
@@ -52,7 +52,7 @@ const StyledProjectForm = styled.form`
       margin-top: 10px;
       margin-top: 0;
       margin-bottom: 5px;
-      font-size: ${textSizes.textSizeSmallText};
+      font-size: ${dimensions.textSizeSmallText};
       border-bottom: 2px dotted #5c7251;
     }
   }
@@ -80,7 +80,7 @@ const StyledProjectForm = styled.form`
       right: -10px;
       transform: rotateZ(15deg);
       background-color: ${(props) => props.theme.accent};
-      font-size: ${textSizes.textSizeSmallText};
+      font-size: ${dimensions.textSizeSmallText};
       width: 135px;
       visibility: hidden;
       &--true {
