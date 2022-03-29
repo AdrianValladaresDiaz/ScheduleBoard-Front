@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import textSizes from "../../styles/textSizes";
 
 export const StyledLoginForm = styled.form`
   padding: 20px;
@@ -20,7 +21,7 @@ export const StyledLoginForm = styled.form`
 
     & label {
       width: 100px;
-      font-size: ${(props) => props.theme.textSizeMedium};
+      font-size: ${textSizes.textSizeMedium};
     }
     & input {
       width: 180px;
@@ -29,8 +30,8 @@ export const StyledLoginForm = styled.form`
       background-color: transparent;
       border: none;
       border-bottom: 2px dotted black;
-      font-size: ${(props) => props.theme.textSizeSmallText};
-      height: ${(props) => props.theme.lineHeightSmallText};
+      font-size: ${textSizes.textSizeSmallText};
+      height: ${textSizes.lineHeightSmallText};
     }
   }
   & .login-button-container {
@@ -41,7 +42,7 @@ export const StyledLoginForm = styled.form`
     justify-content: end;
     margin-top: 45px;
     & .submit-button {
-      font-size: ${(props) => props.theme.textSizeMedium};
+      font-size: ${textSizes.textSizeMedium};
       border: none;
       padding: 0 15px;
       background-color: transparent;
@@ -76,7 +77,7 @@ export const StyledLoginForm = styled.form`
       right: -10px;
       transform: rotateZ(15deg);
       background-color: ${(props) => props.theme.accent};
-      font-size: ${(props) => props.theme.textSizeSmallText};
+      font-size: ${textSizes.textSizeSmallText};
       width: 135px;
       visibility: hidden;
       &--true {
@@ -142,7 +143,7 @@ export const StyledLoginForm = styled.form`
 export const StyledLoginContainer = styled.main`
   display: flex;
   flex-direction: column;
-  font-size: ${(props) => props.theme.textSizeMedium};
+  font-size: ${textSizes.textSizeMedium};
 
   @media (min-width: 715px) {
     align-items: center;

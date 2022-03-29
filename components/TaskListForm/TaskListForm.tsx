@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { Project, ScheduleBoardResponse } from "../../interfaces";
 import { RootState } from "../../redux/store";
 import { addTaskListThunk } from "../../redux/thunks/projectThunks";
+import textSizes from "../../styles/textSizes";
 
 const StyledTaskCreationForm = styled.article`
   border-color: black;
@@ -35,8 +36,8 @@ const StyledTaskCreationForm = styled.article`
     & textarea {
       resize: none;
       background-color: hsla(100, 100%, 100%, 0.5);
-      font-size: ${(props) => props.theme.textSizeSmallText};
-      line-height: ${(props) => props.theme.lineHeightSmallText};
+      font-size: ${textSizes.textSizeSmallText};
+      line-height: ${textSizes.lineHeightSmallText};
       line-height: calc(75px / 2);
       overflow: auto;
       text-align: center;

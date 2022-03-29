@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as textSizes from "../../styles/textSizes";
+import textSizes from "../../styles/textSizes";
 import * as paddingSizes from "../../styles/paddings";
 import Avatar from "../Avatar/Avatar";
 import Link from "next/link";
@@ -14,7 +14,7 @@ import jwt_decode from "jwt-decode";
 import { loadUserInfoAction } from "../../redux/actions/actionCreators";
 
 const StyledLogo = styled.p`
-  font-size: ${textSizes.medium};
+  font-size: ${textSizes.textSizeMedium};
   font-family: ${(props) => props.theme.logoFont};
   width: 5px;
   line-height: 20px;
@@ -28,8 +28,8 @@ const StyledNav = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
-  height: ${(props) => props.theme.headerHeight};
-  padding: ${(props) => props.theme.lateralPadding};
+  height: ${textSizes.headerHeight};
+  padding: ${textSizes.lateralPadding};
   box-shadow: 3px 0 15px grey;
 `;
 

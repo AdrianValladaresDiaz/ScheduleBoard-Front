@@ -2,7 +2,7 @@
 
 exports[`Given the WidthDefinedButton When rendered It should match the snapshot 1`] = `
 <button
-  class="sc-bdvvtL hzREMf"
+  class="sc-bdvvtL hNfttX"
   title=""
 >
   <div

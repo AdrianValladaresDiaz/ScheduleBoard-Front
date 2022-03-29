@@ -1,10 +1,11 @@
 import Link from "next/link";
 import styled from "styled-components";
+import textSizes from "../../styles/textSizes";
 import Avatar from "../Avatar/Avatar";
 
 const StyledProjectMiniature = styled.article`
   position: relative;
-  margin-top: ${(props) => props.theme.lateralPadding};
+  margin-top: ${textSizes.lateralPadding};
   background-color: ${(props) => props.theme.backgroundItem};
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -14,7 +15,7 @@ const StyledProjectMiniature = styled.article`
   cursor: pointer;
 
   & .project-info {
-    margin: ${(props) => props.theme.lateralPadding};
+    margin: ${textSizes.lateralPadding};
 
     & h3 {
       font-size: 18px;
@@ -23,7 +24,7 @@ const StyledProjectMiniature = styled.article`
   }
 
   & .team-members {
-    margin: ${(props) => props.theme.lateralPadding};
+    margin: ${textSizes.lateralPadding};
 
     display: flex;
     &--title::after {

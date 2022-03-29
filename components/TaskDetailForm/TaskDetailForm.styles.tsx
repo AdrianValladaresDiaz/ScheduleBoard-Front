@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import textSizes from "../../styles/textSizes";
 
 const StyledDetailForm = styled.form`
   padding: 20px;
@@ -46,8 +47,8 @@ const StyledDetailForm = styled.form`
     background-color: transparent;
     border: none;
     resize: none;
-    font-size: ${(props) => props.theme.textSizeSmallText};
-    line-height: ${(props) => props.theme.lineHeightSmallText};
+    font-size: ${textSizes.textSizeSmallText};
+    line-height: ${textSizes.lineHeightSmallText};
     height: 200px;
     overflow: auto;
     background: repeating-linear-gradient(
@@ -55,7 +56,7 @@ const StyledDetailForm = styled.form`
       #5c7251 0px,
       #5c7251 1px,
       rgba(255, 255, 255, 0) 1px,
-      rgba(255, 255, 255, 0) ${(props) => props.theme.lineHeightSmallText}
+      rgba(255, 255, 255, 0) ${textSizes.lineHeightSmallText}
     );
   }
 
@@ -67,7 +68,7 @@ const StyledDetailForm = styled.form`
       min-width: 40%;
     }
     & input {
-      font-size: ${(props) => props.theme.textSizeSmallText};
+      font-size: ${textSizes.textSizeSmallText};
     }
   }
 
@@ -106,7 +107,7 @@ const StyledDetailForm = styled.form`
       right: -10px;
       transform: rotateZ(15deg);
       background-color: ${(props) => props.theme.accent};
-      font-size: ${(props) => props.theme.textSizeSmallText};
+      font-size: ${textSizes.textSizeSmallText};
       width: 135px;
       visibility: hidden;
       &--true {

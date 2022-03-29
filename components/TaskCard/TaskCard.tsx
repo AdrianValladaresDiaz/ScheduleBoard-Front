@@ -7,6 +7,7 @@ import { RootState } from "../../redux/store";
 import Link from "next/link";
 import { GiHighlighter } from "react-icons/gi";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import textSizes from "../../styles/textSizes";
 
 interface TaskProps {
   taskInfo: Task;
@@ -39,24 +40,24 @@ const StyledCard = styled.li`
   }
   & h3 {
     text-decoration: underline;
-    font-size: ${(props) => props.theme.textSizeSmallTitle};
+    font-size: ${textSizes.textSizeSmallTitle};
     text-align: center;
-    line-height: ${(props) => props.theme.textSizeSmallTitle};
+    line-height: ${textSizes.textSizeSmallTitle};
   }
   & p {
     line-height: 20px;
-    font-size: ${(props) => props.theme.textSizeSmallText};
+    font-size: ${textSizes.textSizeSmallText};
   }
   & button {
     background-color: transparent;
     border: none;
-    font-size: ${(props) => props.theme.textSizeSmallText};
+    font-size: ${textSizes.textSizeSmallText};
     cursor: pointer;
   }
   & svg,
   svg:visited,
   svg:active {
-    font-size: ${(props) => props.theme.textSizeMedium};
+    font-size: ${textSizes.textSizeMedium};
     cursor: pointer;
     color: black;
   }
