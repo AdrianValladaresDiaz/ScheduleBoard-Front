@@ -6,12 +6,6 @@ const defaultTheme = {
   softBlue: "#b2d4fb",
   logoFont: "Oleo Script",
   avatarFont: "Salsa",
-  headerHeight: "55px",
-  lateralPadding: "7px",
-  textSizeMedium: "20px",
-  textSizeSmallTitle: "18px",
-  textSizeSmallText: "16px",
-  lineHeightSmallText: "25px",
 };
 
 export default defaultTheme;
