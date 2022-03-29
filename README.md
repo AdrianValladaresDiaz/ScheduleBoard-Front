@@ -8,11 +8,11 @@ This is an attempt at creating a tool to manage kanban methodology (think Trello
 
 ## Environment variables:
 
-NEXT_PUBLIC_BACKEND= URL of your backend. e.g. https://myProjectName.onrender.com/ (or wherever you host your backend)
-NEXT_PUBLIC_FRONTEND= URL of your frontend. e.g. http://localhost:3000/. Used by some navigation calls and On-demand ISR.
-NEXT_PUBLIC_ODISR= Secret key used to trigger On-demand ISR. Any request to pages/api/revalidate should be sent with this key or fail.
-NEXT_PUBLIC_AUTH_COOKIE_NAME= User authentication is stored in a cookie with this name. Any name will work
-DEV_JWT_TOKEN: Used for development only. This should be a valid JWT, properly signed, and verifiable by your backend.
+- NEXT_PUBLIC_BACKEND= URL of your backend. e.g. https://myProjectName.onrender.com/ (or wherever you host your backend)
+- NEXT_PUBLIC_FRONTEND= URL of your frontend. e.g. http://localhost:3000/. Used by some navigation calls and On-demand ISR.
+- NEXT_PUBLIC_ODISR= Secret key used to trigger On-demand ISR. Any request to pages/api/revalidate should be sent with this key or fail.
+- NEXT_PUBLIC_AUTH_COOKIE_NAME= User authentication is stored in a cookie with this name. Any name will work
+- DEV_JWT_TOKEN: Used for development only. This should be a valid JWT, properly signed, and verifiable by your backend.
 
 Any page requiring authentication will look for a cookie with the name defined by NEXT_PUBLIC_AUTH_COOKIE_NAME. If no such cookie exists, then DEV_JWT_TOKEN is used instead.
 For obvious reasons DEV_JWT_TOKEN should **NOT** be set in your hosting service, only in your dev machine.
