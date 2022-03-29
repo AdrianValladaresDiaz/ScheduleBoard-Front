@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import textSizes from "../../styles/textSizes";
+import dimensions from "../../styles/dimensions";
 
 const GnarlyButton = styled.button`
   cursor: pointer;
@@ -9,8 +9,8 @@ const GnarlyButton = styled.button`
   border: none;
   align-items: center;
   & .content {
-    font-size: ${textSizes.textSizeSmallText};
-    line-height: ${textSizes.textSizeSmallText};
+    font-size: ${dimensions.textSizeSmallText};
+    line-height: ${dimensions.textSizeSmallText};
     width: min-content;
     margin-right: 5px;
     border-bottom: 2px solid black;

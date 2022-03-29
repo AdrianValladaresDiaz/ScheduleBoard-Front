@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import * as textSizes from "../../styles/textSizes";
-import * as dimensions from "../../styles/dimensions";
+import dimensions from "../../styles/dimensions";
 
 const StyledAvatar = styled.div`
   display: flex;
@@ -13,7 +12,7 @@ const StyledAvatar = styled.div`
 
   & p {
     padding-top: 3px;
-    font-size: ${textSizes.medium};
+    font-size: ${dimensions.textSizeMedium};
     font-family: ${(props) => props.theme.avatarFont};
   }
 `;

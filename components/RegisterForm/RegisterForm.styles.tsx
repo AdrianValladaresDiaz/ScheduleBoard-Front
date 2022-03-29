@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import textSizes from "../../styles/textSizes";
+import dimensions from "../../styles/dimensions";
 
 export const StyledRegisterForm = styled.form`
   padding: 20px;
@@ -20,7 +20,7 @@ export const StyledRegisterForm = styled.form`
 
     & label {
       width: 100px;
-      font-size: ${textSizes.textSizeMedium};
+      font-size: ${dimensions.textSizeMedium};
     }
     & input {
       width: 180px;
@@ -29,8 +29,8 @@ export const StyledRegisterForm = styled.form`
       background-color: transparent;
       border: none;
       border-bottom: 2px dotted black;
-      font-size: ${textSizes.textSizeSmallText};
-      height: ${textSizes.lineHeightSmallText};
+      font-size: ${dimensions.textSizeSmallText};
+      height: ${dimensions.lineHeightSmallText};
     }
   }
 
@@ -42,7 +42,7 @@ export const StyledRegisterForm = styled.form`
     justify-content: end;
 
     & .submit-button {
-      font-size: ${textSizes.textSizeMedium};
+      font-size: ${dimensions.textSizeMedium};
       border: none;
       padding: 0 15px;
       background-color: transparent;
@@ -77,7 +77,7 @@ export const StyledRegisterForm = styled.form`
       right: -10px;
       transform: rotateZ(15deg);
       background-color: ${(props) => props.theme.accent};
-      font-size: ${textSizes.textSizeSmallText};
+      font-size: ${dimensions.textSizeSmallText};
       width: 135px;
       visibility: hidden;
       &--true {
@@ -143,7 +143,7 @@ export const StyledRegisterForm = styled.form`
 export const StyledRegisterContainer = styled.main`
   display: flex;
   flex-direction: column;
-  font-size: ${textSizes.textSizeMedium};
+  font-size: ${dimensions.textSizeMedium};
 
   @media (min-width: 715px) {
     align-items: center;
