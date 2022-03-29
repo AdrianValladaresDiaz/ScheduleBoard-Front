@@ -16,10 +16,10 @@ const Background = styled.div`
 
 const StyledMain = styled.main`
   box-sizing: border-box;
-  padding-top: ${(props) => props.theme.headerHeight};
+  padding-top: ${dimensions.headerHeight};
   padding-left: ${dimensions.lateralPadding};
   padding-right: ${dimensions.lateralPadding};
-  margin-top: calc(${dimensions.lateralPadding} + 15px);
+  margin-top: calc((${dimensions.lateralPadding}) + 15px);
   @media (min-width: 715px) {
     padding-left: 150px;
     padding-right: 150px;
