@@ -1,17 +1,14 @@
 import { Provider } from "react-redux";
 import store from "../../redux/store";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import RegisterPage from "../../pages/register";
 import userEvent from "@testing-library/user-event";
+import renderWithProviders from "../../mocks/renderWithProviders";
 
 describe("Given the register page", () => {
   describe("When received by the client", () => {
     test("Then it should show the register form", () => {
-      render(
-        <Provider store={store}>
-          <RegisterPage />
-        </Provider>
-      );
+      renderWithProviders(<RegisterPage />);
 
       const registerButton = screen.getByText(/register me/i);
       const email = screen.getByText(/e-mail/i);
@@ -25,11 +22,7 @@ describe("Given the register page", () => {
     test("Then the form should update appropiately", () => {
       const userEmailInput = "usermail@mail.com";
       const userNameInput = "name user input";
-      render(
-        <Provider store={store}>
-          <RegisterPage />
-        </Provider>
-      );
+      renderWithProviders(<RegisterPage />);
 
       const emailInput = screen.getByLabelText(/mail/i);
       const nameInput = screen.getByLabelText(/^name/im);
@@ -47,11 +40,7 @@ describe("Given the register page", () => {
       const password = "password";
       const diffPassword = "adslfñkadj";
 
-      render(
-        <Provider store={store}>
-          <RegisterPage />
-        </Provider>
-      );
+      renderWithProviders(<RegisterPage />);
       const passwordInput = screen.getByLabelText(/^password/im);
       const confirmInput = screen.getByLabelText(/confirm/i);
       const button = screen.getByRole("button", { name: /register me/i });
