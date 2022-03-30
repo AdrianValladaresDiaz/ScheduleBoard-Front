@@ -1,10 +1,9 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { wait } from "@testing-library/user-event/dist/utils";
 import { useRouter } from "next/router";
-import { Provider } from "react-redux";
+import renderWithProviders from "../../mocks/renderWithProviders";
 import TaskDetail from "../../pages/task/[projectId]/[taskId]";
-import store from "../../redux/store";
 import sampleProjectList from "../../testingutils/sampleProjectList";
 
 jest.mock("next/router", () => {
@@ -26,11 +25,7 @@ describe("Given a task modification form page", () => {
       const error = false;
       const task = sampleProjectList[0].taskLists[0].tasks[0];
 
-      render(
-        <Provider store={store}>
-          <TaskDetail error={error} message={task} />
-        </Provider>
-      );
+      renderWithProviders(<TaskDetail error={error} message={task} />);
 
       const taskDescription = screen.getByDisplayValue(
         /an arbitratily long description, in string form 1/i
@@ -49,11 +44,7 @@ describe("Given a task modification form page", () => {
       const error = false;
       const task = sampleProjectList[0].taskLists[0].tasks[0];
 
-      render(
-        <Provider store={store}>
-          <TaskDetail error={error} message={task} />
-        </Provider>
-      );
+      renderWithProviders(<TaskDetail error={error} message={task} />);
 
       const taskTitle = screen.getByDisplayValue(/task title 1/i);
 
@@ -73,11 +64,7 @@ describe("Given a task modification form page", () => {
       const task = sampleProjectList[0].taskLists[0].tasks[0];
       const redirect = useRouter().push;
 
-      render(
-        <Provider store={store}>
-          <TaskDetail error={error} message={task} />
-        </Provider>
-      );
+      renderWithProviders(<TaskDetail error={error} message={task} />);
 
       const submitButton = screen.getByText(/save changes/i);
       const errorButton = screen.getByText(/something went wrong/i);

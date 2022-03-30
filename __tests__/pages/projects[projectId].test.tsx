@@ -1,9 +1,8 @@
-import { Provider } from "react-redux";
-import store from "../../redux/store";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import ProjectPage, { getStaticProps } from "../../pages/projects/[projectId]";
 import sampleProjectList from "../../testingutils/sampleProjectList";
 import { GetStaticPathsContext } from "next";
+import renderWithProviders from "../../mocks/renderWithProviders";
 
 let projectTestingSample = { ...sampleProjectList[0] };
 beforeEach(() => {
@@ -15,10 +14,8 @@ describe("Given a project page", () => {
     test("Then it should show the entire project", () => {
       const error = false;
 
-      render(
-        <Provider store={store}>
-          <ProjectPage error={error} message={projectTestingSample} />
-        </Provider>
+      renderWithProviders(
+        <ProjectPage error={error} message={projectTestingSample} />
       );
 
       const listTitle = screen.getByText(/task list 1/i);
@@ -33,10 +30,8 @@ describe("Given a project page", () => {
     test("Each taskList should have a 'createTask' button and that button should create a task", async () => {
       const error = false;
 
-      render(
-        <Provider store={store}>
-          <ProjectPage error={error} message={projectTestingSample} />
-        </Provider>
+      renderWithProviders(
+        <ProjectPage error={error} message={projectTestingSample} />
       );
 
       const createTaskButtonList = await screen.getAllByTitle("create task");

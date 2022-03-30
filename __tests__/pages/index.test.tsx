@@ -1,8 +1,6 @@
-import { render } from "@testing-library/react";
 import { useRouter } from "next/router";
-import { Provider } from "react-redux";
+import renderWithProviders from "../../mocks/renderWithProviders";
 import Home from "../../pages";
-import store from "../../redux/store";
 
 jest.mock("next/router", () => {
   const router = {
@@ -22,11 +20,7 @@ describe("Given the root page", () => {
     test("Then it should redirect to /home", () => {
       const redirect = useRouter().push;
 
-      render(
-        <Provider store={store}>
-          <Home />
-        </Provider>
-      );
+      renderWithProviders(<Home />);
 
       expect(redirect).toHaveBeenCalled();
     });

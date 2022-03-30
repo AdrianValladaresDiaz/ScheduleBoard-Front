@@ -1,14 +1,12 @@
 import {
-  render,
   screen,
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useRouter } from "next/router";
-import { Provider } from "react-redux";
+import renderWithProviders from "../../mocks/renderWithProviders";
 import LoginPage from "../../pages/login";
-import store from "../../redux/store";
 
 jest.mock("next/router", () => {
   const router = {
@@ -22,11 +20,7 @@ jest.mock("next/router", () => {
 describe("Given the login page", () => {
   describe("When received by the client", () => {
     test("Then it should the login form", () => {
-      render(
-        <Provider store={store}>
-          <LoginPage />
-        </Provider>
-      );
+      renderWithProviders(<LoginPage />);
 
       const loginButton = screen.getByText(/log me in/i);
       const email = screen.getByText(/e-mail/i);
@@ -43,11 +37,7 @@ describe("Given the login page", () => {
       const userEmailInput = "usermail@mail.com";
       const userPasswordInput = "userPassword";
 
-      render(
-        <Provider store={store}>
-          <LoginPage />
-        </Provider>
-      );
+      renderWithProviders(<LoginPage />);
 
       const emailInput = screen.getByLabelText(/mail/i);
       const passwordInput = screen.getByLabelText(/^password/im);
@@ -64,11 +54,7 @@ describe("Given the login page", () => {
     test("Then the submit button should be disabled", () => {
       const mail = "mail";
 
-      render(
-        <Provider store={store}>
-          <LoginPage />
-        </Provider>
-      );
+      renderWithProviders(<LoginPage />);
 
       const emailInput = screen.getByLabelText(/mail/i);
       const button = screen.getByRole("button", { name: /log me in/i });
@@ -84,11 +70,7 @@ describe("Given the login page", () => {
       const userEmailInput = "badUsermail@mail.com";
       const userPasswordInput = "userPassword";
 
-      render(
-        <Provider store={store}>
-          <LoginPage />
-        </Provider>
-      );
+      renderWithProviders(<LoginPage />);
 
       const emailInput = screen.getByLabelText(/mail/i);
       const passwordInput = screen.getByLabelText(/^password/im);
@@ -114,11 +96,7 @@ describe("Given the login page", () => {
       const redirect = useRouter().push;
       const homePage = "/home";
 
-      render(
-        <Provider store={store}>
-          <LoginPage />
-        </Provider>
-      );
+      renderWithProviders(<LoginPage />);
 
       const emailInput = screen.getByLabelText(/mail/i);
       const passwordInput = screen.getByLabelText(/^password/im);
